@@ -168,7 +168,7 @@
                             <th>Ukuran Cetakan</th>
                             <th>Catatan</th>
                             <th>Status Cetak</th>
-                            <th>#</th>
+                            <th>Operasi</th>
                         </tr>
                         </thead>
                         <tbody>
