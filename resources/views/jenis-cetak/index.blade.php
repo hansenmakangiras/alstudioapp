@@ -181,15 +181,16 @@
                             <td>{{ $val->deskripsi }}</td>
                             <td>{!! \App\Models\JenisCetakan::getStatusCetakName((int) $val->status_cetak) !!}</td>
                             <td>
+                                @can('editJenisCetak')
                                 <a href="{{ route('jenis-cetak.edit',$val->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
-                                {{--<a href="{{ route('jenis-cetak.destroy',$val->id) }}" class="btn btn-danger--}}
-                                {{--btn-xs"><i--}}
-                                        {{--class="fa fa-trash"></i> Hapus</a>--}}
+                                @endcan
+                                @can('deleteJenisCetak')
                                 {!! Form::open(['method' => 'DELETE','route' => ['jenis-cetak.destroy', $val->id],
                                     'style'=>'display:inline']) !!}
                                 {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                 {!! Form::close() !!}
+                                @endcan
                             </td>
                         </tr>
                         @endforeach
