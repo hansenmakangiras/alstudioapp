@@ -1,2 +1,3 @@
-# alstudioapp
-Management Application For Digital Printing Studio
+# AL Studio Digital Printing Application    
+Management Application For Digital Printing Studio.
+
