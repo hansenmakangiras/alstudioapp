@@ -73,10 +73,10 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    @can(["Manage Users"])
+                    @can('Manage Users')
                         <li><a href="{{ route('users.index') }}"><i class="fa fa-angle-right"></i> Pengguna</a></li>
                     @endcan
-                    @can("Manage Roles")
+                    @can("Manage Roles","Administer Roles & Users")
                         <li><a href="{{ route('roles.index') }}"><i class="fa fa-angle-right"></i> Roles</a></li>
                     @endcan
                     @can("Manage Permissions")

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\User;
-use App\Permission;
 use App\Role;
+use App\User;
 use DB;
 use Hash;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -20,11 +18,11 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('permission:viewUsers');
-        $this->middleware('permission:createUsers', ['only' => ['create','store']]);
+        $this->middleware('permission:addUsers', ['only' => ['create','store']]);
         $this->middleware('permission:editUsers', ['only' => ['edit','update']]);
         $this->middleware('permission:deleteUsers', ['only' => ['destroy']]);
         $this->middleware('permission:Manage Users');
-        $this->middleware('permission:Administer Roles & Users');
+//        $this->middleware('permission:Administer Roles & Users');
         $this->middleware(['role:Superadmin|Admin']);
     }
 
@@ -57,6 +55,7 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function store(Request $request)
     {
@@ -102,10 +101,8 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Role::pluck('name','id')->all();
-        $userRole = $user->roles->pluck('name','id')->all();
 
-
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('users.edit',compact('user','roles'));
     }
 
     /**
@@ -114,6 +111,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function update(Request $request, $id)
     {

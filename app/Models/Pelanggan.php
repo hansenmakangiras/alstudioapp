@@ -25,4 +25,9 @@ class Pelanggan extends Model
     protected $hidden = [
         '_token',
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class,'id','pelangganid');
+    }
 }

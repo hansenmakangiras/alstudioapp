@@ -24,7 +24,7 @@
 @section('content')
     <!-- Main row -->
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-6">
             @include('widget.alert')
             @if (count($errors) > 0)
                 <div class="alert alert-danger">

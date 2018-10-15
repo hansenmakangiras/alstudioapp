@@ -24,7 +24,7 @@
 @section('content')
     <!-- Main row -->
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-6">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Lihat Permission</h3>
@@ -33,7 +33,7 @@
                 <!-- form start -->
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Name : </label>
                         {{ $permission->name }}
                     </div>
                     <div class="box-footer text-center">

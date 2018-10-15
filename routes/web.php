@@ -22,7 +22,7 @@ Route::get('/', 'HomeController@index')->name('home');
 //    Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
 //});
 
-Route::group(['middleware' => 'role:Superadmin'], function() {
+Route::group(['middleware' => 'role:Superadmin|Admin'], function() {
     Route::resource('roles','RolesController');
     Route::resource('users','UserController');
     Route::resource('permissions','PermissionController');

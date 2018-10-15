@@ -25,7 +25,7 @@
 @section('content')
     <!-- Main row -->
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-6">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Lihat Pengguna</h3>
@@ -34,19 +34,21 @@
                 <!-- form start -->
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        {!! Form::text('name', $user->name, array('placeholder' => 'Name','class' => 'form-control',
-                        'readonly'))
-                         !!}
+                        <label for="name">Name : </label>
+                        {!! Form::label('name', $user->name, ['class' => 'control-label']) !!}
+                        {{--{!! Form::text('name', $user->name, array('placeholder' => 'Name','class' => 'form-control',--}}
+                        {{--'readonly'))--}}
+                         {{--!!}--}}
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        {!! Form::text('email', $user->email, array('placeholder' => 'Email','class' =>
-                        'form-control','readonly'))
-                         !!}
+                        <label for="email">Email : </label>
+                        {!! Form::label('email', $user->email, ['class' => 'control-label']) !!}
+                        {{--{!! Form::text('email', $user->email, array('placeholder' => 'Email','class' =>--}}
+                        {{--'form-control','readonly'))--}}
+                         {{--!!}--}}
                     </div>
                     <div class="form-group">
-                        <label for="roles">Role</label>
+                        <label for="roles">Jabatan / Role : </label>
                         @if(!empty($user->getRoleNames()))
                             @foreach($user->getRoleNames() as $v)
                                 <label class="label bg-red">{{ $v }}</label>

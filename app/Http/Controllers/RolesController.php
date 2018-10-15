@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use DB;
 
 class RolesController extends Controller
 {
@@ -16,11 +16,13 @@ class RolesController extends Controller
      */
     function __construct()
     {
-//        $this->middleware('permission:viewRoles');
-//        $this->middleware('permission:createRoles', ['only' => ['create','store']]);
-//        $this->middleware('permission:editRoles', ['only' => ['edit','update']]);
-//        $this->middleware('permission:deleteRoles', ['only' => ['destroy']]);
         $this->middleware('role:Superadmin');
+        $this->middleware('permission:viewRoles');
+        $this->middleware('permission:addRoles', ['only' => ['create','store']]);
+        $this->middleware('permission:editRoles', ['only' => ['edit','update']]);
+        $this->middleware('permission:deleteRoles', ['only' => ['destroy']]);
+        $this->middleware('permission:Administer Roles & Users');
+        $this->middleware('permission:Manage Roles');
     }
 
     /**

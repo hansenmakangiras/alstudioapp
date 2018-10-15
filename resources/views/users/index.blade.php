@@ -2,7 +2,7 @@
 
 @section('extra-css')
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">--}}
 @stop
 @section('subtitle')
     User List
@@ -23,19 +23,7 @@
 @stop
 
 @section('content')
-    @if(session('Sukses'))
-        <div id="success-alert" class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-check"></i> Alert!</h4>
-            {{ session('Sukses') }}
-        </div>
-    @elseif(session('Gagal'))
-        <div id="error-alert" class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-            {{ session('Gagal') }}
-        </div>
-    @endif
+    @include("widget.alert")
     {{--<div class="callout callout-info">--}}
         {{--<h4>Reminder!</h4>--}}
         {{--Instructions for how to use modals are available on the--}}
@@ -64,7 +52,7 @@
                         fa-cog"></i> Manage Role</a>
                     @endcan
                 </div>
-                @if(route('jenis-cetak.create'))
+                {{--@if(route('jenis-cetak.create'))--}}
                     <div class="modal fade" id="modal-tambah-jenis">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -117,48 +105,48 @@
                         <!-- /.modal-dialog -->
                     </div>
                     <!-- /.modal -->
-                @else
-                    <div class="modal fade" id="modal-tambah-jenis">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Ubah Jenis Cetakan</h4>
-                                </div>
-                                <form role="form" method="POST" action="{{ route('jenis-cetak.update', $id) }}">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <div class="box-body">
-                                            <div class="form-group">
-                                                <label for="jeniscetak">Jenis Cetakan</label>
-                                                <input type="text" class="form-control" id="jeniscetak" value=""
-                                                       placeholder="Masukkan jenis cetakan" name="jenis-cetak" required
-                                                       autofocus>
+                {{--@else--}}
+                    {{--<div class="modal fade" id="modal-tambah-jenis">--}}
+                        {{--<div class="modal-dialog">--}}
+                            {{--<div class="modal-content">--}}
+                                {{--<div class="modal-header">--}}
+                                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                                        {{--<span aria-hidden="true">&times;</span></button>--}}
+                                    {{--<h4 class="modal-title">Ubah Jenis Cetakan</h4>--}}
+                                {{--</div>--}}
+                                {{--<form role="form" method="POST" action="{{ route('jenis-cetak.update', $id) }}">--}}
+                                    {{--@csrf--}}
+                                    {{--<div class="modal-body">--}}
+                                        {{--<div class="box-body">--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--<label for="jeniscetak">Jenis Cetakan</label>--}}
+                                                {{--<input type="text" class="form-control" id="jeniscetak" value=""--}}
+                                                       {{--placeholder="Masukkan jenis cetakan" name="jenis-cetak" required--}}
+                                                       {{--autofocus>--}}
                                                 {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="ukuran">Ukuran Cetakan</label>
-                                                <input type="text" class="form-control" id="ukuran" value=""
-                                                       placeholder="Masukkan Ukuran Cetakan">
+                                            {{--</div>--}}
+                                            {{--<div class="form-group">--}}
+                                                {{--<label for="ukuran">Ukuran Cetakan</label>--}}
+                                                {{--<input type="text" class="form-control" id="ukuran" value=""--}}
+                                                       {{--placeholder="Masukkan Ukuran Cetakan">--}}
                                                 {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                            </div>
-                                        </div>
-                                        <!-- /.box-body -->
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-default pull-left"
-                                                data-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
-            @endif
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<!-- /.box-body -->--}}
+                                    {{--</div>--}}
+                                    {{--<div class="modal-footer">--}}
+                                        {{--<button type="submit" class="btn btn-default pull-left"--}}
+                                                {{--data-dismiss="modal">Tutup</button>--}}
+                                        {{--<button type="submit" class="btn btn-primary">Simpan</button>--}}
+                                    {{--</div>--}}
+                                {{--</form>--}}
+                            {{--</div>--}}
+                            {{--<!-- /.modal-content -->--}}
+                        {{--</div>--}}
+                        {{--<!-- /.modal-dialog -->--}}
+                    {{--</div>--}}
+                    {{--<!-- /.modal -->--}}
+                {{--@endif--}}
 
             <!-- /.box-header -->
                 <div class="box-body">
@@ -218,9 +206,9 @@
     <!-- /.row (main row) -->
 @endsection
 @push('js')
-    <!-- DataTables -->
-    <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/bower_components/datatables.net-bs4/datatables.min.js') }}"></script>
+    {{--<!-- DataTables -->--}}
+    {{--<script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('assets/bower_components/datatables.net-bs4/datatables.min.js') }}"></script>--}}
     <script>
 
         $('#tbl-jenis-cetak').DataTable({

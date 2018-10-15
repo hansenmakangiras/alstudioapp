@@ -24,18 +24,18 @@
 @section('content')
     <!-- Main row -->
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-6">
             @include('widget.alert')
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            {{--@if (count($errors) > 0)--}}
+                {{--<div class="alert alert-danger">--}}
+                    {{--<strong>Whoops!</strong> There were some problems with your input.<br><br>--}}
+                    {{--<ul>--}}
+                        {{--@foreach ($errors->all() as $error)--}}
+                            {{--<li>{{ $error }}</li>--}}
+                        {{--@endforeach--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--@endif--}}
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Add Permission</h3>
@@ -53,8 +53,8 @@
                     <div class="form-group">
                         @if(!$roles->isEmpty())
                         <label for="email">Assign Permissions to Roles : </label>
-                        {{ Form::select('role',$selectRoles,  null, [ 'class'=>'form-control select2',
-                        'data-placeholder'=>'Pilih Permission', 'style' => "width: 100%",'multiple' =>'multiple' ]) }}
+                        {{ Form::select('roles[]',$selectRoles,  null, [ 'class'=>'form-control select2',
+                        'data-placeholder'=>'Pilih Permission', 'style' => "width: 100%",'multiple' => 'multiple' ]) }}
                         @endif
                     </div>
 

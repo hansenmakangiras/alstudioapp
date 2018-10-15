@@ -28,4 +28,9 @@ class JenisCetakan extends Model
 //
 //        return "Sudah Tercetak";
     }
+
+    public function order()
+    {
+        return $this->belongsTo(JenisCetakan::class,'jeniscetakid','id');
+    }
 }

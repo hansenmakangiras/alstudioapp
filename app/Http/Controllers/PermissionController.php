@@ -12,6 +12,10 @@ class PermissionController extends Controller
     public function __construct()
     {
         $this->middleware('role:Superadmin');
+        $this->middleware('permission:Administer Roles & Users');
+        $this->middleware('permission:Manage Permissions');
+        $this->middleware('permission:editPermission')->only(['update','edit']);
+        $this->middleware('permission:deletePermission');
     }
 
     /**
@@ -23,9 +27,9 @@ class PermissionController extends Controller
     {
 //        $permissions = Permission::all();
 //        $permissions = Permission::orderBy('id','DESC')->paginate(10);
-        $permissions = DB::table('permissions')->paginate(5);
+        $permissions = DB::table('permissions')->paginate(10);
         return view('permissions.index',compact('permissions'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -50,7 +54,9 @@ class PermissionController extends Controller
     {
         $this->validate($request, [
             'name'=>'required|max:40|unique:permissions',
+            'roles' => 'required',
         ]);
+
         $permission = new Permission();
         $permission->name = $request->name;
         $permission->save();
