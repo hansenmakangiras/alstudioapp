@@ -33,6 +33,14 @@ Route::group(['middleware' => 'role:User|Admin|Superadmin'], function() {
     Route::resource('pelanggan', 'PelangganController');
     Route::resource('order', 'OrderController');
     Route::resource('ajax', 'AjaxController');
+    Route::resource('jenispaket', 'JenisPaketController');
+
+
+    // Ajax Request
     Route::post('/getPelanggan', 'AjaxController@getPelanggan')->name('ajax.pelanggan');
     Route::post('/getPermission', 'AjaxController@getPermission')->name('ajax.permission');
+    Route::post('/getjenispaket', 'AjaxController@getJenisPaket')->name('ajax.getJenisPaket');
+    Route::post('/getdatapaket', 'AjaxController@getDataPaket')->name('ajax.getDataPaket');
 });
+
+

@@ -130,18 +130,18 @@
                                                    placeholder="Masukkan jenis cetakan" name="jenis_cetak" required>
                                             {{--<p class="help-block">Example block-level help text here.</p>--}}
                                         </div>
-                                        <div class="form-group">
-                                            <label for="ukuran">Ukuran Cetakan</label>
-                                            <input type="text" class="form-control" id="ukuran" name="ukuran"
-                                                   placeholder="Masukkan Ukuran Cetakan" value="">
+                                        {{--<div class="form-group">--}}
+                                            {{--<label for="ukuran">Ukuran Cetakan</label>--}}
+                                            {{--<input type="text" class="form-control" id="ukuran" name="ukuran"--}}
+                                                   {{--placeholder="Masukkan Ukuran Cetakan" value="">--}}
                                             {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="catatan">Catatan</label>
-                                            <input type="text" class="form-control" id="catatan" name="deskripsi"
-                                                   placeholder="Tambahkan catatan bila perlu" value="">
+                                        {{--</div>--}}
+                                        {{--<div class="form-group">--}}
+                                            {{--<label for="catatan">Catatan</label>--}}
+                                            {{--<input type="text" class="form-control" id="catatan" name="deskripsi"--}}
+                                                   {{--placeholder="Tambahkan catatan bila perlu" value="">--}}
                                             {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                        </div>
+                                        {{--</div>--}}
                                     </div>
                                     <!-- /.box-body -->
                                 </div>
@@ -165,8 +165,6 @@
                             <th>#</th>
                             <th>Kode Jenis</th>
                             <th>Jenis Cetakan</th>
-                            <th>Ukuran Cetakan</th>
-                            <th>Catatan</th>
                             <th>Status Cetak</th>
                             <th>Operasi</th>
                         </tr>
@@ -177,9 +175,8 @@
                             <td>{{ ++$i }}</td>
                             <td>{{ $val->kode_jenis }}</td>
                             <td>{{ $val->jenis_cetak }}</td>
-                            <td>{{ $val->ukuran }}</td>
-                            <td>{{ $val->deskripsi }}</td>
-                            <td>{!! \App\Models\JenisCetakan::getStatusCetakName((int) $val->status_cetak) !!}</td>
+                            <td><span class='label bg-green'>{!! \App\Models\StatusCetak::getStatusCetakName((int)
+                            $val->status_cetak) !!}</span></td>
                             <td>
                                 @can('editJenisCetak')
                                 <a href="{{ route('jenis-cetak.edit',$val->id) }}" class="btn btn-primary

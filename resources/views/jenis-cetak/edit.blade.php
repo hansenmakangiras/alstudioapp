@@ -51,21 +51,21 @@
                                            required>
                                     {{--<p class="help-block">Example block-level help text here.</p>--}}
                                 </div>
-                                <div class="form-group">
-                                    <label for="ukuran">Ukuran Cetakan</label>
-                                    <input type="text" class="form-control" id="ukuran" name="ukuran"
-                                           placeholder="Masukkan Ukuran Cetakan" value="{{ $jenisCetakan->ukuran
-                                     }}">
+                                {{--<div class="form-group">--}}
+                                    {{--<label for="ukuran">Ukuran Cetakan</label>--}}
+                                    {{--<input type="text" class="form-control" id="ukuran" name="ukuran"--}}
+                                           {{--placeholder="Masukkan Ukuran Cetakan" value="{{ $jenisCetakan->ukuran--}}
+                                     {{--}}">--}}
                                     {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                </div>
-                                <div class="form-group">
-                                    <label for="catatan">Catatan</label>
-                                    <input type="text" class="form-control" id="catatan" name="deskrips"
-                                           placeholder="Tambahkan catatan bila perlu" value="{{
-                                    $jenisCetakan->deskripsi
-                                     }}">
+                                {{--</div>--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label for="catatan">Catatan</label>--}}
+                                    {{--<input type="text" class="form-control" id="catatan" name="deskrips"--}}
+                                           {{--placeholder="Tambahkan catatan bila perlu" value="{{--}}
+                                    {{--$jenisCetakan->deskripsi--}}
+                                     {{--}}">--}}
                                     {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                </div>
+                                {{--</div>--}}
                             </div>
                             <!-- /.box-body -->
                         </div>

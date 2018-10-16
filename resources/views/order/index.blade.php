@@ -4,19 +4,19 @@
 
 @stop
 @section('subtitle')
-    | Pelanggan
+    | Order
 @endsection
 
 @section('content-header')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            List Data Pelanggan
-            <small>Master Customer</small>
+            List Data Pemesanan
+            <small>Order</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Pelanggan</li>
+            <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active">Pemesanan</li>
         </ol>
     </section>
 @stop
@@ -29,57 +29,60 @@
 
             <div class="box">
                 <div class="box-header">
-                    <a href="{{ route('pelanggan.create') }}" class="btn btn-success btn-sm"><i class="fa
-                        fa-plus-circle"></i> Tambah Pelanggan</a>
+                    <a href="{{ route('order.create') }}" class="btn btn-success btn-sm"><i class="fa
+                        fa-plus-circle"></i> Buat Pemesanan</a>
                 </div>
 
                 <div class="box-body">
-                    <table id="tbl-pelanggan" class="table table-bordered">
+                    <table id="tbl-order" class="table table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>No Telp</th>
-                            <th>Status Bayar</th>
-                            <th>Keterangan</th>
+                            <th>No. Order</th>
+                            <th>Jenis Cetakan</th>
+                            <th>Jenis Paket</th>
+                            <th>Pelanggan</th>
+                            <th>Catatan</th>
+                            <th>Status Pesanan</th>
                             <th>Operation</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($pelanggan as $key => $val)
+                        @foreach($order as $key => $val)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $val->namapel }}</td>
-                                <td>{{ $val->alamat }}</td>
-                                <td>{{ $val->notelp }}</td>
-                                <td>{{ $val->status }}</td>
+                                <td>{{ $val->orderid }}</td>
+                                <td>{{ $val->jeniscetakid }}</td>
+                                <td>{{ $val->jenispaketid }}</td>
+                                <td>{{ $val->idpelanggan }}</td>
                                 <td>{{ $val->keterangan }}</td>
+                                <td>{{ $val->status_order }}</td>
                                 <td>
-                                    @can("viewPelanggan")
-                                    <a class="btn btn-success btn-xs" href="{{ route('pelanggan.show',$val->id)
+                                    @can("viewOrder")
+                                    <a class="btn btn-success btn-xs" href="{{ route('order.show',$val->id)
                                     }}">View</a>
                                     @endcan
-                                    @can('editPelanggan')
-                                    <a href="{{ route('pelanggan.edit',$val->id) }}" class="btn btn-primary
+                                    @can('editOrder')
+                                    <a href="{{ route('order.edit',$val->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
-                                        {!! Form::open(['method' => 'DELETE','route' => ['pelanggan.destroy', $val->id],
-                                        'style'=>'display:inline']) !!}
-                                        {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
-                                        {!! Form::close() !!}
                                     @endcan
-                                        {{--<a href="{{ route('pelanggan.destroy',$val->id) }}" class="btn
-                                        btn-danger--}}
-                                {{--btn-xs"><i--}}
-                                            {{--class="fa fa-trash"></i> Hapus</a>--}}
+                                    @can('deleteOrder')
+                                    {!! Form::open(['method' => 'DELETE','route' => ['order.destroy', $val->id],
+                                    'style'=>'display:inline']) !!}
+                                    {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                    {{--{!! $data->render() !!}--}}
+
                 </div>
                 <!-- /.box-body -->
+                <div class="box-footer">
+                    {!! $order->links() !!}
+                </div>
             </div>
             <!-- /.box -->
         </div>
@@ -89,7 +92,7 @@
 
 @push('js')
 <script>
-    $('#tbl-pelanggan').DataTable({
+    $('#tbl-order').DataTable({
         'paging'      : true,
         'lengthChange': true,
         'searching'   : true,

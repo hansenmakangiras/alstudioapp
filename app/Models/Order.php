@@ -14,7 +14,8 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'jeniscetakid', 'orderid', 'idpelanggan','jenispaket','keterangan', 'status_order','status_aktif'
+        'jeniscetakid', 'orderid', 'idpelanggan','jenispaketid','keterangan', 'status_order','status_aktif',
+        'tgl_ambil','bts_tgl_ambil','status_order','jumlah','satuan','total_harga','diskon'
     ];
 
     /**

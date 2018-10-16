@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use http\Env\Response;
+use App\Models\JenisPaket;
 use Illuminate\Http\Request;
-use App\Models\Pelanggan;
-use App\Models\JenisCetakan;
-use App\Models\JenisSatuan;
-use App\Permission;
-use App\Role;
 use Illuminate\Support\Facades\DB;
 
 class AjaxController extends Controller
@@ -43,6 +38,26 @@ class AjaxController extends Controller
             return response()->json($json);
         }
         return abort(404);
+
+    }
+
+    public function getJenisPaket(Request $request)
+    {
+        if($request->ajax()){
+            $jenisPaket = JenisPaket::getJenisPaket($request->id);
+        }
+
+        return response()->json($jenisPaket);
+
+    }
+
+    public function getDataPaket(Request $request)
+    {
+        if($request->ajax()){
+            $jenisPaket = JenisPaket::getDataPaket($request->id);
+        }
+
+        return response()->json($jenisPaket);
 
     }
 }

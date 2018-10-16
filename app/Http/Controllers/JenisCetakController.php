@@ -51,15 +51,12 @@ class JenisCetakController extends Controller
         request()->validate([
             'kode_jenis' => 'required',
             'jenis_cetak' => 'required',
-            'ukuran' => 'required'
         ]);
 
         $jeniscetak = new JenisCetakan();
         $jeniscetak->kode_jenis = $request->kode_jenis;
         $jeniscetak->jenis_cetak = $request->jenis_cetak;
-        $jeniscetak->ukuran = $request->ukuran;
-        $jeniscetak->deskripsi = $request->deskripsi;
-        $jeniscetak->status_cetak = 0;
+//        $jeniscetak->status_cetak = 0;
 
         if($jeniscetak->save()){
             return redirect()->route('jenis-cetak.index')->with('Sukses','Data berhasil disimpan ke dalam database');
