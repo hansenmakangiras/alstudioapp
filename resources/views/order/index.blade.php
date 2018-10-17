@@ -42,7 +42,7 @@
                             <th>Jenis Cetakan</th>
                             <th>Jenis Paket</th>
                             <th>Pelanggan</th>
-                            <th>Catatan</th>
+                            <th>Status Bayar</th>
                             <th>Status Pesanan</th>
                             <th>Operation</th>
                         </tr>
@@ -52,11 +52,14 @@
                             <tr>
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $val->orderid }}</td>
-                                <td>{{ $val->jeniscetakid }}</td>
-                                <td>{{ $val->jenispaketid }}</td>
-                                <td>{{ $val->idpelanggan }}</td>
-                                <td>{{ $val->keterangan }}</td>
-                                <td>{{ $val->status_order }}</td>
+                                <td>{{ \App\Models\JenisCetakan::getJenisCetakName((int)
+                            $val->jeniscetakid) }}</td>
+                                <td>{{ \App\Models\JenisPaket::getDataPaket($val->jenispaketid)->nama_paket }}</td>
+                                <td>{{ \App\Models\Pelanggan::getPelangganName($val->idpelanggan) }}</td>
+                                <td><label class="label bg-fuchsia-active">{{ \App\Models\StatusBayar::getStatusName($val->status_bayar) }}</label></td>
+                                <td><label class="label bg-blue-active">{{ \App\Models\StatusOrder::getStatusOrderName
+                                ($val->status_order)
+                                }}</label></td>
                                 <td>
                                     @can("viewOrder")
                                     <a class="btn btn-success btn-xs" href="{{ route('order.show',$val->id)
@@ -72,6 +75,12 @@
                                     {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                     {!! Form::close() !!}
                                     @endcan
+                                    {{--@can('editOrder')--}}
+                                        {!! Form::open(['method' => 'POST','route' => ['order.proses', $val->id],
+                                    'style'=>'display:inline']) !!}
+                                        {!! Form::submit('Proses', ['class' => 'btn btn-warning btn-xs']) !!}
+                                        {!! Form::close() !!}
+                                    {{--@endcan--}}
                                 </td>
                             </tr>
                         @endforeach
@@ -93,6 +102,7 @@
 @push('js')
 <script>
     $('#tbl-order').DataTable({
+        //'dom': 'B<"clear">lfrtip',
         'paging'      : true,
         'lengthChange': true,
         'searching'   : true,
@@ -113,6 +123,7 @@
             }
         },
         "pagingType": "full_numbers",
+        'buttons': true
     })
 </script>
 @endpush

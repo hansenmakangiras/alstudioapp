@@ -39,6 +39,17 @@
 <!-- DataTables -->
 <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/bower_components/datatables.net-bs4/datatables.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/Buttons-1.5.4/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/ColReorder-1.5.0/js/colReorder.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/FixedColumns-3.2.5/js/fixedColumns.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/FixedHeader-3.1.4/js/fixedHeader.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/JSZip-2.5.0/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/pdfmake-0.1.36/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/pdfmake-0.1.36/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/RowGroup-1.1.0/js/rowGroup.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/RowReorder-1.2.4/js/rowReorder.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/Scroller-1.5.0/js/scroller.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net-bs4/Select-1.2.6/js/select.bootstrap4.min.js') }}"></script>
 @stack('js')
 <script>
     let url = window.location;

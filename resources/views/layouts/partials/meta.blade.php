@@ -15,7 +15,19 @@
 <!-- Select2 -->
 <link rel="stylesheet" href="{{ asset('assets/bower_components/select2/dist/css/select2.min.css') }}">
 <!-- DataTables -->
-<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs4/datatables.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs4/Buttons-1.5.4/css/buttons
+.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs4/Scroller-1.5.0/css/scroller.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs4/ColReorder-1.5.0/css/colReorder.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs4/RowGroup-1.1.0/css/rowGroup.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs4/RowReorder-1.2.4/css/rowReorder.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs4/Select-1.2.6/css/select.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs4/FixedColumns-3.2.5/css/fixedColumns.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs4/FixedHeader-3.1.4/css/fixedHeader.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs4/Responsive-2.2.2/css/responsive.bootstrap4.min.css')}}">
+
+{{--<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">--}}
 <!-- daterange picker -->
 <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
 <!-- bootstrap datepicker -->

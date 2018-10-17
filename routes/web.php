@@ -32,6 +32,7 @@ Route::group(['middleware' => 'role:User|Admin|Superadmin'], function() {
     Route::resource('jenis-cetak', 'JenisCetakController');
     Route::resource('pelanggan', 'PelangganController');
     Route::resource('order', 'OrderController');
+    Route::post('order/proses/{id}', 'OrderController@proses')->name('order.proses');
     Route::resource('ajax', 'AjaxController');
     Route::resource('jenispaket', 'JenisPaketController');
 

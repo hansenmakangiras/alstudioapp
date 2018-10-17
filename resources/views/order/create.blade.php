@@ -141,10 +141,10 @@
                         <div class="col-xs-6">
                             <div class="form-group">
                                 <label for="confirm">Status Order</label>
-                                {!! Form::select('status_order',['Belum Proses','Sedang Proses','Selesai','Sudah di ambil'],
+                                {!! Form::select('status_order',$statusOrder,
                                 null,
                                 array
-                                ('placeholder' => 'Status Bayar','class' =>'form-control')) !!}
+                                ('placeholder' => 'Status Order','class' =>'form-control')) !!}
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ use App\Models\JenisPaket;
 use App\Models\Order;
 use App\Models\Pelanggan;
 use App\Models\StatusBayar;
+use App\Models\StatusOrder;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,8 +15,12 @@ class OrderController extends Controller
     public function __construct()
     {
         $this->middleware('role:Superadmin|Admin|User');
-        
+        $this->middleware('permission:viewOrder');
+        $this->middleware('permission:addOrder')->except(['create','store']);
+        $this->middleware('permission:editOrder')->except(['update','edit']);
+        $this->middleware('permission:deleteOrder')->except(['update','edit']);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +28,6 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-//        $order = Order::latest()->paginate(10);
         $order = Order::orderBy('id','DESC')->paginate(10);
         return view('order.index',compact('order'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
@@ -38,12 +42,13 @@ class OrderController extends Controller
     {
         $statusByr = StatusBayar::pluck('statusbyr','id')->all();
         $jeniscetak = JenisCetakan::pluck('jenis_cetak','id')->all();
-        $orderid = $this->generateOrderID();
-        $orderid2 = $this->getNextOrderNumber('ORD-');
+//        $orderid = $this->generateOrderID();
+        $orderid2 = $this->getNextOrderNumber();
         $jenisPaket = JenisPaket::pluck('nama_paket','id')->all();
         $pelanggan = Pelanggan::pluck('namapel','id')->all();
+        $statusOrder = StatusOrder::pluck('status_order','id');
 
-        return view('order.create',compact('statusByr','jeniscetak','orderid','jenisPaket','orderid2','pelanggan'));
+        return view('order.create',compact('statusByr','jeniscetak','orderid','jenisPaket','orderid2','pelanggan','statusOrder'));
     }
 
     /**
@@ -63,7 +68,8 @@ class OrderController extends Controller
             'total_harga' => 'required',
             'tglAmbil' => 'date',
             'bts_tgl_ambil' => 'date',
-//            'status_bayar' => 'required',
+            'status_bayar' => 'required',
+            'status_order' => 'required',
         ]);
         $input = $request->all();
 
@@ -109,7 +115,15 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        $statusByr = StatusBayar::pluck('statusbyr','id')->all();
+        $jeniscetak = JenisCetakan::pluck('jenis_cetak','id')->all();
+        $orderid = $this->generateOrderID();
+        $orderid2 = $this->getNextOrderNumber('ORD-');
+        $jenisPaket = JenisPaket::pluck('nama_paket','id')->all();
+        $pelanggan = Pelanggan::pluck('namapel','id')->all();
+
+        return view('order.create',compact('statusByr','jeniscetak','orderid','jenisPaket','orderid2','pelanggan','order'));
     }
 
     /**
@@ -121,7 +135,40 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'jeniscetak' => 'required',
+            'pelanggan' => 'required',
+            'jenispaket' => 'required',
+            'hargajual' => 'required',
+            'jumlah' => 'required',
+            'total_harga' => 'required',
+            'tglAmbil' => 'date',
+            'bts_tgl_ambil' => 'date',
+//            'status_bayar' => 'required',
+        ]);
+        $input = $request->all();
+
+        $order = Order::find($id);
+        $order->update([
+            'orderid' => $input['orderid'],
+            'jeniscetakid' => $input['jeniscetak'],
+            'idpelanggan' => $input['pelanggan'],
+            'jenispaketid' => $input['jenispaket'],
+            'jumlah' => $input['jumlah'],
+            'harga_jual' => $input['hargajual'],
+            'satuan' => $input['satuan'],
+            'total_harga' => $input['total_harga'],
+            'diskon' => $input['diskon'],
+            'keterangan' => $input['keterangan'],
+            'tglAmbil' => $input['tglAmbil'],
+            'bts_tgl_ambil' => $input['bts_tgl_ambil'],
+            'status_bayar' => $input['status_bayar'],
+            'status_order' => $input['status_order'],
+            'status_aktif' => 1
+        ]);
+
+        return redirect()->route('order.index')
+            ->with('Sukses','Order updated successfully');
     }
 
     /**
@@ -131,6 +178,17 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function proses($id)
     {
         //
     }
@@ -155,10 +213,11 @@ class OrderController extends Controller
 
 
 
-    private function getNextOrderNumber($substr = 'ORD-')
+    private function getNextOrderNumber($substr = 'ORD')
     {
         // Get the last created order
         $lastOrder = Order::orderBy('created_at', 'desc')->first();
+
 
         if ( ! $lastOrder )
             // We get here if there is no order at all
@@ -166,7 +225,7 @@ class OrderController extends Controller
 
             $number = 0;
         else
-            $number = substr($lastOrder->order_id, 3);
+            $number = substr($lastOrder->orderid, 3);
 
         // If we have ORD000001 in the database then we only want the number
         // So the substr returns this 000001
