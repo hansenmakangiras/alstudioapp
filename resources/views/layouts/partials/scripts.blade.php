@@ -50,6 +50,8 @@
 <script src="{{ asset('assets/bower_components/datatables.net-bs4/RowReorder-1.2.4/js/rowReorder.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/bower_components/datatables.net-bs4/Scroller-1.5.0/js/scroller.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/bower_components/datatables.net-bs4/Select-1.2.6/js/select.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/dist/js/accounting.min.js') }}"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.js"></script>--}}
 @stack('js')
 <script>
     let url = window.location;

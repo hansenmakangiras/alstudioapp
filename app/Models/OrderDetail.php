@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class OrderDetail extends Model
 {
-    protected $table = "orders";
+    protected $table = "order_detail";
 
     /**
      * The attributes that are mass assignable.

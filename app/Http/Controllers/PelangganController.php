@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StatusBayar;
 use App\Models\Pelanggan;
-use App\Permission;
-use App\Role;
+use App\Models\StatusBayar;
 use Illuminate\Http\Request;
 
 class PelangganController extends Controller
@@ -36,8 +34,9 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        $arrPelanggan = StatusBayar::getSelectStatus();
-        return view('pelanggan.create',compact('arrPelanggan'));
+        $arrPelanggan = Pelanggan::getArrStatusPelanggan();
+        $arrJenisPelanggan = Pelanggan::getArrJenisPelanggan();
+        return view('pelanggan.create',compact('arrPelanggan','arrJenisPelanggan'));
     }
 
     /**

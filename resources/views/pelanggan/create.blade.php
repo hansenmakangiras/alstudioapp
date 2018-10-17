@@ -51,14 +51,14 @@
                          !!}
                     </div>
                     <div class="form-group">
-                        <label for="confirm">Tanggal Ambil Cetakan</label>
-                        {!! Form::text('tgl_ambil',null, array('placeholder' => 'Tanggal Pengambilan','class' =>
-                        'form-control','id'=> 'tglAmbil')) !!}
+                        <label for="confirm">Jenis Pelanggan</label>
+                        {!! Form::select('jenis_pelanggan',$arrJenisPelanggan, null, array
+                        ('placeholder' => 'Pilih Tipe Pelanggan','class' =>'form-control')) !!}
                     </div>
                     <div class="form-group">
-                        <label for="confirm">Status Bayar</label>
-                        {!! Form::select('status_bayar',$arrPelanggan, null, array
-                        ('placeholder' => 'Status Bayar','class' =>'form-control')) !!}
+                        <label for="confirm">Status Pelanggan</label>
+                        {!! Form::select('status_pelanggan',$arrPelanggan, null, array
+                        ('placeholder' => 'Pilih Status Pelanggan','class' =>'form-control')) !!}
                     </div>
                     {{--<div class="form-group">--}}
                         {{--<label for="roles">Role</label>--}}

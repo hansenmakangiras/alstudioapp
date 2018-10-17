@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('message')
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Silahkan login untuk menggunakan aplikasi</p>
 @stop
 
 @section('content')
@@ -32,31 +32,29 @@
                 <div class="checkbox icheck">
                     <label>
                         <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                        Remember Me
+                        Ingat Saya
                     </label>
                 </div>
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
             </div>
             <!-- /.col -->
         </div>
     </form>
     <div class="social-auth-links text-center">
         <p>- OR -</p>
-        {{--<a href="{{ route('admin.login') }}" class="btn btn-block btn-primary btn-social btn-flat"><i class="fa--}}
-        {{--fa-lock"></i>--}}
-            {{--Admin--}}
-            {{--Login</a>--}}
-        <a href="{{ route('register') }}" class="btn btn-block btn-social btn-danger btn-flat"><i class="fa
-        fa-user-plus"></i>
-            Register a new
-            membership</a>
+        <a href="{{ route('password.request') }}" class="btn btn-block btn-social btn-success btn-flat"><i class="fa
+        fa-lock"></i>Lupa Password</a>
+        {{--<a href="{{ route('register') }}" class="btn btn-block btn-social btn-danger btn-flat"><i class="fa--}}
+        {{--fa-user-plus"></i>--}}
+            {{--Register a new--}}
+            {{--membership</a>--}}
     </div>
     <!-- /.social-auth-links -->
 
-    <a href="{{ route('password.request') }}">I forgot my password</a><br>
+    {{--<a href="{{ route('password.request') }}">I forgot my password</a><br>--}}
     {{--<a href="{{ route('login') }}" class="text-center">Register a new membership</a><br>--}}
 
 @endsection

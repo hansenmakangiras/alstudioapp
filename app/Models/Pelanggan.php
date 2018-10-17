@@ -63,4 +63,20 @@ class Pelanggan extends Model
             default: 0;
         }
     }
+
+    public static function getArrJenisPelanggan(){
+        return [
+            1 => 'Umum',
+            2 => 'Private',
+            3 => 'VIP'
+        ];
+    }
+
+    public static function getArrStatusPelanggan(){
+        return [
+            1 => 'Active',
+            2 => 'Inactive',
+            3 => 'Banned'
+        ];
+    }
 }
