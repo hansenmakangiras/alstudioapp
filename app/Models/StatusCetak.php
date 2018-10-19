@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class StatusCetak extends Model
 {
-    protected $table ='status_cetak';
-    protected $guard_name = 'web';
+    protected $table = 'status_cetak';
+//    protected $guard_name = 'web';
+
+    protected $fillable =['statuscetak'];
 
     public static function getStatusCetakName($id)
     {
-        if ((int) $id){
-            $statusName = StatusCetak::find($id);
-            return $statusName->statuscetak;
-        }
-        return "";
+        $statusName = StatusCetak::find((int) $id);
+//        dd($statusName);
+        return $statusName->statuscetak;
 //        switch ($status){
 //            case 0;
 //                return "<span class='label bg-red'>Belum Tercetak</span>";

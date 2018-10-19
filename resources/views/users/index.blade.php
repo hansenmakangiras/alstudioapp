@@ -39,122 +39,27 @@
 
             <div class="box">
                 <div class="box-header">
-                    @can('addUsers')
-                    <a href="{{ route('users.create') }}" class="btn btn-default btn-sm"><i class="fa
+                    @role('Superadmin')
+                    <a href="{{ route('users.create') }}" class="btn btn-danger btn-sm"><i class="fa
                         fa-plus-circle"></i> Tambah Pengguna</a>
-                    @endcan
-                    @can('Manage Permissions')
+                    @endrole
+                    @role('Superadmin')
                     <a href="{{ route('permissions.index') }}" class="btn btn-primary btn-sm"><i class="fa
                         fa-cog"></i> Manage Permission</a>
-                    @endcan
-                    @can('Manage Roles')
+                    @endrole
+                    @role('Superadmin')
                     <a href="{{ route('roles.index') }}" class="btn btn-success btn-sm"><i class="fa
                         fa-cog"></i> Manage Role</a>
-                    @endcan
+                    @endrole
                 </div>
-                {{--@if(route('jenis-cetak.create'))--}}
-                    <div class="modal fade" id="modal-tambah-jenis">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Tambah Jenis Cetakan</h4>
-                                </div>
-                                <form role="form" method="POST" action="{{ route('jenis-cetak.store') }}">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <div class="box-body">
-                                            <div class="form-group">
-                                                <label for="jeniscetak">Kode Jenis</label>
-                                                <input type="text" class="form-control" id="kodejenis"
-                                                       placeholder="Masukkan Kode Jenis" name="kode_jenis" required
-                                                       autofocus>
-                                                {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="jeniscetak">Jenis Cetakan</label>
-                                                <input type="text" class="form-control" id="jeniscetak"
-                                                       placeholder="Masukkan jenis cetakan" name="jenis_cetak" required>
-                                                {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="ukuran">Ukuran Cetakan</label>
-                                                <input type="text" class="form-control" id="ukuran" name="ukuran"
-                                                       placeholder="Masukkan Ukuran Cetakan" value="">
-                                                {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="catatan">Catatan</label>
-                                                <input type="text" class="form-control" id="catatan" name="deskripsi"
-                                                       placeholder="Tambahkan catatan bila perlu" value="">
-                                                {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                            </div>
-                                        </div>
-                                        <!-- /.box-body -->
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-default pull-left"
-                                                data-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
-                {{--@else--}}
-                    {{--<div class="modal fade" id="modal-tambah-jenis">--}}
-                        {{--<div class="modal-dialog">--}}
-                            {{--<div class="modal-content">--}}
-                                {{--<div class="modal-header">--}}
-                                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                                        {{--<span aria-hidden="true">&times;</span></button>--}}
-                                    {{--<h4 class="modal-title">Ubah Jenis Cetakan</h4>--}}
-                                {{--</div>--}}
-                                {{--<form role="form" method="POST" action="{{ route('jenis-cetak.update', $id) }}">--}}
-                                    {{--@csrf--}}
-                                    {{--<div class="modal-body">--}}
-                                        {{--<div class="box-body">--}}
-                                            {{--<div class="form-group">--}}
-                                                {{--<label for="jeniscetak">Jenis Cetakan</label>--}}
-                                                {{--<input type="text" class="form-control" id="jeniscetak" value=""--}}
-                                                       {{--placeholder="Masukkan jenis cetakan" name="jenis-cetak" required--}}
-                                                       {{--autofocus>--}}
-                                                {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="form-group">--}}
-                                                {{--<label for="ukuran">Ukuran Cetakan</label>--}}
-                                                {{--<input type="text" class="form-control" id="ukuran" value=""--}}
-                                                       {{--placeholder="Masukkan Ukuran Cetakan">--}}
-                                                {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<!-- /.box-body -->--}}
-                                    {{--</div>--}}
-                                    {{--<div class="modal-footer">--}}
-                                        {{--<button type="submit" class="btn btn-default pull-left"--}}
-                                                {{--data-dismiss="modal">Tutup</button>--}}
-                                        {{--<button type="submit" class="btn btn-primary">Simpan</button>--}}
-                                    {{--</div>--}}
-                                {{--</form>--}}
-                            {{--</div>--}}
-                            {{--<!-- /.modal-content -->--}}
-                        {{--</div>--}}
-                        {{--<!-- /.modal-dialog -->--}}
-                    {{--</div>--}}
-                    {{--<!-- /.modal -->--}}
-                {{--@endif--}}
-
             <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="tbl-jenis-cetak" class="table table-bordered">
+                    <table id="tbl-user" class="table table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
                             <th>Nama</th>
+                            <th>Username</th>
                             <th>Email</th>
                             <th>Level Akses</th>
                             <th>Operation</th>
@@ -165,6 +70,7 @@
                             <tr>
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $val->name }}</td>
+                                <td>{{ $val->username }}</td>
                                 <td>{{ $val->email }}</td>
                                 <td>
                                     @if(!empty($val->getRoleNames()))
@@ -175,22 +81,19 @@
                                 </td>
 {{--                                <td>{!! \App\Models\JenisCetakan::getStatusCetakName((int) $val->status_cetak) !!}</td>--}}
                                 <td>
-                                    @can("viewUsers")
+                                    @role("Superadmin")
                                     <a class="btn btn-success btn-xs" href="{{ route('users.show',$val->id) }}">View</a>
-                                    @endcan
-                                    @can('editUsers')
+                                    @endrole
+                                    @role('Superadmin')
                                     <a href="{{ route('users.edit',$val->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
-                                    @endcan
-                                    @can('deleteUsers')
+                                    @endrole
+                                    @role('Superadmin')
                                         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $val->id],
                                         'style'=>'display:inline']) !!}
                                         {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                         {!! Form::close() !!}
-                                    @endcan
-                                        {{--<a href="{{ route('users.destroy',$val->id) }}" class="btn btn-danger--}}
-                                {{--btn-xs"><i--}}
-                                            {{--class="fa fa-trash"></i> Hapus</a>--}}
+                                    @endrole
                                 </td>
                             </tr>
                         @endforeach
@@ -206,12 +109,9 @@
     <!-- /.row (main row) -->
 @endsection
 @push('js')
-    {{--<!-- DataTables -->--}}
-    {{--<script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>--}}
-    {{--<script src="{{ asset('assets/bower_components/datatables.net-bs4/datatables.min.js') }}"></script>--}}
     <script>
 
-        $('#tbl-jenis-cetak').DataTable({
+        $('#tbl-user').DataTable({
             'paging'      : true,
             'lengthChange': true,
             'searching'   : true,

@@ -52,7 +52,9 @@
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Mesin</a></li>
                     <li><a href="{{ route('jenispaket.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Paket</a></li>
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Jenis Bayar</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Jenis Cetak</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Cetak</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Pelanggan</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Bayar</a></li>
                 </ul>
             </li>
             <li>

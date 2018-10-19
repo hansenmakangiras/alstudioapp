@@ -10,10 +10,11 @@ class PelangganController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:viewPelanggan');
-        $this->middleware('permission:createPelanggan', ['only' => ['create','store']]);
-        $this->middleware('permission:editPelanggan', ['only' => ['edit','update']]);
-        $this->middleware('permission:deletePelanggan', ['only' => ['destroy']]);
+//        $this->middleware('permission:managePelanggan');
+//        $this->middleware('permission:createPelanggan', ['only' => ['create','store']]);
+//        $this->middleware('permission:editPelanggan', ['only' => ['edit','update']]);
+//        $this->middleware('permission:deletePelanggan', ['only' => ['destroy']]);
+        $this->middleware('role:Admin|Kasir|Superadmin');
     }
     /**
      * Display a listing of the resource.
@@ -52,7 +53,8 @@ class PelangganController extends Controller
             'alamat' => 'required',
             'notelp' => 'required',
             'tgl_ambil' => 'required',
-            'status_bayar' => 'required'
+            'status_pelanggan' => 'required',
+            'jenis_pelanggan' => 'required'
         ]);
         $input = $request->all();
 
@@ -101,7 +103,8 @@ class PelangganController extends Controller
             'alamat' => 'required',
             'notelp' => 'required',
             'tgl_ambil' => 'required',
-            'status_bayar' => 'required'
+            'status_pelanggan' => 'required',
+            'jenis_pelanggan' => 'required'
         ]);
         $input = $request->all();
 

@@ -24,7 +24,7 @@
 @section('content')
     <!-- Main row -->
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-6">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Ubah Jenis Cetakan - {{ $jenisCetakan->jenis_cetak }}</h3>

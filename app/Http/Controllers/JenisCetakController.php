@@ -9,12 +9,12 @@ class JenisCetakController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:viewJenisCetak');
-        $this->middleware('permission:Manage Cetakan');
-        $this->middleware('permission:addJenisCetak', ['only' => ['create','store']]);
-        $this->middleware('permission:editJenisCetak', ['only' => ['edit','update']]);
-        $this->middleware('permission:deleteJenisCetak', ['only' => ['destroy']]);
-        $this->middleware('role:User|Admin|Superadmin');
+//        $this->middleware('permission:viewJenisCetak');
+//        $this->middleware('permission:Manage Cetakan');
+//        $this->middleware('permission:addJenisCetak', ['only' => ['create','store']]);
+//        $this->middleware('permission:editJenisCetak', ['only' => ['edit','update']]);
+//        $this->middleware('permission:deleteJenisCetak', ['only' => ['destroy']]);
+        $this->middleware('role:Kasir|Admin|Superadmin|Cetak|Foto');
     }
 
     /**
@@ -56,7 +56,7 @@ class JenisCetakController extends Controller
         $jeniscetak = new JenisCetakan();
         $jeniscetak->kode_jenis = $request->kode_jenis;
         $jeniscetak->jenis_cetak = $request->jenis_cetak;
-//        $jeniscetak->status_cetak = 0;
+        $jeniscetak->status_cetak = 1;
 
         if($jeniscetak->save()){
             return redirect()->route('jenis-cetak.index')->with('Sukses','Data berhasil disimpan ke dalam database');
