@@ -26,6 +26,11 @@ class Order extends Model
         '_token',
     ];
 
+    public function orderDetail(){
+        return $this->hasMany(Order::class,'orderid','orderid');
+    }
+
+
     public function pelanggan(){
         return $this->hasMany(Pelanggan::class,'pelangganid','id');
     }

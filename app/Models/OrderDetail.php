@@ -14,7 +14,7 @@ class OrderDetail extends Model
      * @var array
      */
     protected $fillable = [
-        'cetakid', 'orderid', 'pelangganid','jenispaketid','promoid','total_harga',
+        'orderid', 'jumlah','satuan','status_bayar','status_order','tgl_ambil','keterangan'
     ];
 
     /**
@@ -25,6 +25,10 @@ class OrderDetail extends Model
     protected $hidden = [
         '_token',
     ];
+
+    public function order(){
+        return $this->belongsTo(OrderDetail::class,'orderid','orderid');
+    }
 
     public function pelanggan(){
         return $this->hasMany(Pelanggan::class,'pelangganid','id');

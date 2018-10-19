@@ -22,13 +22,13 @@ Route::get('/', 'HomeController@index')->name('home');
 //    Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
 //});
 
-Route::group(['middleware' => 'role:Superadmin|Admin'], function() {
+Route::group(['middleware' => 'role:Superadmin'], function() {
     Route::resource('roles','RolesController');
     Route::resource('users','UserController');
     Route::resource('permissions','PermissionController');
 });
 
-Route::group(['middleware' => 'role:User|Admin|Superadmin'], function() {
+Route::group(['middleware' => 'role:Kasir|Admin|Superadmin'], function() {
     Route::resource('jenis-cetak', 'JenisCetakController');
     Route::resource('pelanggan', 'PelangganController');
     Route::resource('order', 'OrderController');
@@ -43,5 +43,14 @@ Route::group(['middleware' => 'role:User|Admin|Superadmin'], function() {
     Route::post('/getjenispaket', 'AjaxController@getJenisPaket')->name('ajax.getJenisPaket');
     Route::post('/getdatapaket', 'AjaxController@getDataPaket')->name('ajax.getDataPaket');
 });
+
+Route::group(['middleware' => 'role:Cetak|Foto|Superadmin'], function() {
+    Route::post('order/proses/{id}', 'OrderController@postProsesFoto')->name('order.post.prosescetak');
+    Route::get('order/proses/cetak', 'OrderController@prosesCetak')->name('order.prosescetak');
+    Route::get('order/proses/foto', 'OrderController@prosesFoto')->name('order.prosesfoto');
+    Route::post('order/proses/foto/{id}', 'OrderController@postProsesFoto')->name('order.post.prosesfoto');
+});
+
+
 
 

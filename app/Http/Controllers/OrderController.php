@@ -236,4 +236,24 @@ class OrderController extends Controller
 
         return $substr . sprintf('%06d', intval($number) + 1);
     }
+
+    public function prosesCetak(Request $request)
+    {
+        return view('order.proses-cetak');
+    }
+
+    public function postProsesCetak(Request $request)
+    {
+        return view('order.proses-cetak');
+    }
+
+    public function prosesFoto(Request $request)
+    {
+        return view('order.proses-foto');
+    }
+
+    public function postProsesFoto(Request $request)
+    {
+        return view('order.proses-foto');
+    }
 }
