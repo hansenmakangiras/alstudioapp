@@ -12,10 +12,10 @@ class PermissionController extends Controller
     public function __construct()
     {
         $this->middleware('role:Superadmin');
-        $this->middleware('permission:Administer Roles & Users');
-        $this->middleware('permission:Manage Permissions');
-        $this->middleware('permission:editPermission')->only(['update','edit']);
-        $this->middleware('permission:deletePermission');
+//        $this->middleware('permission:Administer Roles & Users');
+//        $this->middleware('permission:Manage Permissions');
+//        $this->middleware('permission:editPermission')->only(['update','edit']);
+//        $this->middleware('permission:deletePermission');
     }
 
     /**

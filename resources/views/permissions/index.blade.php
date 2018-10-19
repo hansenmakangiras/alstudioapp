@@ -68,21 +68,21 @@
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $permission->name }}</td>
                                 <td>
-                                    @can('viewPermission')
+                                    {{--@can('viewPermission')--}}
                                         <a href="{{ route('permissions.show',$permission->id) }}" class="btn btn-success
                                 btn-xs">Edit</a>
-                                    @endcan
-                                    @can('editPermission')
+                                    {{--@endcan--}}
+{{--                                    @can('editPermission')--}}
                                     <a href="{{ route('permissions.edit',$permission->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
-                                    @endcan
-                                    @can('deletePermission')
+                                    {{--@endcan--}}
+{{--                                    @can('deletePermission')--}}
                                     {!! Form::open(['method' => 'DELETE','route' => ['permissions.destroy',
                                     $permission->id],
                                     'style'=>'display:inline']) !!}
                                     {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                     {!! Form::close() !!}
-                                    @endcan
+                                    {{--@endcan--}}
                                     {{--<a href="{{ route('roles.destroy',$permission->id) }}" class="btn btn-danger--}}
                                 {{--btn-xs"><i--}}
                                             {{--class="fa fa-trash"></i> Hapus</a>--}}

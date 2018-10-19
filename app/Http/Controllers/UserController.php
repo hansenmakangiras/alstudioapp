@@ -17,11 +17,11 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:viewUsers');
-        $this->middleware('permission:addUsers', ['only' => ['create','store']]);
-        $this->middleware('permission:editUsers', ['only' => ['edit','update']]);
-        $this->middleware('permission:deleteUsers', ['only' => ['destroy']]);
-        $this->middleware('permission:Manage Users');
+//        $this->middleware('permission:viewUsers');
+//        $this->middleware('permission:addUsers', ['only' => ['create','store']]);
+//        $this->middleware('permission:editUsers', ['only' => ['edit','update']]);
+//        $this->middleware('permission:deleteUsers', ['only' => ['destroy']]);
+//        $this->middleware('permission:Manage Users');
 //        $this->middleware('permission:Administer Roles & Users');
         $this->middleware(['role:Superadmin|Admin']);
     }

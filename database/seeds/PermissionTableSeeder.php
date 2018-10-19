@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Permission;
 use App\Role;
-use App\Models\JenisCetakan;
 use App\User;
+use Illuminate\Database\Seeder;
 
 class PermissionTableSeeder extends Seeder
 {
@@ -51,7 +50,7 @@ class PermissionTableSeeder extends Seeder
         if ($this->command->confirm('Create Roles for user, default is admin and user? [y|N]', true)) {
 
             // Ask for roles from input
-            $input_roles = $this->command->ask('Enter roles in comma separate format.', 'Admin,User');
+            $input_roles = $this->command->ask('Enter roles in comma separate format.', 'Superadmin,Admin,Kasir');
 
             // Explode roles
             $roles_array = explode(',', $input_roles);
@@ -60,10 +59,10 @@ class PermissionTableSeeder extends Seeder
             foreach($roles_array as $role) {
                 $role = Role::firstOrCreate(['name' => trim($role)]);
 
-                if( $role->name == 'Admin') {
+                if( $role->name == 'Superadmin') {
                     // assign all permissions
                     $role->syncPermissions(Permission::all());
-                    $this->command->info('Admin granted all the permissions');
+                    $this->command->info('Superadmin granted all the permissions');
                 }else {
                     // for others by default only read access
                     $role->syncPermissions(Permission::where('name', 'LIKE', 'view_%')->get());
@@ -96,8 +95,8 @@ class PermissionTableSeeder extends Seeder
         $user = factory(User::class)->create();
         $user->assignRole($role->name);
 
-        if($role->name == 'Admin'){
-            $this->command->info('Here is your admin details to login');
+        if($role->name == 'Superadmin'){
+            $this->command->info('Here is your superadmin details to login');
             $this->command->warn($user->email);
             $this->command->info('Password is "secret"');
         }
