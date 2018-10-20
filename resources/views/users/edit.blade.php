@@ -49,6 +49,10 @@
                         {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                     </div>
                     <div class="form-group">
+                        <label for="name">Username</label>
+                        {!! Form::text('username', null, array('placeholder' => 'Username','class' => 'form-control')) !!}
+                    </div>
+                    <div class="form-group">
                         <label for="email">Email</label>
                         {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
                     </div>

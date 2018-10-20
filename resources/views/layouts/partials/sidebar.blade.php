@@ -52,7 +52,9 @@
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Mesin</a></li>
                     <li><a href="{{ route('jenispaket.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Paket</a></li>
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Jenis Bayar</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Jenis Cetak</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Cetak</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Pelanggan</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Bayar</a></li>
                 </ul>
             </li>
             <li>
@@ -73,15 +75,15 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    @can('Manage Users')
+                    {{--@can('Manage Users')--}}
                         <li><a href="{{ route('users.index') }}"><i class="fa fa-angle-right"></i> Pengguna</a></li>
-                    @endcan
-                    @can("Manage Roles","Administer Roles & Users")
+                    {{--@endcan--}}
+{{--                    @can("Manage Roles","Administer Roles & Users")--}}
                         <li><a href="{{ route('roles.index') }}"><i class="fa fa-angle-right"></i> Roles</a></li>
-                    @endcan
-                    @can("Manage Permissions")
+                    {{--@endcan--}}
+{{--                    @can("Manage Permissions")--}}
                         <li><a href="{{ route('permissions.index') }}"><i class="fa fa-angle-right"></i> Permissions</a></li>
-                    @endcan
+                    {{--@endcan--}}
                 </ul>
             </li>
             @endrole

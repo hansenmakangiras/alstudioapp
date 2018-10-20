@@ -17,13 +17,13 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:viewUsers');
-        $this->middleware('permission:addUsers', ['only' => ['create','store']]);
-        $this->middleware('permission:editUsers', ['only' => ['edit','update']]);
-        $this->middleware('permission:deleteUsers', ['only' => ['destroy']]);
-        $this->middleware('permission:Manage Users');
+//        $this->middleware('permission:viewUsers');
+//        $this->middleware('permission:addUsers', ['only' => ['create','store']]);
+//        $this->middleware('permission:editUsers', ['only' => ['edit','update']]);
+//        $this->middleware('permission:deleteUsers', ['only' => ['destroy']]);
+//        $this->middleware('permission:Manage Users');
 //        $this->middleware('permission:Administer Roles & Users');
-        $this->middleware(['role:Superadmin|Admin']);
+        $this->middleware(['role:Superadmin']);
     }
 
     /**
@@ -34,7 +34,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
+        $roles = Role::pluck('name','id')->all();
+        return view('users.index',compact('data','roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -61,6 +62,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'username' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'

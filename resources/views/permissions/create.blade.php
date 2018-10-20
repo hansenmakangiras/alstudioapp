@@ -26,16 +26,6 @@
     <div class="row">
         <div class="col-xs-6">
             @include('widget.alert')
-            {{--@if (count($errors) > 0)--}}
-                {{--<div class="alert alert-danger">--}}
-                    {{--<strong>Whoops!</strong> There were some problems with your input.<br><br>--}}
-                    {{--<ul>--}}
-                        {{--@foreach ($errors->all() as $error)--}}
-                            {{--<li>{{ $error }}</li>--}}
-                        {{--@endforeach--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
-            {{--@endif--}}
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Add Permission</h3>

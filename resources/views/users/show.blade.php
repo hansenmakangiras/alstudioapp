@@ -41,6 +41,13 @@
                          {{--!!}--}}
                     </div>
                     <div class="form-group">
+                        <label for="name">Name : </label>
+                        {!! Form::label('name', $user->username, ['class' => 'control-label']) !!}
+                        {{--{!! Form::text('name', $user->name, array('placeholder' => 'Name','class' => 'form-control',--}}
+                        {{--'readonly'))--}}
+                         {{--!!}--}}
+                    </div>
+                    <div class="form-group">
                         <label for="email">Email : </label>
                         {!! Form::label('email', $user->email, ['class' => 'control-label']) !!}
                         {{--{!! Form::text('email', $user->email, array('placeholder' => 'Email','class' =>--}}

@@ -24,68 +24,68 @@
 @section('content')
     @include('widget.alert')
     <!-- Small boxes (Stat box) -->
-    <div class="row">
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-                <div class="inner">
-                    <h3>150</h3>
+    {{--<div class="row">--}}
+        {{--<div class="col-lg-3 col-xs-6">--}}
+            {{--<!-- small box -->--}}
+            {{--<div class="small-box bg-aqua">--}}
+                {{--<div class="inner">--}}
+                    {{--<h3>150</h3>--}}
 
-                    <p>New Orders</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-bag"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-green">
-                <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+                    {{--<p>New Orders</p>--}}
+                {{--</div>--}}
+                {{--<div class="icon">--}}
+                    {{--<i class="ion ion-bag"></i>--}}
+                {{--</div>--}}
+                {{--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!-- ./col -->--}}
+        {{--<div class="col-lg-3 col-xs-6">--}}
+            {{--<!-- small box -->--}}
+            {{--<div class="small-box bg-green">--}}
+                {{--<div class="inner">--}}
+                    {{--<h3>53<sup style="font-size: 20px">%</sup></h3>--}}
 
-                    <p>Bounce Rate</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-yellow">
-                <div class="inner">
-                    <h3>44</h3>
+                    {{--<p>Bounce Rate</p>--}}
+                {{--</div>--}}
+                {{--<div class="icon">--}}
+                    {{--<i class="ion ion-stats-bars"></i>--}}
+                {{--</div>--}}
+                {{--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!-- ./col -->--}}
+        {{--<div class="col-lg-3 col-xs-6">--}}
+            {{--<!-- small box -->--}}
+            {{--<div class="small-box bg-yellow">--}}
+                {{--<div class="inner">--}}
+                    {{--<h3>44</h3>--}}
 
-                    <p>User Registrations</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-red">
-                <div class="inner">
-                    <h3>65</h3>
+                    {{--<p>User Registrations</p>--}}
+                {{--</div>--}}
+                {{--<div class="icon">--}}
+                    {{--<i class="ion ion-person-add"></i>--}}
+                {{--</div>--}}
+                {{--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!-- ./col -->--}}
+        {{--<div class="col-lg-3 col-xs-6">--}}
+            {{--<!-- small box -->--}}
+            {{--<div class="small-box bg-red">--}}
+                {{--<div class="inner">--}}
+                    {{--<h3>65</h3>--}}
 
-                    <p>Unique Visitors</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-    </div>
+                    {{--<p>Unique Visitors</p>--}}
+                {{--</div>--}}
+                {{--<div class="icon">--}}
+                    {{--<i class="ion ion-pie-graph"></i>--}}
+                {{--</div>--}}
+                {{--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!-- ./col -->--}}
+    {{--</div>--}}
 
 
     <!-- /.row -->
@@ -97,7 +97,7 @@
                 <div class="box-header">
                     <h3 class="box-title">List Jenis Cetakan</h3>
                     <div class="box-tools">
-                        <button type="button" class="btn btn-success btn-flat" data-toggle="modal"
+                        <button type="button" class="btn btn-success btn-flat btn-sm" data-toggle="modal"
                                 data-target="#modal-tambah-jenis">
                             Tambah Jenis
                         </button>
@@ -175,19 +175,15 @@
                             <td>{{ ++$i }}</td>
                             <td>{{ $val->kode_jenis }}</td>
                             <td>{{ $val->jenis_cetak }}</td>
-                            <td><span class='label bg-green'>{!! \App\Models\StatusCetak::getStatusCetakName((int)
+                            <td><span class='label bg-red-active'>{!! \App\Models\StatusCetak::getStatusCetakName((int)
                             $val->status_cetak) !!}</span></td>
                             <td>
-                                @can('editJenisCetak')
                                 <a href="{{ route('jenis-cetak.edit',$val->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
-                                @endcan
-                                @can('deleteJenisCetak')
                                 {!! Form::open(['method' => 'DELETE','route' => ['jenis-cetak.destroy', $val->id],
                                     'style'=>'display:inline']) !!}
                                 {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                 {!! Form::close() !!}
-                                @endcan
                             </td>
                         </tr>
                         @endforeach

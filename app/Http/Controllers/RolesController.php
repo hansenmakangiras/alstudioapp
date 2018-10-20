@@ -17,12 +17,12 @@ class RolesController extends Controller
     function __construct()
     {
         $this->middleware('role:Superadmin');
-        $this->middleware('permission:viewRoles');
-        $this->middleware('permission:addRoles', ['only' => ['create','store']]);
-        $this->middleware('permission:editRoles', ['only' => ['edit','update']]);
-        $this->middleware('permission:deleteRoles', ['only' => ['destroy']]);
-        $this->middleware('permission:Administer Roles & Users');
-        $this->middleware('permission:Manage Roles');
+//        $this->middleware('permission:viewRoles');
+//        $this->middleware('permission:addRoles', ['only' => ['create','store']]);
+//        $this->middleware('permission:editRoles', ['only' => ['edit','update']]);
+//        $this->middleware('permission:deleteRoles', ['only' => ['destroy']]);
+//        $this->middleware('permission:Administer Roles & Users');
+//        $this->middleware('permission:Manage Roles');
     }
 
     /**
