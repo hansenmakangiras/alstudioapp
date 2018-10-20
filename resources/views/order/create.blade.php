@@ -72,38 +72,48 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="name">Harga Jual</label>
-                                {!! Form::text('hargajual', null, array('placeholder' => 'Harga Jual','class' =>
-                                'form-control','readonly','id'=>'hargajual')) !!}
+                                <label for="name">Ukuran</label>
+                                {!! Form::text('ukuran', null, array('placeholder' => 'Ukuran','class' =>
+                                'form-control','id'=>'ukuran')) !!}
                             </div>
                         </div>
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                <label for="name">Jumlah</label>
-                                {!! Form::text('jumlah', null, array('placeholder' => 'Jumlah','class' =>
-                                'form-control','id'=>'jumlah')) !!}
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-3">
                             <div class="form-group">
                                 <label for="name">Satuan</label>
                                 {!! Form::text('satuan', null, array('placeholder' => 'Satuan','class' =>
                                 'form-control','id'=>'satuan')) !!}
                             </div>
                         </div>
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                <label for="name">Jumlah</label>
+                                {!! Form::text('jumlah', null, array('placeholder' => 'Jumlah','class' =>
+                                'form-control','id'=>'jumlah')) !!}
+                            </div>
+                        </div>
                     </div>
-
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="name">Diskon</label>
+                                <label for="name">Promo</label>
                                 {!! Form::text('diskon', null, array('placeholder' => 'Diskon Bila ada','class' =>
                                 'form-control','id'=>'diskon')) !!}
                             </div>
                         </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="name">Harga Jual</label>
+                                {!! Form::text('hargajual', null, array('placeholder' => 'Harga Jual','class' =>
+                                'form-control','readonly','id'=>'hargajual')) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
                                 <label for="name">Total Harga</label>
@@ -111,9 +121,6 @@
                                 'form-control','id'=>'totalharga','readonly')) !!}
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
                                 <label for="confirm">Tanggal Ambil</label>
@@ -121,15 +128,8 @@
                                 'form-control date','id'=>'tglAmbil')) !!}
                             </div>
                         </div>
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <label for="confirm">Batas Tgl Ambil</label>
-                                {!! Form::text('bts_tgl_ambil',null, array('placeholder' => 'Batas Tanggal Pengambilan',
-                                'class' =>
-                                'form-control date','id'=>'btsTglAmbil')) !!}
-                            </div>
-                        </div>
                     </div>
+
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
@@ -172,6 +172,36 @@
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-danger">
+                <div class="box-header">
+                    <h3 class="box-title">Detail Order</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-condensed table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <td>s</td>
+                            <td>s4</td>
+                            <td>s4]6</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>sdf</td>
+                            <td>sd6</td>
+                            <td>sd6</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-footer">
+
+                </div>
+            </div>
         </div>
     </div>
     <!-- /.row (main row) -->

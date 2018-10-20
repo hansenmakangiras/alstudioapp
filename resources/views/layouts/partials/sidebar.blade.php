@@ -34,7 +34,7 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            @hasanyrole('User|Admin|Superadmin')
+            @hasanyrole('Cetak|Admin|Superadmin|Kasir|Foto')
             <li class="header">MENU MASTER</li>
             <li class="treeview">
                 <a href="#">
@@ -62,7 +62,7 @@
                 </a>
             </li>
             @endhasanyrole
-            @hasanyrole('Admin|Superadmin')
+            @role('Superadmin')
             <li class="header">MENU PENGGUNA</li>
             <li class="treeview">
                 <a href="#">
@@ -84,17 +84,17 @@
                     @endcan
                 </ul>
             </li>
-            @endhasanyrole
-            @hasanyrole('User|Admin|Superadmin')
-            <li class="header">MENU PRODUKSI</li>
-            @can('Manage Cetakan')
+            @endrole
+            @hasanyrole('Foto|Admin|Superadmin')
+            <li class="header">MENU FOTO</li>
+            {{--@can('Manage Cetakan')--}}
             <li>
-                <a href="{{ route('order.index') }}">
+                <a href="{{ route('order.prosesfoto') }}">
                     <i class="fa fa-pie-chart"></i>
-                    <span>Order Cetakan</span>
+                    <span>Order Foto</span>
                 </a>
             </li>
-            @endcan
+            {{--@endcan--}}
             <li>
                 <a href="#">
                     <i class="fa fa-laptop"></i>
@@ -102,23 +102,40 @@
                 </a>
             </li>
             @endhasanyrole
-            @hasanyrole('User|Admin|Superadmin')
-            {{--@role('User|Admin')--}}
-            <li class="header">MENU KASIR</li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-edit"></i> <span>Forms</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            @hasanyrole('Cetak|Admin|Superadmin')
+            <li class="header">MENU PRODUKSI</li>
+            {{--@can('Manage Cetakan')--}}
+            <li>
+                <a href="{{ route('order.prosescetak') }}">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Order Cetakan</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Order Cetakan</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Pembayaran</a></li>
-                </ul>
+            </li>
+            {{--@endcan--}}
+            <li>
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>Status Order</span>
+                </a>
             </li>
             @endhasanyrole
-            @hasanyrole('User|Admin|Superadmin')
+            @hasanyrole('Kasir|Admin|Superadmin')
+            {{--@role('User|Admin')--}}
+            <li class="header">MENU KASIR</li>
+            <li>
+                <a href="{{ route('order.index') }}">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Order Cetakan</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('#') }}">
+                    <i class="fa fa-money"></i>
+                    <span>Pembayaran</span>
+                </a>
+            </li>
+            @endhasanyrole
+            @hasanyrole('Kasir|Admin|Superadmin')
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-line-chart"></i> <span>Laporan</span>
