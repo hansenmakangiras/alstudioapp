@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenisCetakan;
 use App\Models\JenisPaket;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Pelanggan;
 use App\Models\StatusBayar;
 use App\Models\StatusOrder;
@@ -67,7 +68,6 @@ class OrderController extends Controller
             'jumlah' => 'required',
             'total_harga' => 'required',
             'tglAmbil' => 'date',
-            'bts_tgl_ambil' => 'date',
             'status_bayar' => 'required',
             'status_order' => 'required',
         ]);
@@ -76,21 +76,38 @@ class OrderController extends Controller
         $order = new Order();
         $order->create([
             'orderid' => $input['orderid'],
-            'jeniscetakid' => $input['jeniscetak'],
-            'idpelanggan' => $input['pelanggan'],
+            'cetakid' => $input['jeniscetak'],
+            'pelangganid' => $input['pelanggan'],
             'jenispaketid' => $input['jenispaket'],
-            'jumlah' => $input['jumlah'],
-            'harga_jual' => $input['hargajual'],
-            'satuan' => $input['satuan'],
+            'promoid' => $input['diskon'],
             'total_harga' => $input['total_harga'],
-            'diskon' => $input['diskon'],
-            'keterangan' => $input['keterangan'],
-            'tglAmbil' => $input['tglAmbil'],
-            'bts_tgl_ambil' => $input['bts_tgl_ambil'],
-            'status_bayar' => $input['status_bayar'],
-            'status_order' => $input['status_order'],
-            'status_aktif' => 1
         ]);
+
+        if($order){
+            $order = Order::where('id', $order->id)->where('orderid',$order->orderid)->first();
+            $orderDetail = new OrderDetail();
+            if(!$orderDetail){
+                $orderDetail->create([
+                    'orderid' => $order->orderid,
+                    'qty' => $input['jumlah'],
+                    'harga_jual' => $input['hargajual'],
+                    'satuan' => $input['satuan'],
+                    'diskon' => $input['diskon'],
+                    'keterangan' => $input['keterangan'],
+                    'tgl_ambil' => $input['tgl_ambil'],
+                    'status_bayar' => $input['status_bayar'],
+                    'status_order' => $input['status_order'],
+//                    'status_aktif' => 1
+                ]);
+
+                return redirect()->route('order.index')
+                    ->with('Sukses','Order created successfully');
+            }
+            return redirect()->route('order.index')
+                ->with('Gagal','Order Failed save to database');
+
+
+        }
 
         return redirect()->route('order.index')
             ->with('Sukses','Order created successfully');

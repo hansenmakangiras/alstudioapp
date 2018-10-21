@@ -100,7 +100,7 @@
                         <div class="col-xs-6">
                             <div class="form-group">
                                 <label for="name">Promo</label>
-                                {!! Form::text('diskon', null, array('placeholder' => 'Diskon Bila ada','class' =>
+                                {!! Form::text('diskon', \App\Models\Promo::getKodePromo(array_keys($pelanggan)[0]), array('placeholder' => 'Diskon Bila ada','class' =>
                                 'form-control','id'=>'diskon')) !!}
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                         <div class="col-xs-6">
                             <div class="form-group">
                                 <label for="confirm">Tanggal Ambil</label>
-                                {!! Form::text('tglAmbil',null, array('placeholder' => 'Tanggal Pengambilan','class' =>
+                                {!! Form::text('tgl_ambil',null, array('placeholder' => 'Tanggal Pengambilan','class' =>
                                 'form-control date','id'=>'tglAmbil')) !!}
                             </div>
                         </div>
@@ -174,36 +174,36 @@
             <!-- /.box -->
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box box-danger">
-                <div class="box-header">
-                    <h3 class="box-title">Detail Order</h3>
-                </div>
-                <div class="box-body">
-                    <table class="table table-condensed table-bordered table-hover">
-                        <thead>
-                        <tr>
-                            <td>s</td>
-                            <td>s4</td>
-                            <td>s4]6</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>sdf</td>
-                            <td>sd6</td>
-                            <td>sd6</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="box-footer">
+    {{--<div class="row">--}}
+        {{--<div class="col-xs-12">--}}
+            {{--<div class="box box-danger">--}}
+                {{--<div class="box-header">--}}
+                    {{--<h3 class="box-title">Detail Order</h3>--}}
+                {{--</div>--}}
+                {{--<div class="box-body">--}}
+                    {{--<table class="table table-condensed table-bordered table-hover">--}}
+                        {{--<thead>--}}
+                        {{--<tr>--}}
+                            {{--<td>s</td>--}}
+                            {{--<td>s4</td>--}}
+                            {{--<td>s4]6</td>--}}
+                        {{--</tr>--}}
+                        {{--</thead>--}}
+                        {{--<tbody>--}}
+                        {{--<tr>--}}
+                            {{--<td>sdf</td>--}}
+                            {{--<td>sd6</td>--}}
+                            {{--<td>sd6</td>--}}
+                        {{--</tr>--}}
+                        {{--</tbody>--}}
+                    {{--</table>--}}
+                {{--</div>--}}
+                {{--<div class="box-footer">--}}
 
-                </div>
-            </div>
-        </div>
-    </div>
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <!-- /.row (main row) -->
 @endsection
 @push('js')

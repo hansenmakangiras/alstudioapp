@@ -1,7 +1,26 @@
 @extends('layouts.backend')
 
+@section('extra-css')
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/morris.js/morris.css') }}">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/jvectormap/jquery-jvectormap.css') }}">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min
+.css') }}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet"
+          href="{{ asset('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+@endsection
+
 @section('subtitle')
-Home
+    Home
 @endsection
 
 @section('content-header')
@@ -12,7 +31,7 @@ Home
             <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Dashboard</li>
         </ol>
     </section>
@@ -82,9 +101,8 @@ Home
         </div>
         <!-- ./col -->
     </div>
-
-
     <!-- /.row -->
+
     <!-- Main row -->
     <div class="row">
         <!-- Left col -->
@@ -99,7 +117,8 @@ Home
                 </ul>
                 <div class="tab-content no-padding">
                     <!-- Morris chart - Sales -->
-                    <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+                    <div class="chart tab-pane active" id="revenue-chart"
+                         style="position: relative; height: 300px;"></div>
                     <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
                 </div>
             </div>
@@ -118,9 +137,11 @@ Home
                     <h3 class="box-title">Sales Graph</h3>
 
                     <div class="box-tools pull-right">
-                        <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                        <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i
+                                class="fa fa-minus"></i>
                         </button>
-                        <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                        <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i
+                                class="fa fa-times"></i>
                         </button>
                     </div>
                 </div>
@@ -131,21 +152,24 @@ Home
                 <div class="box-footer no-border">
                     <div class="row">
                         <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                            <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
+                            <input type="text" class="knob" data-readonly="true" value="20" data-width="60"
+                                   data-height="60"
                                    data-fgColor="#39CCCC">
 
                             <div class="knob-label">Mail-Orders</div>
                         </div>
                         <!-- ./col -->
                         <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                            <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
+                            <input type="text" class="knob" data-readonly="true" value="50" data-width="60"
+                                   data-height="60"
                                    data-fgColor="#39CCCC">
 
                             <div class="knob-label">Online</div>
                         </div>
                         <!-- ./col -->
                         <div class="col-xs-4 text-center">
-                            <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
+                            <input type="text" class="knob" data-readonly="true" value="30" data-width="60"
+                                   data-height="60"
                                    data-fgColor="#39CCCC">
 
                             <div class="knob-label">In-Store</div>
@@ -157,8 +181,6 @@ Home
                 <!-- /.box-footer -->
             </div>
             <!-- /.box -->
-
-
         </section>
         <!-- right col -->
     </div>
@@ -180,7 +202,8 @@ Home
     <script src="{{ asset('assets/bower_components/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <!-- datepicker -->
-    <script src="{{ asset('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+    <script
+        src="{{ asset('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
     <!-- Bootstrap WYSIHTML5 -->
     <script src="{{ asset('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
