@@ -4,19 +4,19 @@
 
 @stop
 @section('subtitle')
-    | Jenis Paket
+    | Pelanggan
 @endsection
 
 @section('content-header')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            List Data Jenis Paket
+            List Data Pelanggan
             <small>Master Customer</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Jenis Paket</li>
+            <li class="active">Pelanggan</li>
         </ol>
     </section>
 @stop
@@ -29,48 +29,47 @@
 
             <div class="box">
                 <div class="box-header">
-                    @can('addJenisPaket')
-                    <a href="{{ route('jenispaket.create') }}" class="btn btn-success btn-sm"><i class="fa
-                        fa-plus-circle"></i> Tambah Jenis Paket</a>
-                    @endcan
+                    <a href="{{ route('pelanggan.create') }}" class="btn btn-success btn-sm"><i class="fa
+                        fa-plus-circle"></i> Tambah Pelanggan</a>
                 </div>
 
                 <div class="box-body">
-                    <table id="tbl-jenispaket" class="table table-bordered">
+                    <table id="tbl-pelanggan" class="table table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Order ID</th>
-                            <th>Jenis Cetakan</th>
-                            <th>Nama Paket</th>
-                            <th>Deskripsi</th>
-                            <th>Ukuran</th>
-                            <th>Harga Jual</th>
+                            <th>Nama</th>
+                            <th>Alamat</th>
+                            <th>No Telp</th>
+                            {{--<th>Tgl Pesan</th>--}}
+                            <th>Jenis Pelanggan</th>
+                            <th>Status Pelanggan</th>
                             <th>Operation</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($jenispaket as $key => $val)
+                        @foreach($pelanggan as $key => $val)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $val->orderid }}</td>
-                                <td>{{ \App\Models\JenisCetakan::getJenisCetakName($val->id_jenis_cetak) }}</td>
-                                <td>{{ $val->nama_paket }}</td>
-                                <td>{{ $val->deskripsi }} </td>
-                                <td>{{ $val->ukuran }}</td>
-                                <td>{{ $val->harga_jual }}</td>
+                                <td>{{ $val->namapel }}</td>
+                                <td>{{ $val->alamat }}</td>
+                                <td>{{ $val->notelp }}</td>
+{{--                                <td>{{ $val->created_at }}</td>--}}
+                                <td>{!! \App\Models\Pelanggan::getJenisPelanggan
+                                ($val->jenis_pelanggan) !!}</td>
+                                <td><label class="label bg-green">{{ \App\Models\Pelanggan::getStatusPelanggan
+                                ($val->status_pelanggan) }}</label></td>
                                 <td>
-                                    @can("viewJenisPaket")
-                                    <a class="btn btn-success btn-xs" href="{{ route('jenispaket.show',$val->id)
+                                    @can("viewPelanggan")
+                                    <a class="btn btn-success btn-xs" href="{{ route('pelanggan.show',$val->id)
                                     }}">View</a>
                                     @endcan
-                                    @can('editJenisPaket')
-                                    <a href="{{ route('jenispaket.edit',$val->id) }}" class="btn btn-primary
+                                    @can('editPelanggan')
+                                    <a href="{{ route('pelanggan.edit',$val->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
                                     @endcan
-                                    @can('deleteJenisPaket')
-                                        {!! Form::open(['method' => 'DELETE','route' => ['jenispaket.destroy',
-                                        $val->id],
+                                    @can('deletePelanggan')
+                                        {!! Form::open(['method' => 'DELETE','route' => ['pelanggan.destroy', $val->id],
                                         'style'=>'display:inline']) !!}
                                         {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                         {!! Form::close() !!}
@@ -83,7 +82,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
-                {{ $jenispaket->onEachSide(1)->links() }}
+                {{ $pelanggan->onEachSide(1)->links() }}
                 </div>
             </div>
             <!-- /.box -->
@@ -94,11 +93,11 @@
 
 @push('js')
 <script>
-    $('#tbl-jenispaket').DataTable({
+    $('#tbl-pelanggan').DataTable({
         {{--'processing'  : true,--}}
         {{--'serverSide'  : true,--}}
         {{--'ajax'        : {--}}
-            {{--"url" : "{!! route('ajax.jenispaket') !!}",--}}
+            {{--"url" : "{!! route('ajax.pelanggan') !!}",--}}
             {{--"type" : "POST"--}}
         {{--},--}}
         {{--'columns'   : [--}}

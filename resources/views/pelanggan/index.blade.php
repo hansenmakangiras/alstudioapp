@@ -41,7 +41,7 @@
                             <th>Nama</th>
                             <th>Alamat</th>
                             <th>No Telp</th>
-                            {{--<th>Tgl Pesan</th>--}}
+                            <th>Kode Promo</th>
                             <th>Jenis Pelanggan</th>
                             <th>Status Pelanggan</th>
                             <th>Operation</th>
@@ -54,11 +54,11 @@
                                 <td>{{ $val->namapel }}</td>
                                 <td>{{ $val->alamat }}</td>
                                 <td>{{ $val->notelp }}</td>
-{{--                                <td>{{ $val->created_at }}</td>--}}
+                                <td>{{ \App\Models\Promo::getKodePromoWithTipe($val->promoid,$val->jenis_pelanggan) }}</td>
                                 <td>{!! \App\Models\Pelanggan::getJenisPelanggan
                                 ($val->jenis_pelanggan) !!}</td>
                                 <td><label class="label bg-green">{{ \App\Models\Pelanggan::getStatusPelanggan
-                                ($val->status_pelanggan) }}</label></td>
+                                ($val->status) }}</label></td>
                                 <td>
                                     @can("viewPelanggan")
                                     <a class="btn btn-success btn-xs" href="{{ route('pelanggan.show',$val->id)

@@ -25,8 +25,8 @@
 @section('content')
     <!-- Main row -->
     <div class="row">
-        @include('widget.alert')
         <div class="col-xs-6">
+            @include('widget.alert')
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Tambah Pelanggan</h3>
@@ -51,19 +51,23 @@
                          !!}
                     </div>
                     <div class="form-group">
-                        <label for="confirm">Kode Promo</label>
-                        {!! Form::select('promoid',$arrPromo, null, array
-                        ('placeholder' => 'Pilih Kode Promo','class' =>'form-control')) !!}
-                    </div>
-                    <div class="form-group">
                         <label for="confirm">Jenis Pelanggan</label>
                         {!! Form::select('jenis_pelanggan',$arrJenisPelanggan, null, array
                         ('placeholder' => 'Pilih Tipe Pelanggan','class' =>'form-control')) !!}
                     </div>
+                    <div class="form-group">
+                        <label for="confirm">Status Pelanggan</label>
+                        {!! Form::select('status_pelanggan',$arrPelanggan, null, array
+                        ('placeholder' => 'Pilih Status Pelanggan','class' =>'form-control')) !!}
+                    </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="roles">Role</label>--}}
+                        {{--{!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}--}}
+                    {{--</div>--}}
 
                     <div class="box-footer text-center">
-                        <button type="submit" class="btn btn-primary btn-flat">Submit</button>
-                        <a href="{{ route('pelanggan.index') }}" class="btn btn-default btn-flat">Kembali</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ route('pelanggan.index') }}" class="btn btn-default">Kembali</a>
                     </div>
                 </div>
             {!! Form::close() !!}
@@ -71,7 +75,6 @@
             </div>
             <!-- /.box -->
         </div>
-
     </div>
     <!-- /.row (main row) -->
 @endsection

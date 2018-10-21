@@ -25,18 +25,8 @@
 @section('content')
     <!-- Main row -->
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-6">
             @include('widget.alert')
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Tambah Roles</h3>
@@ -79,9 +69,8 @@
                     </div>
 
                     <div class="box-footer text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{ route('roles.index') }}" class="btn btn-default">Kembali ke list
-                            role</a>
+                        <button type="submit" class="btn btn-primary btn-flat">Submit</button>
+                        <a href="{{ route('roles.index') }}" class="btn btn-success btn-flat">Kembali</a>
                     </div>
 
                 </div>

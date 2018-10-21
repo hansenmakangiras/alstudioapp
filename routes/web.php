@@ -35,6 +35,8 @@ Route::group(['middleware' => 'role:Kasir|Admin|Superadmin'], function() {
     Route::post('order/proses/{id}', 'OrderController@proses')->name('order.proses');
     Route::resource('ajax', 'AjaxController');
     Route::resource('jenispaket', 'JenisPaketController');
+    Route::resource('satuan', 'JenisSatuanController');
+    Route::resource('promo', 'PromoController');
 
 
     // Ajax Request

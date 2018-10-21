@@ -26,6 +26,10 @@
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
+        "files": [
+            "app/Helper/AppHelper.php",
+            "app/Helper/PromoCode.php"
+        ],
         "classmap": [
             "database/seeds",
             "database/factories"

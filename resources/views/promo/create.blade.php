@@ -4,19 +4,19 @@
 
 @stop
 @section('subtitle')
-    | Pelanggan
+    | Promo
 @endsection
 
 @section('content-header')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Create Pelanggan
-            <small>Data Pelanggan</small>
+            Create Promo
+            <small>Data Promo</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="{{ route('pelanggan.index') }}"><i class="fa fa-dashboard"></i> Pelanggan</a></li>
+            <li><a href="{{ route('pelanggan.index') }}"><i class="fa fa-dashboard"></i> Promo</a></li>
             <li class="active">Create</li>
         </ol>
     </section>
@@ -29,49 +29,46 @@
         <div class="col-xs-6">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Tambah Pelanggan</h3>
+                    <h3 class="box-title">Tambah Promo</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::open(array('route' => 'pelanggan.store','method'=>'POST')) !!}
+                {!! Form::open(array('route' => 'promo.store','method'=>'POST')) !!}
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="name">Nama Pelanggan</label>
-                        {!! Form::text('namapel', null, array('placeholder' => 'Nama Pelanggan','class' =>
+                        <label for="name">Kode Promo</label>
+                        {!! Form::text('kode', $promocode, array('placeholder' => 'Kode Promo','class' =>
+                        'form-control','readonly')) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Nama Promo</label>
+                        {!! Form::text('namapromo', null, array('placeholder' => 'Beri nama promo anda','class' =>
                         'form-control','autofocus')) !!}
                     </div>
                     <div class="form-group">
-                        <label for="email">No Telp</label>
-                        {!! Form::text('notelp', null, array('placeholder' => 'No Telepon / HP','class' =>
+                        <label for="email">Deksripsi Promo</label>
+                        {!! Form::text('deskripsi', null, array('placeholder' => 'Jelaskan promo anda','class' =>
                         'form-control')) !!}
                     </div>
                     <div class="form-group">
-                        <label for="password">Alamat</label>
-                        {!! Form::text('alamat', null,array('placeholder' => 'Alamat Pelanggan','class' => 'form-control'))
-                         !!}
+                        <label for="email">Promo Berakhir Tanggal</label>
+                        {!! Form::date('expire_date', \Carbon\Carbon::now(),['class' =>'form-control date']) !!}
+                        {{--{!! Form::text('expire_date', null, array('placeholder' => 'Tanggal Kadaluarsa promo anda','class' =>--}}
+                        {{--'form-control')) !!}--}}
                     </div>
                     <div class="form-group">
-                        <label for="confirm">Kode Promo</label>
-                        {!! Form::select('promoid',$arrPromo, null, array
-                        ('placeholder' => 'Pilih Kode Promo','class' =>'form-control')) !!}
-                    </div>
-                    <div class="form-group">
-                        <label for="confirm">Jenis Pelanggan</label>
-                        {!! Form::select('jenis_pelanggan',$arrJenisPelanggan, null, array
+                        <label for="confirm">Tipe Pelanggan</label>
+                        {!! Form::select('tipe_pelanggan',$arrJenisPelanggan, null, array
                         ('placeholder' => 'Pilih Tipe Pelanggan','class' =>'form-control')) !!}
                     </div>
-
                     <div class="box-footer text-center">
                         <button type="submit" class="btn btn-primary btn-flat">Submit</button>
-                        <a href="{{ route('pelanggan.index') }}" class="btn btn-default btn-flat">Kembali</a>
+                        <a href="{{ route('promo.index') }}" class="btn btn-default btn-flat">Kembali</a>
                     </div>
                 </div>
-            {!! Form::close() !!}
-                <!-- /.box-body -->
+                {!! Form::close() !!}
             </div>
-            <!-- /.box -->
         </div>
-
     </div>
     <!-- /.row (main row) -->
 @endsection

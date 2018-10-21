@@ -47,7 +47,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ route('jenis-cetak.index') }}"><i class="fa fa-angle-right"></i> Data Jenis
                             Cetakan</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Jenis Satuan</a></li>
+                    <li><a href="{{ route('satuan.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Satuan</a></li>
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Bahan</a></li>
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Mesin</a></li>
                     <li><a href="{{ route('jenispaket.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Paket</a></li>
@@ -55,6 +55,7 @@
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Cetak</a></li>
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Pelanggan</a></li>
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Bayar</a></li>
+                    <li><a href="{{ route('promo.index') }}"><i class="fa fa-angle-right"></i> Data Promo</a></li>
                 </ul>
             </li>
             <li>

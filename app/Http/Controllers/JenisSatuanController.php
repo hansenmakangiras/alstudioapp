@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JenisCetakan;
+use App\Models\JenisSatuan;
 use Illuminate\Http\Request;
 
-class JenisCetakController extends Controller
+class JenisSatuanController extends Controller
 {
     function __construct()
     {
@@ -24,9 +24,9 @@ class JenisCetakController extends Controller
      */
     public function index()
     {
-        $data = JenisCetakan::orderBy('id', 'DESC')->paginate(10);
+        $data = JenisSatuan::orderBy('id', 'DESC')->paginate(10);
 //        $data = JenisCetakan::latest()->get();
-        return view('jenis-cetak.index',compact('data'))
+        return view('jenis-satuan.index',compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -37,7 +37,7 @@ class JenisCetakController extends Controller
      */
     public function create()
     {
-        return view('jenis-cetak.create');
+        return view('jenis-satuan.create');
     }
 
     /**
@@ -49,17 +49,16 @@ class JenisCetakController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'kode_jenis' => 'required',
-            'jenis_cetak' => 'required',
+            'kode' => 'required',
+            'satuan' => 'required',
         ]);
 
-        $jeniscetak = new JenisCetakan();
-        $jeniscetak->kode_jenis = $request->kode_jenis;
-        $jeniscetak->jenis_cetak = $request->jenis_cetak;
-//        $jeniscetak->status_cetak = 1;
+        $jenisSatuan = new JenisSatuan();
+        $jenisSatuan->kode = $request->kode;
+        $jenisSatuan->satuan = $request->satuan;
 
-        if($jeniscetak->save()){
-            return redirect()->route('jenis-cetak.index')->with('Sukses','Data berhasil disimpan ke dalam database');
+        if($jenisSatuan->save()){
+            return redirect()->route('satuan.index')->with('Sukses','Data berhasil disimpan ke dalam database');
         }
 
         return back()->with('Gagal','Data gagal disimpan ke database');
@@ -71,9 +70,9 @@ class JenisCetakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(JenisCetakan $jenisCetakan)
+    public function show($id)
     {
-        return view('jenis-cetak.show',compact('jenisCetakan'));
+        return view('jenis-satuan.show',compact('jenisCetakan'));
     }
 
     /**
@@ -84,8 +83,8 @@ class JenisCetakController extends Controller
      */
     public function edit($id)
     {
-        $jenisCetakan = JenisCetakan::find($id);
-        return view('jenis-cetak.edit',compact('jenisCetakan','id'));
+        $jenisSatuan = JenisSatuan::find($id);
+        return view('jenis-satuan.edit',compact('jenisSatuan','id'));
     }
 
     /**
@@ -98,22 +97,22 @@ class JenisCetakController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'kode_jenis' => 'required',
-            'jenis_cetak' => 'required',
+            'kode' => 'required',
+            'satuan' => 'required',
         ]);
 
-        $jenisCetakan = JenisCetakan::find($id);
+        $jenisSatuan = JenisSatuan::find($id);
 
-        if($jenisCetakan){
+        if($jenisSatuan){
 
-            $jenisCetakan->update($request->all());
-            return redirect()->route('jenis-cetak.index')
-                ->with('Sukses','Jenis cetakan updated successfully');
+            $jenisSatuan->update($request->all());
+            return redirect()->route('satuan.index')
+                ->with('Sukses','Jenis satuan updated successfully');
         }
 
 
 
-        return back()->with('Gagal','Jenis cetakan gagal di ubah');
+        return back()->with('Gagal','Jenis satuan gagal di ubah');
     }
 
     /**
@@ -124,13 +123,13 @@ class JenisCetakController extends Controller
      */
     public function destroy($id)
     {
-        $jeniscetak = JenisCetakan::find($id);
-        if($jeniscetak->delete()){
-            return redirect()->route('jenis-cetak.index')
-                ->with('Sukses','Jenis Cetakan deleted successfully');
+        $jenisSatuan = JenisSatuan::find($id);
+        if($jenisSatuan->delete()){
+            return redirect()->route('satuan.index')
+                ->with('Sukses','Jenis Satuan deleted successfully');
         }
 
 
-        return back()->with('Gagal','Jenis Cetakan gagal dihapus');
+        return back()->with('Gagal','Jenis Satuan gagal dihapus');
     }
 }

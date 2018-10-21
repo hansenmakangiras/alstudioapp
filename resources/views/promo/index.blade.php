@@ -4,19 +4,19 @@
 
 @stop
 @section('subtitle')
-    | Jenis Paket
+    | Promo
 @endsection
 
 @section('content-header')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            List Data Jenis Paket
-            <small>Master Customer</small>
+            List Promo
+            <small>Master Promo</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Jenis Paket</li>
+            <li class="active">Promo</li>
         </ol>
     </section>
 @stop
@@ -29,52 +29,48 @@
 
             <div class="box">
                 <div class="box-header">
-                    @can('addJenisPaket')
-                    <a href="{{ route('jenispaket.create') }}" class="btn btn-success btn-sm"><i class="fa
-                        fa-plus-circle"></i> Tambah Jenis Paket</a>
-                    @endcan
+                    <a href="{{ route('promo.create') }}" class="btn btn-success btn-sm"><i class="fa
+                        fa-plus-circle"></i> Tambah Promo</a>
                 </div>
 
                 <div class="box-body">
-                    <table id="tbl-jenispaket" class="table table-bordered">
+                    <table id="tbl-promo" class="table table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Order ID</th>
-                            <th>Jenis Cetakan</th>
-                            <th>Nama Paket</th>
+                            <th>Kode</th>
+                            <th>Nama</th>
                             <th>Deskripsi</th>
-                            <th>Ukuran</th>
-                            <th>Harga Jual</th>
+                            <th>Tgl Berakhir</th>
+                            <th>Tipe Pelanggan</th>
                             <th>Operation</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($jenispaket as $key => $val)
+                        @foreach($promo as $key => $val)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $val->orderid }}</td>
-                                <td>{{ \App\Models\JenisCetakan::getJenisCetakName($val->id_jenis_cetak) }}</td>
-                                <td>{{ $val->nama_paket }}</td>
-                                <td>{{ $val->deskripsi }} </td>
-                                <td>{{ $val->ukuran }}</td>
-                                <td>{{ $val->harga_jual }}</td>
+                                <td>{{ $val->kode }}</td>
+                                <td>{{ $val->namapromo }}</td>
+                                <td>{{ $val->deskripsi }}</td>
+                                <td>{{ $val->expire_date }}</td>
+                                <td>{!! \App\Models\Pelanggan::getJenisPelanggan
+                                ($val->tipe_pelanggan) !!}</td>
                                 <td>
-                                    @can("viewJenisPaket")
-                                    <a class="btn btn-success btn-xs" href="{{ route('jenispaket.show',$val->id)
+                                    {{--@can("viewPelanggan")--}}
+                                    <a class="btn btn-success btn-xs" href="{{ route('promo.show',$val->id)
                                     }}">View</a>
-                                    @endcan
-                                    @can('editJenisPaket')
-                                    <a href="{{ route('jenispaket.edit',$val->id) }}" class="btn btn-primary
+                                    {{--@endcan--}}
+                                    {{--@can('editPelanggan')--}}
+                                    <a href="{{ route('promo.edit',$val->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
-                                    @endcan
-                                    @can('deleteJenisPaket')
-                                        {!! Form::open(['method' => 'DELETE','route' => ['jenispaket.destroy',
-                                        $val->id],
+                                    {{--@endcan--}}
+                                    {{--@can('deletePelanggan')--}}
+                                        {!! Form::open(['method' => 'DELETE','route' => ['promo.destroy', $val->id],
                                         'style'=>'display:inline']) !!}
                                         {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                         {!! Form::close() !!}
-                                    @endcan
+                                    {{--@endcan--}}
                                 </td>
                             </tr>
                         @endforeach
@@ -83,7 +79,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
-                {{ $jenispaket->onEachSide(1)->links() }}
+                {{ $promo->onEachSide(1)->links() }}
                 </div>
             </div>
             <!-- /.box -->
@@ -94,11 +90,11 @@
 
 @push('js')
 <script>
-    $('#tbl-jenispaket').DataTable({
+    $('#tbl-promo').DataTable({
         {{--'processing'  : true,--}}
         {{--'serverSide'  : true,--}}
         {{--'ajax'        : {--}}
-            {{--"url" : "{!! route('ajax.jenispaket') !!}",--}}
+            {{--"url" : "{!! route('ajax.pelanggan') !!}",--}}
             {{--"type" : "POST"--}}
         {{--},--}}
         {{--'columns'   : [--}}

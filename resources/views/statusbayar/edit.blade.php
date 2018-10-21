@@ -11,13 +11,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Create Pelanggan
-            <small>Data Pelanggan</small>
+            Data Pelanggan
+            <small>Master Data</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="{{ route('pelanggan.index') }}"><i class="fa fa-dashboard"></i> Pelanggan</a></li>
-            <li class="active">Create</li>
+            <li class="active">Update</li>
         </ol>
     </section>
 @stop
@@ -25,15 +25,15 @@
 @section('content')
     <!-- Main row -->
     <div class="row">
-        @include('widget.alert')
         <div class="col-xs-6">
+            @include('widget.alert')
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Tambah Pelanggan</h3>
+                    <h3 class="box-title">Ubah Data Pelanggan - <strong>[ {{ $pelanggan->namapel }} ]</strong></h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::open(array('route' => 'pelanggan.store','method'=>'POST')) !!}
+                {!! Form::model($pelanggan, ['method' => 'PATCH','route' => ['pelanggan.update', $pelanggan->id]]) !!}
                 <div class="box-body">
                     <div class="form-group">
                         <label for="name">Nama Pelanggan</label>
@@ -51,19 +51,23 @@
                          !!}
                     </div>
                     <div class="form-group">
-                        <label for="confirm">Kode Promo</label>
-                        {!! Form::select('promoid',$arrPromo, null, array
-                        ('placeholder' => 'Pilih Kode Promo','class' =>'form-control')) !!}
+                        <label for="confirm">Tanggal Ambil Cetakan</label>
+                        {!! Form::text('tgl_ambil',null, array('placeholder' => 'Tanggal Pengambilan','class' =>
+                        'form-control','id'=> 'tglAmbil')) !!}
                     </div>
                     <div class="form-group">
-                        <label for="confirm">Jenis Pelanggan</label>
-                        {!! Form::select('jenis_pelanggan',$arrJenisPelanggan, null, array
-                        ('placeholder' => 'Pilih Tipe Pelanggan','class' =>'form-control')) !!}
+                        <label for="confirm">Status Bayar</label>
+                        {!! Form::select('status_bayar',$arrPelanggan,$pelanggan->status_bayar, array
+                        ('placeholder' => 'Status Bayar','class' =>'form-control')) !!}
                     </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="roles">Role</label>--}}
+                        {{--{!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}--}}
+                    {{--</div>--}}
 
                     <div class="box-footer text-center">
-                        <button type="submit" class="btn btn-primary btn-flat">Submit</button>
-                        <a href="{{ route('pelanggan.index') }}" class="btn btn-default btn-flat">Kembali</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ route('pelanggan.index') }}" class="btn btn-default">Kembali</a>
                     </div>
                 </div>
             {!! Form::close() !!}
@@ -71,7 +75,6 @@
             </div>
             <!-- /.box -->
         </div>
-
     </div>
     <!-- /.row (main row) -->
 @endsection

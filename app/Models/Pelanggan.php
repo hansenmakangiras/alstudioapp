@@ -14,7 +14,7 @@ class Pelanggan extends Model
      * @var array
      */
     protected $fillable = [
-        'namapel', 'alamat', 'notelp','tgl_ambil','status_bayar'
+        'namapel', 'alamat', 'notelp','tgl_ambil','jenis_pelanggan','promoid'
     ];
 
     /**
@@ -53,23 +53,31 @@ class Pelanggan extends Model
 
     public static function getStatusPelanggan($id)
     {
-        switch ($id){
-            case 0;
-                return 'Inactive';
-            case 1;
-                return 'Active';
-            case 2;
-                return 'Banned';
-            default: 0;
+//        switch ($id){
+//            case 0;
+//                return 'Inactive';
+//            case 1;
+//                return 'Active';
+//            case 2;
+//                return 'Banned';
+//            default: 0;
+//        }
+
+        $status = StatusPelanggan::find($id);
+        if($status != null){
+            return $status->status_pelanggan;
         }
+        return "";
     }
 
     public static function getArrJenisPelanggan(){
-        return [
-            1 => 'Umum',
-            2 => 'Private',
-            3 => 'VIP'
-        ];
+//        return [
+//            1 => 'Umum',
+//            2 => 'Private',
+//            3 => 'VIP'
+//        ];
+
+        return TipePelanggan::pluck('tipe','id');
     }
 
     public static function getArrStatusPelanggan(){

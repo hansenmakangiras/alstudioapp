@@ -23,35 +23,25 @@
 @stop
 
 @section('content')
-    @if(session('Sukses'))
-        <div id="success-alert" class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-check"></i> Alert!</h4>
-            {{ session('Sukses') }}
-        </div>
-    @elseif(session('Gagal'))
-        <div id="error-alert" class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-            {{ session('Gagal') }}
-        </div>
-    @endif
-    {{--<div class="callout callout-info">--}}
-        {{--<h4>Reminder!</h4>--}}
-        {{--Instructions for how to use modals are available on the--}}
-        {{--<a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a>--}}
-    {{--</div>--}}
+    @include('widget.alert')
 
     <!-- Main row -->
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List Role</h3>
-                    <div class="box-tools">
-                        <a href="{{ route('roles.create') }}" class="btn btn-default btn-sm"><i class="fa
-                        fa-plus"></i> Tambah Role</a>
-                    </div>
+                    @role('Superadmin')
+                    <a href="{{ route('roles.create') }}" class="btn btn-danger btn-sm"><i class="fa
+                        fa-user-secret"></i> Add Roles</a>
+                    @endrole
+                    @role('Superadmin')
+                    <a href="{{ route('permissions.index') }}" class="btn btn-primary btn-sm"><i class="fa
+                        fa-cog"></i> Manage Permission</a>
+                    @endrole
+                    @role('Superadmin')
+                    <a href="{{ route('users.index') }}" class="btn btn-success btn-sm"><i class="fa
+                        fa-user-plus"></i> Manage Users</a>
+                    @endrole
                 </div>
 
                 <div class="box-body">

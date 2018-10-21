@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
+use App\Models\Promo;
 use App\Models\StatusBayar;
+use App\Models\TipePelanggan;
 use Illuminate\Http\Request;
 
 class PelangganController extends Controller
@@ -35,9 +37,10 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        $arrPelanggan = Pelanggan::getArrStatusPelanggan();
-        $arrJenisPelanggan = Pelanggan::getArrJenisPelanggan();
-        return view('pelanggan.create',compact('arrPelanggan','arrJenisPelanggan'));
+//        $arrPromo = \App\Helper\AppHelper::generatePromoCode(10,6,'ALS','FAS',9,'abcdefghijklmn','',true,'AS');
+        $arrPromo = Promo::pluck('kode','id')->all();
+        $arrJenisPelanggan = TipePelanggan::getArrayPelanggan();
+        return view('pelanggan.create',compact('arrJenisPelanggan','arrPromo'));
     }
 
     /**
@@ -52,13 +55,14 @@ class PelangganController extends Controller
             'namapel' => 'required',
             'alamat' => 'required',
             'notelp' => 'required',
-            'tgl_ambil' => 'required',
+            'promoid' => 'required',
             'status_pelanggan' => 'required',
             'jenis_pelanggan' => 'required'
         ]);
         $input = $request->all();
 
         $pelanggan = new Pelanggan();
+        $pelanggan->status = 1;
         $pelanggan->create($input);
 
         return redirect()->route('pelanggan.index')

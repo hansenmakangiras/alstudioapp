@@ -15,10 +15,10 @@ class OrderController extends Controller
     public function __construct()
     {
         $this->middleware('role:Superadmin|Admin|User');
-        $this->middleware('permission:viewOrder');
-        $this->middleware('permission:addOrder')->except(['create','store']);
-        $this->middleware('permission:editOrder')->except(['update','edit']);
-        $this->middleware('permission:deleteOrder')->except(['update','edit']);
+//        $this->middleware('permission:viewOrder');
+//        $this->middleware('permission:addOrder')->except(['create','store']);
+//        $this->middleware('permission:editOrder')->except(['update','edit']);
+//        $this->middleware('permission:deleteOrder')->except(['update','edit']);
     }
 
     /**

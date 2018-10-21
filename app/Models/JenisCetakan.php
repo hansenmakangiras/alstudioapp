@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class JenisCetakan extends Model
 {
-    protected $table = 'jenis_cetakan';
+    protected $table = 'jenis_cetak';
 //    public $timestamps = false;
 
 //    protected $guard = ['admin','web'];

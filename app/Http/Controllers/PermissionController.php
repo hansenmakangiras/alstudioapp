@@ -25,9 +25,7 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
-//        $permissions = Permission::all();
-//        $permissions = Permission::orderBy('id','DESC')->paginate(10);
-        $permissions = DB::table('permissions')->paginate(10);
+        $permissions = DB::table('permissions')->latest()->paginate(10);
         $roles = Role::get(); //Get all roles
         $selectRoles = Role::pluck('name','id')->all();
         return view('permissions.index',compact('permissions','roles','selectRoles'))

@@ -140,7 +140,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-                        <span class="hidden-xs">{{ Auth()->user()->name }}</span>
+                        <span class="hidden-xs">{{ Auth()->user()->username }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -149,24 +149,30 @@
 
                             <p>
                                 {{ Auth::user()->name }}
-                                <small>Member since Nov. 2012</small>
+                                <small>Member since {{ \Carbon\Carbon::parse(Auth()->user()->created_at)->format('Y. M') }}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
-                        <li class="user-body">
-                            <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
-                                </div>
-                            </div>
-                            <!-- /.row -->
-                        </li>
+                        {{--<li class="user-body">--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col-xs-6 text-center">--}}
+                                    {{--<a href="#">Profile</a>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-xs-4 text-center">--}}
+                                    {{--<a href="#">Change Password</a>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-xs-6 text-center">--}}
+                                    {{--<a href="{{ route('logout') }}" class="btn btn-sm btn-box-tool btn-flat"--}}
+                                       {{--onclick="event.preventDefault();--}}
+                                                 {{--document.getElementById('logout-form').submit();">Sign out</a>--}}
+                                    {{--<form id="logout-form" action="{{ route('logout') }}" method="POST"--}}
+                                          {{--style="display: none;">--}}
+                                        {{--@csrf--}}
+                                    {{--</form>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<!-- /.row -->--}}
+                        {{--</li>--}}
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
