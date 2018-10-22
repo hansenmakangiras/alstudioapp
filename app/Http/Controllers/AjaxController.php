@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\JenisPaket;
+use App\Models\Order;
+use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -59,5 +61,34 @@ class AjaxController extends Controller
 
         return response()->json($jenisPaket);
 
+    }
+
+    public function getOrderData(Request $request){
+        if($request->ajax())
+            $order = Order::select();
+            return DataTables::of($order)
+                ->addColumn('details_url', function ($order){
+                    return route('ajax.getOrderDetail', $order->id);
+                })
+                ->make(true);
+
+    }
+
+    public function getMasterData()
+    {
+        $users = User::select();
+
+        return Datatables::of($users)
+            ->addColumn('details_url', function($user) {
+                return url('eloquent/details-data/' . $user->id);
+            })
+            ->make(true);
+    }
+
+    public function getOrderDetailsData($id)
+    {
+        $orderDetail = Order::find($id)->orderDetail();
+
+        return Datatables::of($orderDetail)->make(true);
     }
 }

@@ -7,11 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class JenisCetakan extends Model
 {
     protected $table = 'jenis_cetak';
-//    public $timestamps = false;
-
-//    protected $guard = ['admin','web'];
-
-
 
     public function order()
     {
@@ -24,6 +19,7 @@ class JenisCetakan extends Model
     }
 
     public static function getJenisCetakName($id){
+//        dd($id);
         $name = JenisCetakan::find($id);
         return $name->jenis_cetak;
 

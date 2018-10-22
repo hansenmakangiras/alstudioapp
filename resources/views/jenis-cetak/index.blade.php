@@ -95,15 +95,10 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List Jenis Cetakan</h3>
-                    <div class="box-tools">
-                        <button type="button" class="btn btn-success btn-flat btn-sm" data-toggle="modal"
-                                data-target="#modal-tambah-jenis">
-                            Tambah Jenis
-                        </button>
-                        {{--<a href="{{ route('jenis-cetak.create') }}" class="btn btn-default btn-sm"><i class="fa--}}
-                        {{--fa-plus"></i> Tambah Jenis</a>--}}
-                    </div>
+                    <button type="button" class="btn btn-success btn-flat btn-sm" data-toggle="modal"
+                            data-target="#modal-tambah-jenis">
+                        Tambah Jenis
+                    </button>
                 </div>
                 <div class="modal fade" id="modal-tambah-jenis">
                     <div class="modal-dialog">
@@ -122,13 +117,11 @@
                                             <input type="text" class="form-control" id="kodejenis"
                                                    placeholder="Masukkan Kode Jenis" name="kode_jenis" required
                                                    autofocus>
-                                            {{--<p class="help-block">Example block-level help text here.</p>--}}
                                         </div>
                                         <div class="form-group">
                                             <label for="jeniscetak">Jenis Cetakan</label>
                                             <input type="text" class="form-control" id="jeniscetak"
                                                    placeholder="Masukkan jenis cetakan" name="jenis_cetak" required>
-                                            {{--<p class="help-block">Example block-level help text here.</p>--}}
                                         </div>
                                         {{--<div class="form-group">--}}
                                             {{--<label for="ukuran">Ukuran Cetakan</label>--}}
@@ -179,10 +172,10 @@
                             {{--$val->status_cetak) !!}</span></td>--}}
                             <td>
                                 <a href="{{ route('jenis-cetak.edit',$val->id) }}" class="btn btn-primary
-                                btn-xs">Edit</a>
+                                btn-xs btn-flat">Edit</a>
                                 {!! Form::open(['method' => 'DELETE','route' => ['jenis-cetak.destroy', $val->id],
                                     'style'=>'display:inline']) !!}
-                                {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
+                                {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs btn-flat']) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>

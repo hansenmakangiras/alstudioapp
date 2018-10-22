@@ -47,44 +47,44 @@
                             <th>Operation</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        @foreach($order as $key => $val)
-                            <tr>
-                                <td>{{ ++$i }}</td>
-                                <td>{{ $val->orderid }}</td>
-                                <td>{{ \App\Models\JenisCetakan::getJenisCetakName((int)
-                            $val->jeniscetakid) }}</td>
-                                <td>{{ \App\Models\JenisPaket::getDataPaket($val->jenispaketid)->nama_paket }}</td>
-                                <td>{{ \App\Models\Pelanggan::getPelangganName($val->idpelanggan) }}</td>
-                                <td><label class="label bg-fuchsia-active">{{ \App\Models\StatusBayar::getStatusName($val->status_bayar) }}</label></td>
-                                <td><label class="label bg-blue-active">{{ \App\Models\StatusOrder::getStatusOrderName
-                                ($val->status_order)
-                                }}</label></td>
-                                <td>
-                                    @can("viewOrder")
-                                    <a class="btn btn-success btn-xs" href="{{ route('order.show',$val->id)
-                                    }}">View</a>
-                                    @endcan
-                                    @can('editOrder')
-                                    <a href="{{ route('order.edit',$val->id) }}" class="btn btn-primary
-                                btn-xs">Edit</a>
-                                    @endcan
-                                    @can('deleteOrder')
-                                    {!! Form::open(['method' => 'DELETE','route' => ['order.destroy', $val->id],
-                                    'style'=>'display:inline']) !!}
-                                    {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
-                                    {{--@can('editOrder')--}}
-                                        {!! Form::open(['method' => 'POST','route' => ['order.proses', $val->id],
-                                    'style'=>'display:inline']) !!}
-                                        {!! Form::submit('Proses', ['class' => 'btn btn-warning btn-xs']) !!}
-                                        {!! Form::close() !!}
+                        {{--<tbody>--}}
+                        {{--@foreach($order as $key => $val)--}}
+                            {{--<tr>--}}
+                                {{--<td>{{ ++$i }}</td>--}}
+                                {{--<td>{{ $val->orderid }}</td>--}}
+                                {{--<td>{{ \App\Models\JenisCetakan::getJenisCetakName((int)--}}
+                            {{--$val->cetakid) }}</td>--}}
+                                {{--<td>{{ \App\Models\JenisPaket::getDataPaket($val->jenispaketid)->nama_paket }}</td>--}}
+                                {{--<td>{{ \App\Models\Pelanggan::getPelangganName($val->pelangganid) }}</td>--}}
+                                {{--<td><label class="label bg-fuchsia-active">{{ \App\Models\StatusBayar::getStatusName($val->status_bayar) }}</label></td>--}}
+                                {{--<td><label class="label bg-blue-active">{{ \App\Models\StatusOrder::getStatusOrderName--}}
+                                {{--($val->promoid)--}}
+                                {{--}}</label></td>--}}
+                                {{--<td>--}}
+                                    {{--@can("viewOrder")--}}
+                                    {{--<a class="btn btn-success btn-xs" href="{{ route('order.show',$val->id)--}}
+                                    {{--}}">View</a>--}}
                                     {{--@endcan--}}
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
+                                    {{--@can('editOrder')--}}
+                                    {{--<a href="{{ route('order.edit',$val->id) }}" class="btn btn-primary--}}
+                                {{--btn-xs">Edit</a>--}}
+                                    {{--@endcan--}}
+                                    {{--@can('deleteOrder')--}}
+                                    {{--{!! Form::open(['method' => 'DELETE','route' => ['order.destroy', $val->id],--}}
+                                    {{--'style'=>'display:inline']) !!}--}}
+                                    {{--{!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}--}}
+                                    {{--{!! Form::close() !!}--}}
+                                    {{--@endcan--}}
+                                    {{--@can('editOrder')--}}
+                                        {{--{!! Form::open(['method' => 'POST','route' => ['order.proses', $val->id],--}}
+                                    {{--'style'=>'display:inline']) !!}--}}
+                                        {{--{!! Form::submit('Proses', ['class' => 'btn btn-warning btn-xs']) !!}--}}
+                                        {{--{!! Form::close() !!}--}}
+                                    {{--@endcan--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                        {{--@endforeach--}}
+                        {{--</tbody>--}}
                     </table>
 
                 </div>
@@ -100,9 +100,41 @@
 @endsection
 
 @push('js')
+    {{--<script id="details-template" type="text/x-handlebars-template">--}}
+        {{--<div class="label label-info">User {{ orderid }}'s Posts</div>--}}
+        {{--<table class="table details-table" id="order-{{id}}">--}}
+            {{--<thead>--}}
+            {{--<tr>--}}
+                {{--<th>Id</th>--}}
+                {{--<th>Title</th>--}}
+            {{--</tr>--}}
+            {{--</thead>--}}
+        {{--</table>--}}
+    {{--</script>--}}
 <script>
+    // let template = Handlebars.compile($("#details-template").html());
     $('#tbl-order').DataTable({
         //'dom': 'B<"clear">lfrtip',
+        'processing'  : true,
+        'serverSide'   : true,
+        'ajax' : "{!! route('ajax.getOrderData') !!}",
+        'columns': [
+            {
+                "className":      'details-control',
+                "orderable":      false,
+                "searchable":      false,
+                "data":           null,
+                "defaultContent": ''
+            },
+            { data: 'id', name: 'id' },
+            { data: 'orderid', name: 'orderid' },
+            { data: 'cetakid', name: 'cetakid' },
+            { data: 'pelangganid', name: 'pelangganid' },
+            { data: 'jenispaketid', name: 'jenispaketid' },
+            { data: 'promoid', name: 'promoid' },
+            { data: 'total_harga', name: 'total_harga' },
+        ],
+        'order': [[1, 'asc']],
         'paging'      : true,
         'lengthChange': true,
         'searching'   : true,
@@ -124,6 +156,37 @@
         },
         "pagingType": "full_numbers",
         'buttons': true
-    })
+    });
+
+    // Add event listener for opening and closing details
+    // $('#tbl-order tbody').on('click', 'td.details-control', function () {
+    //     var tr = $(this).closest('tr');
+    //     var row = table.row(tr);
+    //     var tableId = 'order-' + row.data().id;
+    //
+    //     if (row.child.isShown()) {
+    //         // This row is already open - close it
+    //         row.child.hide();
+    //         tr.removeClass('shown');
+    //     } else {
+    //         // Open this row
+    //         row.child(template(row.data())).show();
+    //         initTable(tableId, row.data());
+    //         tr.addClass('shown');
+    //         tr.next().find('td').addClass('no-padding bg-gray');
+    //     }
+    // });
+    //
+    // function initTable(tableId, data) {
+    //     $('#' + tableId).DataTable({
+    //         processing: true,
+    //         serverSide: true,
+    //         ajax: data.details_url,
+    //         columns: [
+    //             { data: 'id', name: 'id' },
+    //             { data: 'title', name: 'title' }
+    //         ]
+    //     })
+    // }
 </script>
 @endpush

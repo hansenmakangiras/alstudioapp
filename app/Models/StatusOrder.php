@@ -30,8 +30,13 @@ class StatusOrder extends Model
 
     public static function getStatusOrderName($id)
     {
-        $name = StatusOrder::find($id);
-        return $name->status_order;
+//        dd($id);
+        if($id != null){
+            $name = StatusOrder::find($id);
+            return $name->status_order;
+        }
+
+        return 1;
 
     }
 }

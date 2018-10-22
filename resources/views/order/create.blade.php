@@ -3,6 +3,7 @@
 @section('extra-css')
 
 @stop
+
 @section('subtitle')
     | Order
 @endsection
@@ -25,7 +26,53 @@
 @section('content')
     <!-- Main row -->
     <div class="row">
-        <div class="col-xs-12">
+        {{--@include('widget.alert')--}}
+        {{--<div class="col-xs-6">--}}
+            {{--<div class="box">--}}
+                {{--<div class="box-header">--}}
+                    {{--<h3 class="box-title">Data Pelanggan</h3>--}}
+                {{--</div>--}}
+                {{--<!-- /.box-header -->--}}
+                {{--<!-- form start -->--}}
+                {{--{!! Form::open(array('route' => 'pelanggan.store','method'=>'POST')) !!}--}}
+                {{--<div class="box-body">--}}
+                    {{--<div class="form-group">--}}
+                        {{--<label for="name">Nama Pelanggan</label>--}}
+                        {{--{!! Form::text('namapel', null, array('placeholder' => 'Nama Pelanggan','class' =>--}}
+                        {{--'form-control','autofocus')) !!}--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group">--}}
+                        {{--<label for="email">No Telp</label>--}}
+                        {{--{!! Form::text('notelp', null, array('placeholder' => 'No Telepon / HP','class' =>--}}
+                        {{--'form-control')) !!}--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group">--}}
+                        {{--<label for="password">Alamat</label>--}}
+                        {{--{!! Form::text('alamat', null,array('placeholder' => 'Alamat Pelanggan','class' => 'form-control'))--}}
+                         {{--!!}--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group">--}}
+                        {{--<label for="confirm">Kode Promo</label>--}}
+                        {{--{!! Form::select('promoid',$arrPromo, null, array--}}
+                        {{--('placeholder' => 'Pilih Kode Promo','class' =>'form-control')) !!}--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group">--}}
+                        {{--<label for="confirm">Jenis Pelanggan</label>--}}
+                        {{--{!! Form::select('jenis_pelanggan',$arrJenisPelanggan, null, array--}}
+                        {{--('placeholder' => 'Pilih Tipe Pelanggan','class' =>'form-control')) !!}--}}
+                    {{--</div>--}}
+
+                    {{--<div class="box-footer text-center">--}}
+                        {{--<button type="submit" class="btn btn-primary btn-flat">Submit</button>--}}
+                        {{--<a href="{{ route('pelanggan.index') }}" class="btn btn-default btn-flat">Kembali</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--{!! Form::close() !!}--}}
+            {{--<!-- /.box-body -->--}}
+            {{--</div>--}}
+            {{--<!-- /.box -->--}}
+        {{--</div>--}}
+        <div class="col-xs-10">
             @include('widget.alert')
             <div class="box box-danger">
                 <div class="box-header">
@@ -38,9 +85,14 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="name">No. Order</label>
-                                {!! Form::text('orderid', $orderid2, array('placeholder' => 'No Order','class' =>
-                                'form-control','autofocus','required','readonly')) !!}
+                                <label for="orderid">No. Order</label>
+                                {{--{!! Form::text('orderid', $orderid2, array('placeholder' => 'No Order','class' =>--}}
+                                {{--'form-control','autofocus','required','readonly')) !!}--}}
+                                {!! Form::select('orderid', $arrOrder, null,
+                                ['placeholder' =>'Pilih orderid','class' =>'form-control select2',
+                                'id'=>'orderid','autofocus','required'])
+                                 !!}
+
                             </div>
                         </div>
                         <div class="col-xs-6">
@@ -74,11 +126,18 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-3">
                             <div class="form-group">
-                                <label for="name">Ukuran</label>
-                                {!! Form::text('ukuran', null, array('placeholder' => 'Ukuran','class' =>
-                                'form-control','id'=>'ukuran')) !!}
+                                <label for="panjang">Panjang</label>
+                                {!! Form::text('panjang', null, array('placeholder' => 'Ukuran Panjang','class' =>
+                                'form-control','id'=>'panjang')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                <label for="lebar">Lebar</label>
+                                {!! Form::text('lebar', null, array('placeholder' => 'Ukuran Lebar','class' =>
+                                'form-control','id'=>'lebar')) !!}
                             </div>
                         </div>
                         <div class="col-xs-3">
@@ -91,7 +150,7 @@
                         <div class="col-xs-3">
                             <div class="form-group">
                                 <label for="name">Jumlah</label>
-                                {!! Form::text('jumlah', null, array('placeholder' => 'Jumlah','class' =>
+                                {!! Form::text('qty', null, array('placeholder' => 'Jumlah','class' =>
                                 'form-control','id'=>'jumlah')) !!}
                             </div>
                         </div>
@@ -99,9 +158,12 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="name">Promo</label>
-                                {!! Form::text('diskon', \App\Models\Promo::getKodePromo(array_keys($pelanggan)[0]), array('placeholder' => 'Diskon Bila ada','class' =>
-                                'form-control','id'=>'diskon')) !!}
+                                <label for="promo">Promo</label>
+                                {!! Form::select('promo',[null => 'Pilih Paket'] + $arrPromo , null,array('class' =>
+                                'form-control select2','id'=>'promo'))
+                                 !!}
+                                {{--{!! Form::text('promo', null, array('placeholder' => 'Diskon Bila ada','class' =>--}}
+                                {{--'form-control','id'=>'diskon')) !!}--}}
                             </div>
                         </div>
                         <div class="col-xs-6">
@@ -152,16 +214,7 @@
                         <label for="confirm">Keterangan</label>
                         {!! Form::textarea('keterangan', null, ['class' => 'form-control',
                         'placeholder'=>'Keterangan']) !!}
-                        {{--{!! Form::text('tglAmbil',null, array('placeholder' => 'Tanggal Pengambilan','class' =>--}}
-                        {{--'form-control date','id'=>'tglAmbil')) !!}--}}
                     </div>
-
-
-
-                    {{--<div class="form-group">--}}
-                    {{--<label for="roles">Role</label>--}}
-                    {{--{!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}--}}
-                    {{--</div>--}}
 
                     <div class="box-footer text-center">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -213,10 +266,10 @@
             format: "yyyy-mm-dd",
             autoclose: true
         });
-        $('#btsTglAmbil').datepicker({
-            autoclose: true,
-            format: "yyyy-mm-dd",
-        });
+        // $('#btsTglAmbil').datepicker({
+        //     autoclose: true,
+        //     format: "yyyy-mm-dd",
+        // });
 
         // Get Jenis Paket Select
         let jeniscetak = $('#jeniscetak');

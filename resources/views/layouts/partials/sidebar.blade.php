@@ -127,8 +127,14 @@
             <li class="header">MENU KASIR</li>
             <li>
                 <a href="{{ route('order.index') }}">
-                    <i class="fa fa-pie-chart"></i>
-                    <span>Order Cetakan</span>
+                    <i class="fa fa-print"></i>
+                    <span>Order Digital Print</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('order/foto-studio') }}">
+                    <i class="fa fa-camera-retro"></i>
+                    <span>Foto Studio</span>
                 </a>
             </li>
             <li>

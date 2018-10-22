@@ -32,18 +32,19 @@ Route::group(['middleware' => 'role:Kasir|Admin|Superadmin'], function() {
     Route::resource('jenis-cetak', 'JenisCetakController');
     Route::resource('pelanggan', 'PelangganController');
     Route::resource('order', 'OrderController');
-    Route::post('order/proses/{id}', 'OrderController@proses')->name('order.proses');
-    Route::resource('ajax', 'AjaxController');
+    Route::post('proses/order/{id}', 'OrderController@proses')->name('order.proses');
+//    Route::resource('ajax', 'AjaxController');
     Route::resource('jenispaket', 'JenisPaketController');
     Route::resource('satuan', 'JenisSatuanController');
     Route::resource('promo', 'PromoController');
-
 
     // Ajax Request
     Route::post('/getPelanggan', 'AjaxController@getPelanggan')->name('ajax.pelanggan');
     Route::post('/getPermission', 'AjaxController@getPermission')->name('ajax.permission');
     Route::post('/getjenispaket', 'AjaxController@getJenisPaket')->name('ajax.getJenisPaket');
     Route::post('/getdatapaket', 'AjaxController@getDataPaket')->name('ajax.getDataPaket');
+    Route::get('/getorderdata', 'AjaxController@getOrderData')->name('ajax.getOrderData');
+    Route::get('/getorderdetail/{id}', 'AjaxController@getOrderDetailsData')->name('ajax.getOrderDetail');
 });
 
 Route::group(['middleware' => 'role:Cetak|Foto|Superadmin'], function() {

@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\JenisCetakan;
 use App\Models\JenisPaket;
 use App\Models\Order;
-use App\Models\OrderDetail;
 use App\Models\Pelanggan;
+use App\Models\Promo;
 use App\Models\StatusBayar;
 use App\Models\StatusOrder;
+use App\Models\TipePelanggan;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -29,7 +30,7 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $order = Order::orderBy('id','DESC')->paginate(10);
+        $order = Order::orderBy('id','DESC')->with('orderDetail')->paginate(10);
         return view('order.index',compact('order'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
     }
@@ -43,13 +44,29 @@ class OrderController extends Controller
     {
         $statusByr = StatusBayar::pluck('statusbyr','id')->all();
         $jeniscetak = JenisCetakan::pluck('jenis_cetak','id')->all();
-//        $orderid = $this->generateOrderID();
         $orderid2 = $this->getNextOrderNumber();
         $jenisPaket = JenisPaket::pluck('nama_paket','id')->all();
         $pelanggan = Pelanggan::pluck('namapel','id')->all();
         $statusOrder = StatusOrder::pluck('status_order','id');
+        $arrOrder = Order::pluck('orderid','orderid')->all();
+        if(!$arrOrder){
+            $arrOrder = [$orderid2 => $orderid2];
+        }
+        $arrPromo = Promo::pluck('kode','id')->all();
+        $arrJenisPelanggan = TipePelanggan::getArrayPelanggan();
 
-        return view('order.create',compact('statusByr','jeniscetak','orderid','jenisPaket','orderid2','pelanggan','statusOrder'));
+        return view('order.create',compact(
+            'statusByr',
+            'jeniscetak',
+            'orderid',
+            'jenisPaket',
+            'orderid2',
+            'pelanggan',
+            'statusOrder',
+            'arrPromo',
+            'arrJenisPelanggan',
+            'arrOrder'
+        ));
     }
 
     /**
@@ -65,49 +82,63 @@ class OrderController extends Controller
             'pelanggan' => 'required',
             'jenispaket' => 'required',
             'hargajual' => 'required',
-            'jumlah' => 'required',
+            'qty' => 'required',
             'total_harga' => 'required',
-            'tglAmbil' => 'date',
+            'tgl_ambil' => 'date',
             'status_bayar' => 'required',
             'status_order' => 'required',
         ]);
         $input = $request->all();
+        $cari = Order::where('orderid',$input['orderid'])->with('orderDetail')->first();
+        if(!$cari){
+            $order = new Order();
+            $order->create([
+                'orderid' => $input['orderid'],
+                'cetakid' => $input['jeniscetak'],
+                'pelangganid' => $input['pelanggan'],
+                'jenispaketid' => $input['jenispaket'],
+                'promoid' => $input['promo'],
+                'total_harga' => $input['total_harga'],
+            ]);
 
-        $order = new Order();
-        $order->create([
-            'orderid' => $input['orderid'],
-            'cetakid' => $input['jeniscetak'],
-            'pelangganid' => $input['pelanggan'],
-            'jenispaketid' => $input['jenispaket'],
-            'promoid' => $input['diskon'],
-            'total_harga' => $input['total_harga'],
-        ]);
+            if($order){
+                $cariOrder = Order::where('orderid',$input['orderid'])->with('orderDetail')->first();
 
-        if($order){
-            $order = Order::where('id', $order->id)->where('orderid',$order->orderid)->first();
-            $orderDetail = new OrderDetail();
-            if(!$orderDetail){
-                $orderDetail->create([
-                    'orderid' => $order->orderid,
-                    'qty' => $input['jumlah'],
+                $cariOrder->orderDetail()->create([
+                    'orderid' => $input['orderid'],
+                    'panjang' => $input['panjang'],
+                    'lebar' => $input['lebar'],
+                    'qty' => $input['qty'],
                     'harga_jual' => $input['hargajual'],
                     'satuan' => $input['satuan'],
-                    'diskon' => $input['diskon'],
+                    'promo' => $input['promo'],
                     'keterangan' => $input['keterangan'],
                     'tgl_ambil' => $input['tgl_ambil'],
                     'status_bayar' => $input['status_bayar'],
                     'status_order' => $input['status_order'],
-//                    'status_aktif' => 1
                 ]);
 
                 return redirect()->route('order.index')
                     ->with('Sukses','Order created successfully');
+
             }
             return redirect()->route('order.index')
                 ->with('Gagal','Order Failed save to database');
-
-
         }
+
+        $cari->orderDetail()->create([
+            'orderid' => $cari->orderid,
+            'panjang' => $input['panjang'],
+            'lebar' => $input['lebar'],
+            'qty' => $input['qty'],
+            'harga_jual' => $input['hargajual'],
+            'satuan' => $input['satuan'],
+            'promo' => $input['promo'],
+            'keterangan' => $input['keterangan'],
+            'tgl_ambil' => $input['tgl_ambil'],
+            'status_bayar' => $input['status_bayar'],
+            'status_order' => $input['status_order'],
+        ]);
 
         return redirect()->route('order.index')
             ->with('Sukses','Order created successfully');
@@ -205,7 +236,7 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function proses($id)
+    public function proses(Request $request)
     {
         //
     }
@@ -273,4 +304,5 @@ class OrderController extends Controller
     {
         return view('order.proses-foto');
     }
+
 }
