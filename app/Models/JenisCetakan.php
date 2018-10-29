@@ -18,10 +18,16 @@ class JenisCetakan extends Model
         return $this->belongsTo(JenisPaket::class,'id','id_jenis_cetak');
     }
 
+    public function produk()
+    {
+        return $this->belongsTo(Produk::class,'id','produk_id');
+    }
+
     public static function getJenisCetakName($id){
 //        dd($id);
         $name = JenisCetakan::find($id);
         return $name->jenis_cetak;
 
     }
+
 }

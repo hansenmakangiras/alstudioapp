@@ -42,6 +42,7 @@
                             <th>Jenis Cetakan</th>
                             <th>Jenis Paket</th>
                             <th>Pelanggan</th>
+                            <th>Total Harga</th>
                             <th>Status Bayar</th>
                             <th>Status Pesanan</th>
                             <th>Operation</th>
@@ -114,25 +115,20 @@
 <script>
     // let template = Handlebars.compile($("#details-template").html());
     $('#tbl-order').DataTable({
-        //'dom': 'B<"clear">lfrtip',
+        // 'dom': 'B<"clear">lfrtip',
         'processing'  : true,
         'serverSide'   : true,
         'ajax' : "{!! route('ajax.getOrderData') !!}",
         'columns': [
-            {
-                "className":      'details-control',
-                "orderable":      false,
-                "searchable":      false,
-                "data":           null,
-                "defaultContent": ''
-            },
             { data: 'id', name: 'id' },
             { data: 'orderid', name: 'orderid' },
             { data: 'cetakid', name: 'cetakid' },
             { data: 'pelangganid', name: 'pelangganid' },
             { data: 'jenispaketid', name: 'jenispaketid' },
-            { data: 'promoid', name: 'promoid' },
             { data: 'total_harga', name: 'total_harga' },
+            { data: 'status_bayar', name: 'status_bayar' },
+            { data: 'status_order', name: 'status_order' },
+            { data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         'order': [[1, 'asc']],
         'paging'      : true,

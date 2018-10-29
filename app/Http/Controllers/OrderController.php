@@ -6,6 +6,7 @@ use App\Models\JenisCetakan;
 use App\Models\JenisPaket;
 use App\Models\Order;
 use App\Models\Pelanggan;
+use App\Models\Produk;
 use App\Models\Promo;
 use App\Models\StatusBayar;
 use App\Models\StatusOrder;
@@ -40,18 +41,21 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $statusByr = StatusBayar::pluck('statusbyr','id')->all();
-        $jeniscetak = JenisCetakan::pluck('jenis_cetak','id')->all();
-        $orderid2 = $this->getNextOrderNumber();
+        $jeniscetak = JenisCetakan::with('produk')->pluck('jenis_cetak','id')->all();
+//        $produk = Produk::with('jenisCetak')->get()->toArray();
+        $orderid = $this->getNextOrderNumber();
         $jenisPaket = JenisPaket::pluck('nama_paket','id')->all();
         $pelanggan = Pelanggan::pluck('namapel','id')->all();
         $statusOrder = StatusOrder::pluck('status_order','id');
-        $arrOrder = Order::pluck('orderid','orderid')->all();
-        if(!$arrOrder){
-            $arrOrder = [$orderid2 => $orderid2];
-        }
+//        $arrOrder = Order::pluck('orderid','orderid')->all();
+        $produk = Produk::pluck('kategori','id')->all();
+        $order = Order::orderBy('id','DESC')->with('orderDetail')->paginate(10);
+//        if(!$arrOrder){
+//            $arrOrder = [$orderid2 => $orderid2];
+//        }
         $arrPromo = Promo::pluck('kode','id')->all();
         $arrJenisPelanggan = TipePelanggan::getArrayPelanggan();
 
@@ -65,8 +69,9 @@ class OrderController extends Controller
             'statusOrder',
             'arrPromo',
             'arrJenisPelanggan',
-            'arrOrder'
-        ));
+            'produk',
+            'order'
+        )) ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -150,9 +155,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        //
+        return view('order.show',compact('order'));
     }
 
     /**

@@ -34,7 +34,7 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            @hasanyrole('Cetak|Admin|Superadmin|Kasir|Foto')
+            @hasanyrole('Admin|Superadmin')
             <li class="header">MENU MASTER</li>
             <li class="treeview">
                 <a href="#">
@@ -90,14 +90,12 @@
             @endrole
             @hasanyrole('Foto|Admin|Superadmin')
             <li class="header">MENU FOTO</li>
-            {{--@can('Manage Cetakan')--}}
             <li>
                 <a href="{{ route('order.prosesfoto') }}">
                     <i class="fa fa-pie-chart"></i>
-                    <span>Order Foto</span>
+                    <span>Work Order Foto</span>
                 </a>
             </li>
-            {{--@endcan--}}
             <li>
                 <a href="#">
                     <i class="fa fa-laptop"></i>
@@ -124,7 +122,7 @@
             @endhasanyrole
             @hasanyrole('Kasir|Admin|Superadmin')
             {{--@role('User|Admin')--}}
-            <li class="header">MENU KASIR</li>
+            <li class="header">MENU RESEPSIONIS</li>
             <li>
                 <a href="{{ route('order.index') }}">
                     <i class="fa fa-print"></i>
@@ -137,14 +135,17 @@
                     <span>Foto Studio</span>
                 </a>
             </li>
+            @endhasanyrole
+            @hasanyrole('Kasir|Admin|Superadmin')
+            <li class="header">MENU KASIR</li>
             <li>
                 <a href="{{ url('#') }}">
                     <i class="fa fa-money"></i>
-                    <span>Pembayaran</span>
+                    <span>Transaksi</span>
                 </a>
             </li>
             @endhasanyrole
-            @hasanyrole('Kasir|Admin|Superadmin')
+            @hasanyrole('Admin|Superadmin')
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-line-chart"></i> <span>Laporan</span>

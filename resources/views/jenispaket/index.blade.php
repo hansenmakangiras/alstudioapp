@@ -29,10 +29,10 @@
 
             <div class="box">
                 <div class="box-header">
-                    @can('addJenisPaket')
+                    {{--@can('addJenisPaket')--}}
                     <a href="{{ route('jenispaket.create') }}" class="btn btn-success btn-sm"><i class="fa
                         fa-plus-circle"></i> Tambah Jenis Paket</a>
-                    @endcan
+                    {{--@endcan--}}
                 </div>
 
                 <div class="box-body">
@@ -60,21 +60,21 @@
                                 <td>{{ $val->ukuran }}</td>
                                 <td>{{ $val->harga_jual }}</td>
                                 <td>
-                                    @can("viewJenisPaket")
+{{--                                    @can("viewJenisPaket")--}}
                                     <a class="btn btn-success btn-xs" href="{{ route('jenispaket.show',$val->id)
                                     }}">View</a>
-                                    @endcan
-                                    @can('editJenisPaket')
+                                    {{--@endcan--}}
+{{--                                    @can('editJenisPaket')--}}
                                     <a href="{{ route('jenispaket.edit',$val->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
-                                    @endcan
-                                    @can('deleteJenisPaket')
+                                    {{--@endcan--}}
+{{--                                    @can('deleteJenisPaket')--}}
                                         {!! Form::open(['method' => 'DELETE','route' => ['jenispaket.destroy',
                                         $val->id],
                                         'style'=>'display:inline']) !!}
                                         {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                         {!! Form::close() !!}
-                                    @endcan
+                                    {{--@endcan--}}
                                 </td>
                             </tr>
                         @endforeach
