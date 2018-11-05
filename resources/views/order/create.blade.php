@@ -76,6 +76,22 @@
         {{--</div>--}}
         <div class="col-xs-12">
             @include('widget.alert')
+            {{--@component('components.alert')--}}
+                {{--@slot('alertid')--}}
+                    {{--success--}}
+                {{--@endslot--}}
+                {{--@slot('alertclass')--}}
+                    {{--success--}}
+                {{--@endslot--}}
+                {{--@slot('alerticon')--}}
+                    {{--check--}}
+                {{--@endslot--}}
+                {{--@slot('alerttitle')--}}
+                    {{--Good Job !!!--}}
+                {{--@endslot--}}
+
+                {{--{{ session('Sukses') }}--}}
+            {{--@endcomponent--}}
             <div class="box box-danger">
                 {{--<div class="box-header">--}}
                     {{--<h3 class="box-title">Buat Order</h3>--}}
@@ -120,6 +136,16 @@
                          !!}
                         </div>
                     </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="col-xs-2 control-label">Size</label>--}}
+                        {{--<div class="col-xs-8">--}}
+                            {{--<select class="form-control" id="mysize">--}}
+                                {{--<option value="small">Small</option>--}}
+                                {{--<option value="standart">Standart</option>--}}
+                                {{--<option value="large">Large</option>--}}
+                            {{--</select>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
                     <div class="box box-warning">
                         <div class="box-header with-border">
@@ -135,7 +161,20 @@
                                         <div class="form-group">
                                             <label for="email" class="col-xs-2 control-label">Jenis Cetakan</label>
                                             <div class="col-xs-10">
-                                                <select id="jeniscetak" class="form-control select2"></select>
+                                                <div class="input-group">
+                                                    <!-- /btn-group -->
+                                                    <input type="text" class="form-control" readonly="readonly">
+                                                    <div class="input-group-btn">
+                                                        <button id="btnProduk" onclick="open_container();"
+                                                                type="button"
+                                                                class="btn
+                                                        btn-danger"><i
+                                                                class="fa fa-list"></i> Lihat
+                                                                Data</button>
+                                                    </div>
+
+                                                </div>
+                                                {{--<select id="jeniscetak" class="form-control select2"></select>--}}
                                                 {{--{!! Form::select('jeniscetak', $jeniscetak, null,--}}
                                                 {{--['placeholder' =>'Pilih Jenis cetakan','class' =>'form-control select2',--}}
                                                 {{--'id'=>'jeniscetak'])--}}
@@ -205,10 +244,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="box-footer text-center">
-                                        <button type="submit" class="btn btn-primary btn-flat">Tambah Ke Tabel</button>
-                                        <a href="{{ route('order.index') }}" class="btn btn-default btn-flat">Reset</a>
-                                    </div>
+                                    {{--<div class="box-footer text-center">--}}
+                                        {{--<button type="submit" class="btn btn-primary btn-flat">Tambah Ke Tabel</button>--}}
+                                        {{--<a href="{{ route('order.index') }}" class="btn btn-default btn-flat">Reset</a>--}}
+                                        {{--<button onClick="open_container();" type="button" class="btn btn-default--}}
+                                        {{--btn-flat">Show Modal</button>--}}
+                                    {{--</div>--}}
                                 </div>
 
                             </div>
@@ -306,20 +347,20 @@
             <!-- /.box -->
         </div>
     </div>
+    @include('widget.modal')
 @endsection
 @push('js')
     <script>
-        //Date picker
         $('#tglAmbil').datepicker({
             format: "yyyy-mm-dd",
             autoclose: true
         });
 
         // Get Jenis Paket Select
-        let jeniscetak = $('#jeniscetak');
+        let jeniscetak = $('#jeniscetak').select2();
         let jenispaket = $('#jenispaket');
         let hargajual = $("#hargajual");
-        let produk = $('#produk');
+        let produk = $('#produk').select2();
 
         jeniscetak.change(function (data) {
             let jenisctkid = $( "#jeniscetak" ).val();
@@ -364,6 +405,7 @@
                 alert( "Request failed: " + textStatus );
             });
         });
+
         $("#jumlah").change(function (dt) {
             let total = $("#totalharga");
             let harga = $("#hargajual").val();
@@ -377,33 +419,162 @@
 
         });
 
-        produk.change(function (dt) {
+        function makeTable(container, data) {
+            let table = $("<table/>").addClass('table table-condensed table-hover');
+            $.each(data, function(rowIndex, r) {
+                let row = $("<tr/>");
+                $.each(r, function(colIndex, c) {
+                    row.append($("<t"+(rowIndex === 0 ?  "h" : "d")+"/>").text(c));
+                });
+                table.append(row);
+            });
+            return container.append(table);
+        }
+
+        function appendTableColumn(table, rowData) {
+            var lastRow = $('<tr/>').appendTo(table.find('tbody:last'));
+            $.each(rowData, function(colIndex, c) {
+                lastRow.append($('<td/>').text(c));
+            });
+
+            return lastRow;
+        }
+
+        function getTableData(table) {
+            let data = [];
+            table.find('tr').each(function (rowIndex, r) {
+                let cols = [];
+                $(this).find('th,td').each(function (colIndex, c) {
+                    cols.push(c.textContent);
+                });
+                data.push(cols);
+            });
+            return data;
+        }
+
+        function open_container()
+        {
+            let data = [["City 1", "City 2", "City 3"], //headers
+                ["New York", "LA", "Seattle"],
+                ["Paris", "Milan", "Rome"],
+                ["Pittsburg", "Wichita", "Boise"]];
+            let cityTable = makeTable($(document.getElementById('modal-bodyku')), data);
+            let content = '<div class="row">\n' +
+                '                <div class="col-xs-10">\n' +
+                '                  <input type="text" class="form-control" placeholder="Cari data">\n' +
+                '                </div>\n' +
+                '                <div class="col-xs-2">\n' +
+                '                  <button type="button" class="btn btn-flat btn-sm btn-primary"> Cari</button>\n' +
+                '                </div>\n' +
+                '              </div><br>' +
+                '<table id="tblProduk" class="table table-condensed table-hover">\n' +
+                '                                            <thead>\n' +
+                '                                            <tr>\n' +
+                '                                                <th>ID</th>\n' +
+                '                                                <th>Kode</th>\n' +
+                '                                                <th>Jenis Cetakan</th>\n' +
+                '                                                <th>Aksi</th>\n' +
+                '                                            </tr>\n' +
+                '                                            </thead>\n' +
+                '                                            <tbody>\n' +
+                '                                            <tr>\n' +
+                '                                            </tr>\n' +
+                '                                            </tbody></table>';
+            let title = 'Browse Data';
+            let footer = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button ' +
+                'type="button" class="btn btn-primary">Save changes</button>';
+            setModalBox(title,content,footer);
+            $('#myModal').modal('show');
+        }
+
+        function setModalBox(title,content,footer)
+        {
+            document.getElementById('modal-bodyku').innerHTML=content;
+            document.getElementById('myModalLabel').innerHTML=title;
+            document.getElementById('modal-footerq').innerHTML=footer;
+
+            $('#myModal').attr('class', 'modal fade')
+                .attr('aria-labelledby','myModalLabel');
+            $('.modal-dialog').attr('class','modal-dialog');
             let request = $.ajax({
                 url: "{!! route('ajax.postJenisCetak') !!}",
                 method: "POST",
-                data: { id : this.value },
-                //dataType: "html"
+                data: { id : produk.val() },
             });
 
             request.done(function( data ) {
-                // console.log(data.items);
-                let cJenis = $.map(data.items, function (obj) {
-                    obj.id = obj.id || obj.id; // replace id_kab with your identifier
-                    obj.text = obj.text || obj.jenis_cetak; // replace nama with your identifier
-                    return obj;
+                console.log(data.items);
+
+                // $('#tblProduk > tbody > tr').each(function (data) {
+                //     '<td>'+ data.items.id +'</td>' +
+                //     '<td>'+ data.items.kode_jenis +'</td>' +
+                //     '<td>'+ data.items.jenis_cetak +'</td>' +
+                //     '<td><a href="" class="btn btn-flat btn-primary"> Pilih</a> </td>'
+                // });
+
+                $.each(data.items, function (key, value) {
+                    console.log(value);
+                    let html =
+                        '<td>'+ value.id +'</td>' +
+                        '<td>'+ value.kode_jenis +'</td>' +
+                        '<td>'+ value.jenis_cetak +'</td>' +
+                        '<td><button type="button" class="btn btn-flat btn-primary"><i class="fa fa-check-circle"></i> ' +
+                        'Pilih</button></td>'
+                    ;
+
+                    $('#tblProduk > tbody > tr').html(html);
                 });
 
-                jeniscetak.select2({
-                    placeholder: "Pilih Jenis Cetak",
-                    data : cJenis,
-                }).trigger('change');
-                jeniscetak.val(null).trigger('change');
             });
 
             request.fail(function( jqXHR, textStatus ) {
-                alert( "Request failed: " + textStatus );
+                console.log(jqXHR);
+                alert( "Request failed: " + jqXHR.responseJSON.msg );
             });
-        });
+
+        }
+
+        {{--produk.on('change',function (e) {--}}
+
+            {{--let request = $.ajax({--}}
+                {{--url: "{!! route('ajax.postJenisCetak') !!}",--}}
+                {{--method: "POST",--}}
+                {{--data: { id : this.value },--}}
+            {{--});--}}
+
+            {{--request.done(function( data ) {--}}
+                {{--// console.log(data.items);--}}
+                {{--$.each(data.items, function (key, value) {--}}
+                    {{--// console.log(value.id);--}}
+                    {{--let html = '<td>'+ value.id +'</td>';--}}
+                    {{--$('#tblProduk > tbody > tr').html(html);--}}
+                    {{--// console.log(html);--}}
+                {{--});--}}
+
+                {{--// let cJenis = $.map(data.items, function (obj) {--}}
+                {{--//     obj.id = obj.id || obj.id; // replace id_kab with your identifier--}}
+                {{--//     obj.text = obj.text || obj.jenis_cetak; // replace nama with your identifier--}}
+                {{--//     return obj;--}}
+                {{--// });--}}
+
+                {{--//jeniscetak.select2('data', {id : cJenis.id, text: cJenis.jenis_cetak});--}}
+
+                {{--// jeniscetak.select2({--}}
+                {{--//     placeholder: "Pilih Jenis Cetak",--}}
+                {{--//     data : cJenis,--}}
+                {{--//     allowClear: false,--}}
+                {{--// });--}}
+
+            {{--});--}}
+
+            {{--request.fail(function( jqXHR, textStatus ) {--}}
+                {{--console.log(jqXHR);--}}
+                {{--alert( "Request failed: " + textStatus );--}}
+            {{--});--}}
+        {{--});--}}
+
+
+
 
     </script>
 @endpush

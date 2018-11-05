@@ -23,72 +23,6 @@
 
 @section('content')
     @include('widget.alert')
-    <!-- Small boxes (Stat box) -->
-    {{--<div class="row">--}}
-        {{--<div class="col-lg-3 col-xs-6">--}}
-            {{--<!-- small box -->--}}
-            {{--<div class="small-box bg-aqua">--}}
-                {{--<div class="inner">--}}
-                    {{--<h3>150</h3>--}}
-
-                    {{--<p>New Orders</p>--}}
-                {{--</div>--}}
-                {{--<div class="icon">--}}
-                    {{--<i class="ion ion-bag"></i>--}}
-                {{--</div>--}}
-                {{--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!-- ./col -->--}}
-        {{--<div class="col-lg-3 col-xs-6">--}}
-            {{--<!-- small box -->--}}
-            {{--<div class="small-box bg-green">--}}
-                {{--<div class="inner">--}}
-                    {{--<h3>53<sup style="font-size: 20px">%</sup></h3>--}}
-
-                    {{--<p>Bounce Rate</p>--}}
-                {{--</div>--}}
-                {{--<div class="icon">--}}
-                    {{--<i class="ion ion-stats-bars"></i>--}}
-                {{--</div>--}}
-                {{--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!-- ./col -->--}}
-        {{--<div class="col-lg-3 col-xs-6">--}}
-            {{--<!-- small box -->--}}
-            {{--<div class="small-box bg-yellow">--}}
-                {{--<div class="inner">--}}
-                    {{--<h3>44</h3>--}}
-
-                    {{--<p>User Registrations</p>--}}
-                {{--</div>--}}
-                {{--<div class="icon">--}}
-                    {{--<i class="ion ion-person-add"></i>--}}
-                {{--</div>--}}
-                {{--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!-- ./col -->--}}
-        {{--<div class="col-lg-3 col-xs-6">--}}
-            {{--<!-- small box -->--}}
-            {{--<div class="small-box bg-red">--}}
-                {{--<div class="inner">--}}
-                    {{--<h3>65</h3>--}}
-
-                    {{--<p>Unique Visitors</p>--}}
-                {{--</div>--}}
-                {{--<div class="icon">--}}
-                    {{--<i class="ion ion-pie-graph"></i>--}}
-                {{--</div>--}}
-                {{--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!-- ./col -->--}}
-    {{--</div>--}}
-
-
-    <!-- /.row -->
     <!-- Main row -->
     <div class="row">
         <div class="col-xs-12">
@@ -118,30 +52,11 @@
                                 <div class="modal-body">
                                     <div class="box-body">
                                         <div class="form-group">
-                                            <label for="kode">Kode Jenis</label>
-                                            <input type="text" class="form-control" id="kode"
-                                                   placeholder="Masukkan Kode Jenis" name="kode" required
-                                                   autofocus>
-                                            {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                        </div>
-                                        <div class="form-group">
                                             <label for="satuan">Nama Satuan</label>
                                             <input type="text" class="form-control" id="satuan"
                                                    placeholder="Masukkan jenis satuan" name="satuan" required>
                                             {{--<p class="help-block">Example block-level help text here.</p>--}}
                                         </div>
-                                        {{--<div class="form-group">--}}
-                                            {{--<label for="ukuran">Ukuran Cetakan</label>--}}
-                                            {{--<input type="text" class="form-control" id="ukuran" name="ukuran"--}}
-                                                   {{--placeholder="Masukkan Ukuran Cetakan" value="">--}}
-                                            {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="form-group">--}}
-                                            {{--<label for="catatan">Catatan</label>--}}
-                                            {{--<input type="text" class="form-control" id="catatan" name="deskripsi"--}}
-                                                   {{--placeholder="Tambahkan catatan bila perlu" value="">--}}
-                                            {{--<p class="help-block">Example block-level help text here.</p>--}}
-                                        {{--</div>--}}
                                     </div>
                                     <!-- /.box-body -->
                                 </div>
@@ -159,11 +74,10 @@
                 <!-- /.modal -->
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="tbl-jenis-cetak" class="table table-bordered">
+                    <table id="tbl-satuan" class="table table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Kode Jenis</th>
                             <th>Jenis Satuan</th>
                             {{--<th>Status Cetak</th>--}}
                             <th>Operasi</th>
@@ -173,7 +87,6 @@
                         @foreach($data as $val)
                         <tr>
                             <td>{{ ++$i }}</td>
-                            <td>{{ $val->kode }}</td>
                             <td>{{ $val->satuan }}</td>
                             {{--<td><span class='label bg-red-active'>{!! \App\Models\StatusCetak::getStatusCetakName((int)--}}
                             {{--$val->status_cetak) !!}</span></td>--}}
@@ -200,7 +113,7 @@
 @push('js')
     <script>
 
-        $('#tbl-jenis-cetak').DataTable({
+        $('#tbl-satuan').DataTable({
             'paging'      : true,
             'lengthChange': true,
             'searching'   : true,

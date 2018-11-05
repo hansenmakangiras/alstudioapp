@@ -84,8 +84,6 @@
     <!-- /.row (main row) -->
 @endsection
 @push('js')
-    <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/bower_components/datatables.net-bs4/datatables.min.js') }}"></script>
     <script>
         // $('#tbl-jenis-cetak').DataTable({
         //     'paging'      : true,

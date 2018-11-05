@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class JenisSatuan extends Model
 {
-    protected $table = 'jenis_satuan';
+    protected $table = 'satuan';
     protected $guard_name = 'web';
 
     /**
@@ -15,7 +15,7 @@ class JenisSatuan extends Model
      * @var array
      */
     protected $fillable = [
-        'kode', 'satuan',
+        'satuan'
     ];
 
     /**
@@ -30,7 +30,7 @@ class JenisSatuan extends Model
 
     public static function getSatuanName($id)
     {
-        return JenisSatuan::find($id);
+        return JenisSatuan::find($id)->satuan;
 
     }
 }

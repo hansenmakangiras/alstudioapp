@@ -49,12 +49,10 @@ class JenisSatuanController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'kode' => 'required',
             'satuan' => 'required',
         ]);
 
         $jenisSatuan = new JenisSatuan();
-        $jenisSatuan->kode = $request->kode;
         $jenisSatuan->satuan = $request->satuan;
 
         if($jenisSatuan->save()){

@@ -48,8 +48,8 @@
                     <li><a href="{{ route('jenis-cetak.index') }}"><i class="fa fa-angle-right"></i> Data Jenis
                             Cetakan</a></li>
                     <li><a href="{{ route('satuan.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Satuan</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Bahan</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Mesin</a></li>
+                    <li><a href="{{ route('bahan.index') }}"><i class="fa fa-angle-right"></i> Data Bahan</a></li>
+                    <li><a href="{{ route('mesin.index') }}"><i class="fa fa-angle-right"></i> Data Mesin</a></li>
                     <li><a href="{{ route('jenispaket.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Paket</a></li>
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Jenis Bayar</a></li>
                     <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Cetak</a></li>

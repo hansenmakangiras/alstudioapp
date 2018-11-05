@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bahan extends Model
+class HargaJualProduk extends Model
 {
-    protected $table = "bahan";
+    protected $table = "harga_jual_produk";
 
     /**
      * The attributes that are mass assignable.
@@ -14,7 +14,7 @@ class Bahan extends Model
      * @var array
      */
     protected $fillable = [
-        'nama_bahan', 'id_satuan', 'hpp'
+        'produk_id', 'bahan_id', 'mesin_id','finishing_id','potong_id','display_id','harga_jual','min_qty'
     ];
 
     /**
@@ -25,10 +25,4 @@ class Bahan extends Model
     protected $hidden = [
         '_token',
     ];
-
-    public static function getBahanName($id)
-    {
-        return Bahan::find($id)->nama_bahan;
-
-    }
 }

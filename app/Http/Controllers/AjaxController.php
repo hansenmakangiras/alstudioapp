@@ -121,13 +121,13 @@ class AjaxController extends Controller
             if($id != 0){
 //                $jenis = JenisCetakan::where('produk_id', $id)->get()->toJson();
                 $jenis = JenisCetakan::where('produk_id', $id)->get();
-
-                return response()->json(['items' => $jenis]);
+                //dd($jenis);
+                return response()->json(['items' => $jenis],200);
             }
 
-            return response()->json(['msg' => 'Not Found'],404);
+            return response()->json(['items'=>[],'msg' => 'ID Produk tidak ditemukan'],200);
         }
 
-        return response()->json(['msg' => 'Method not found'],403);
+        return response()->json(['items'=>[],'msg' => 'Method not allowed'],405);
     }
 }

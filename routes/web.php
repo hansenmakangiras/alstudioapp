@@ -37,6 +37,9 @@ Route::group(['middleware' => 'role:Kasir|Admin|Superadmin'], function() {
     Route::resource('jenispaket', 'JenisPaketController');
     Route::resource('satuan', 'JenisSatuanController');
     Route::resource('promo', 'PromoController');
+    Route::resource('bahan', 'BahanController');
+    Route::resource('mesin', 'MesinController');
+    Route::resource('hjp', 'HargaJualProdukController');
 
     // Ajax Request
     Route::post('/getPelanggan', 'AjaxController@getPelanggan')->name('ajax.pelanggan');
