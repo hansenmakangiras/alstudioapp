@@ -2,15 +2,30 @@
 
 namespace App\Models;
 
-use DB;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class StatusCetak extends Model
 {
     protected $table = 'status_cetak';
-//    protected $guard_name = 'web';
 
-    protected $fillable =['statuscetak'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'statuscetak'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        '_token',
+    ];
 
     public static function getStatusCetakName($id)
     {
@@ -26,5 +41,17 @@ class StatusCetak extends Model
 //                return "<span class='label bg-yellow'>Proses Cetak</span>";
 //            default : 0;
 //        }
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])
+            ->format('l, d F Y');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['updated_at'])
+            ->diffForHumans();
     }
 }

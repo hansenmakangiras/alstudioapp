@@ -4,19 +4,19 @@
 
 @stop
 @section('subtitle')
-    | Pelanggan
+    | Mesin
 @endsection
 
 @section('content-header')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            List Data Pelanggan
-            <small>Master Customer</small>
+            List Data Mesin
+            <small>Master Data</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Pelanggan</li>
+            <li class="active">Mesin</li>
         </ol>
     </section>
 @stop
@@ -29,51 +29,43 @@
 
             <div class="box">
                 <div class="box-header">
-                    <a href="{{ route('pelanggan.create') }}" class="btn btn-success btn-sm"><i class="fa
-                        fa-plus-circle"></i> Tambah Pelanggan</a>
+                    <a href="{{ route('mesin.create') }}" class="btn btn-success btn-sm"><i class="fa
+                        fa-plus-circle"></i> Tambah Mesin</a>
                 </div>
 
                 <div class="box-body">
-                    <table id="tbl-pelanggan" class="table table-bordered">
+                    <table id="tbl-mesin" class="table table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>No Telp</th>
-                            {{--<th>Tgl Pesan</th>--}}
-                            <th>Jenis Pelanggan</th>
-                            <th>Status Pelanggan</th>
+                            <th>Nama Mesin</th>
+                            <th>Tipe Mesin</th>
+                            <th>Harga</th>
                             <th>Operation</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($pelanggan as $key => $val)
+                        @foreach($mesin as $key => $val)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $val->namapel }}</td>
-                                <td>{{ $val->alamat }}</td>
-                                <td>{{ $val->notelp }}</td>
-{{--                                <td>{{ $val->created_at }}</td>--}}
-                                <td>{!! \App\Models\Pelanggan::getJenisPelanggan
-                                ($val->jenis_pelanggan) !!}</td>
-                                <td><label class="label bg-green">{{ \App\Models\Pelanggan::getStatusPelanggan
-                                ($val->status_pelanggan) }}</label></td>
+                                <td>{{ $val->nama_mesin }}</td>
+                                <td>{{ $val->tipe_mesin }}</td>
+                                <td>{{ $val->hpp }}</td>
                                 <td>
-                                    @can("viewPelanggan")
-                                    <a class="btn btn-success btn-xs" href="{{ route('pelanggan.show',$val->id)
+                                    {{--@can("viewPelanggan")--}}
+                                    <a class="btn btn-success btn-xs" href="{{ route('mesin.show',$val->id)
                                     }}">View</a>
-                                    @endcan
-                                    @can('editPelanggan')
-                                    <a href="{{ route('pelanggan.edit',$val->id) }}" class="btn btn-primary
+                                    {{--@endcan--}}
+{{--                                    @can('editPelanggan')--}}
+                                    <a href="{{ route('mesin.edit',$val->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
-                                    @endcan
-                                    @can('deletePelanggan')
-                                        {!! Form::open(['method' => 'DELETE','route' => ['pelanggan.destroy', $val->id],
+                                    {{--@endcan--}}
+{{--                                    @can('deletePelanggan')--}}
+                                        {!! Form::open(['method' => 'DELETE','route' => ['mesin.destroy', $val->id],
                                         'style'=>'display:inline']) !!}
                                         {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                         {!! Form::close() !!}
-                                    @endcan
+                                    {{--@endcan--}}
                                 </td>
                             </tr>
                         @endforeach
@@ -82,7 +74,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
-                {{ $pelanggan->onEachSide(1)->links() }}
+                {{ $mesin->onEachSide(1)->links() }}
                 </div>
             </div>
             <!-- /.box -->
@@ -93,7 +85,7 @@
 
 @push('js')
 <script>
-    $('#tbl-pelanggan').DataTable({
+    $('#tbl-mesin').DataTable({
         {{--'processing'  : true,--}}
         {{--'serverSide'  : true,--}}
         {{--'ajax'        : {--}}

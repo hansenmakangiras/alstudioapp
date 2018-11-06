@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JenisSatuan;
-use App\Models\Mesin;
+use App\Models\TipePelanggan;
 use Illuminate\Http\Request;
 
-class MesinController extends Controller
+class TipePelangganController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
         $this->middleware('role:Kasir|Admin|Superadmin|Cetak|Foto');
     }
@@ -20,9 +19,9 @@ class MesinController extends Controller
      */
     public function index()
     {
-        $mesin = Mesin::orderBy('id', 'DESC')->paginate(10);
+        $tipePelanggan = TipePelanggan::orderBy('id', 'DESC')->paginate(10);
 
-        return view('mesin.index',compact('mesin'))
+        return view('tipepelanggan.index',compact('tipePelanggan'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -33,8 +32,7 @@ class MesinController extends Controller
      */
     public function create()
     {
-//        $satuan = JenisSatuan::pluck('satuan','id');
-        return view('mesin.create');
+        return view('tipepelanggan.create');
     }
 
     /**
@@ -46,20 +44,15 @@ class MesinController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'nama_mesin' => 'required',
-            'tipe_mesin' => 'required',
-            'hpp' => 'required',
+            'statusbyr' => 'required',
         ]);
 
-//        $mesin = Bahan::create($request->all()->except('_token'));
+//        $tipePelanggan = Bahan::create($request->all()->except('_token'));
 
-        $mesin = new Mesin();
-        $mesin->nama_mesin = $request->nama_mesin;
-        $mesin->tipe_mesin = $request->tipe_mesin;
-        $mesin->hpp = $request->hpp;
+        $tipePelanggan = TipePelanggan::create($request->all());
 
-        if($mesin->save()){
-            return redirect()->route('mesin.index')->with('Sukses','Data berhasil disimpan ke dalam database');
+        if($tipePelanggan->save()){
+            return redirect()->route('tipe-pelanggan.index')->with('Sukses','Data berhasil disimpan ke dalam database');
         }
 
         return back()->with('Gagal','Data gagal disimpan ke database');
@@ -71,9 +64,10 @@ class MesinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Bahan $bahan, $id)
+    public function show($id)
     {
-        return view('mesin.show',compact('bahan','id'));
+        $tipePelanggan = TipePelanggan::find($id);
+        return view('tipepelanggan.show',compact('id','tipePelanggan'));
     }
 
     /**
@@ -84,9 +78,8 @@ class MesinController extends Controller
      */
     public function edit($id)
     {
-        $mesin = Mesin::find($id);
-        $satuan = JenisSatuan::pluck('satuan','id');
-        return view('mesin.edit',compact('mesin','id','satuan'));
+        $tipePelanggan = TipePelanggan::find($id);
+        return view('tipepelanggan.edit',compact('tipePelanggan','id'));
     }
 
     /**
@@ -99,20 +92,18 @@ class MesinController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'nama_mesin' => 'required',
-            'tipe_mesin' => 'required',
-            'hpp' => 'required',
+            'statusbyr' => 'required',
         ]);
 
-        $mesin = Mesin::find($id);
+        $tipePelanggan = TipePelanggan::find($id);
 
-        if($mesin){
-            $mesin->update($request->all());
-            return redirect()->route('mesin.index')
-                ->with('Sukses','Mesin updated successfully');
+        if($tipePelanggan){
+            $tipePelanggan->update($request->all());
+            return redirect()->route('tipe-pelanggan.index')
+                ->with('Sukses','Data updated successfully');
         }
 
-        return back()->with('Gagal','Mesin gagal di ubah');
+        return back()->with('Gagal','Data failed to update');
     }
 
     /**
@@ -123,6 +114,13 @@ class MesinController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tipePelanggan = TipePelanggan::find($id);
+        if($tipePelanggan->delete()){
+            return redirect()->route('tipe-pelanggan.index')
+                ->with('Sukses','Data deleted successfully');
+        }
+
+
+        return back()->with('Gagal','Data failed to update');
     }
 }

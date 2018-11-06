@@ -4,19 +4,19 @@
 
 @stop
 @section('subtitle')
-    | Jenis Bayar
+    | Tipe Pelanggan
 @endsection
 
 @section('content-header')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            List Jenis Bayar
-            <small>Master Data</small>
+            List Tipe Pelanggan
+            <small>Master Tipe Pelanggan</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Jenis Bayar</li>
+            <li class="active">Tipe Pelanggan</li>
         </ol>
     </section>
 @stop
@@ -29,39 +29,40 @@
 
             <div class="box">
                 <div class="box-header">
-                    <a href="{{ route('status-bayar.create') }}" class="btn btn-success btn-sm"><i class="fa
-                        fa-plus-circle"></i> Tambah Jenis Bayar</a>
+                    <a href="{{ route('tipe-pelanggan.create') }}" class="btn btn-success btn-sm"><i class="fa
+                        fa-plus-circle"></i> Tambah Tipe Pelanggan</a>
                 </div>
 
                 <div class="box-body">
-                    <table id="tbl-status-bayar" class="table table-bordered">
+                    <table id="tbl-tipe-pelanggan" class="table table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Jenis Bayar</th>
+                            <th>Status Pelanggan</th>
                             <th>Tgl Buat</th>
                             <th>Tgl Update</th>
                             <th>Operation</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($statusBayar as $key => $val)
+                        @foreach($tipePelanggan as $key => $val)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $val->statusbyr }}</td>
+                                <td>{{ $val->tipe }}</td>
                                 <td>{{ $val->created_at }}</td>
                                 <td>{{ $val->updated_at }}</td>
                                 <td>
 {{--                                    @can("viewPelanggan")--}}
-                                    <a class="btn btn-success btn-xs" href="{{ route('status-bayar.show',$val->id)
+                                    <a class="btn btn-success btn-xs" href="{{ route('tipe-pelanggan.show',$val->id)
                                     }}">View</a>
                                     {{--@endcan--}}
 {{--                                    @can('editPelanggan')--}}
-                                    <a href="{{ route('status-bayar.edit',$val->id) }}" class="btn btn-primary
+                                    <a href="{{ route('tipe-pelanggan.edit',$val->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
                                     {{--@endcan--}}
 {{--                                    @can('deletePelanggan')--}}
-                                        {!! Form::open(['method' => 'DELETE','route' => ['status-bayar.destroy', $val->id],
+                                        {!! Form::open(['method' => 'DELETE','route' => ['tipe-pelanggan.destroy',
+                                        $val->id],
                                         'style'=>'display:inline']) !!}
                                         {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                         {!! Form::close() !!}
@@ -74,7 +75,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
-                {{ $statusBayar->onEachSide(1)->links() }}
+                {{ $tipePelanggan->onEachSide(1)->links() }}
                 </div>
             </div>
             <!-- /.box -->
@@ -85,7 +86,7 @@
 
 @push('js')
 <script>
-    $('#tbl-status-bayar').DataTable({
+    $('#tbl-tipe-pelanggan').DataTable({
         {{--'processing'  : true,--}}
         {{--'serverSide'  : true,--}}
         {{--'ajax'        : {--}}

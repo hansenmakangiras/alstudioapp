@@ -68,9 +68,9 @@ class JenisSatuanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(JenisSatuan $jenisSatuan, $id)
     {
-        return view('jenis-satuan.show',compact('jenisCetakan'));
+        return view('jenis-satuan.show',compact('jenisSatuan'));
     }
 
     /**

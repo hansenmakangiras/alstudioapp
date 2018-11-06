@@ -8,6 +8,24 @@ class JenisCetakan extends Model
 {
     protected $table = 'jenis_cetak';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'kode_jenis', 'produk_id', 'jenis_cetak','status_cetak'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        '_token',
+    ];
+
     public function order()
     {
         return $this->belongsTo(JenisCetakan::class,'jeniscetakid','id');

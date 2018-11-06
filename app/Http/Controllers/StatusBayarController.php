@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StatusBayar;
 use Illuminate\Http\Request;
 
 class StatusBayarController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Kasir|Admin|Superadmin|Cetak|Foto');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,10 @@ class StatusBayarController extends Controller
      */
     public function index()
     {
-        //
+        $statusBayar = StatusBayar::orderBy('id', 'DESC')->paginate(10);
+
+        return view('statusbayar.index',compact('statusBayar'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -23,7 +32,7 @@ class StatusBayarController extends Controller
      */
     public function create()
     {
-        //
+        return view('statusbayar.create');
     }
 
     /**
@@ -34,7 +43,19 @@ class StatusBayarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'statusbyr' => 'required',
+        ]);
+
+//        $statusBayar = Bahan::create($request->all()->except('_token'));
+
+        $statusBayar = StatusBayar::create($request->all());
+
+        if($statusBayar->save()){
+            return redirect()->route('status-bayar.index')->with('Sukses','Data berhasil disimpan ke dalam database');
+        }
+
+        return back()->with('Gagal','Data gagal disimpan ke database');
     }
 
     /**
@@ -45,7 +66,8 @@ class StatusBayarController extends Controller
      */
     public function show($id)
     {
-        //
+        $statusBayar = StatusBayar::find($id);
+        return view('statusbayar.show',compact('id','statusBayar'));
     }
 
     /**
@@ -56,7 +78,8 @@ class StatusBayarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $statusBayar = StatusBayar::find($id);
+        return view('statusbayar.edit',compact('statusBayar','id'));
     }
 
     /**
@@ -68,7 +91,19 @@ class StatusBayarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'statusbyr' => 'required',
+        ]);
+
+        $statusBayar = StatusBayar::find($id);
+
+        if($statusBayar){
+            $statusBayar->update($request->all());
+            return redirect()->route('status-bayar.index')
+                ->with('Sukses','Data updated successfully');
+        }
+
+        return back()->with('Gagal','Data failed to update');
     }
 
     /**
@@ -79,6 +114,13 @@ class StatusBayarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $statusBayar = StatusBayar::find($id);
+        if($statusBayar->delete()){
+            return redirect()->route('status-bayar.index')
+                ->with('Sukses','Data deleted successfully');
+        }
+
+
+        return back()->with('Gagal','Data failed to update');
     }
 }

@@ -51,10 +51,10 @@
                     <li><a href="{{ route('bahan.index') }}"><i class="fa fa-angle-right"></i> Data Bahan</a></li>
                     <li><a href="{{ route('mesin.index') }}"><i class="fa fa-angle-right"></i> Data Mesin</a></li>
                     <li><a href="{{ route('jenispaket.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Paket</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Jenis Bayar</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Cetak</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Pelanggan</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i> Data Status Bayar</a></li>
+                    <li><a href="{{ route('status-cetak.index') }}"><i class="fa fa-angle-right"></i> Data Status Cetak</a></li>
+                    <li><a href="{{ route('tipe-pelanggan.index') }}"><i class="fa fa-angle-right"></i> Data Tipe
+                            Pelanggan</a></li>
+                    <li><a href="{{ route('status-bayar.index') }}"><i class="fa fa-angle-right"></i> Data Status Bayar</a></li>
                     <li><a href="{{ route('promo.index') }}"><i class="fa fa-angle-right"></i> Data Promo</a></li>
                 </ul>
             </li>

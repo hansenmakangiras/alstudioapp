@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class StatusPelanggan extends Model
 {
     protected $table = 'status_pelanggan';
-    protected $guard_name = 'web';
 
     /**
      * The attributes that are mass assignable.
@@ -32,5 +32,17 @@ class StatusPelanggan extends Model
         $name = StatusPelanggan::find($id);
         return $name->status_pelanggan;
 
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])
+            ->format('l, d F Y');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['updated_at'])
+            ->diffForHumans();
     }
 }

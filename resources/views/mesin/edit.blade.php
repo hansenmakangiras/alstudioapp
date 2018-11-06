@@ -4,19 +4,19 @@
 
 @stop
 @section('subtitle')
-    | Pelanggan
+    | Mesin
 @endsection
 
 @section('content-header')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Data Pelanggan
-            <small>Master Data</small>
+            Update Mesin
+            <small>Master Data Mesin</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="{{ route('pelanggan.index') }}"><i class="fa fa-dashboard"></i> Pelanggan</a></li>
+            <li><a href="{{ route('mesin.index') }}"><i class="fa fa-dashboard"></i> Mesin</a></li>
             <li class="active">Update</li>
         </ol>
     </section>
@@ -29,45 +29,32 @@
             @include('widget.alert')
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Ubah Data Pelanggan - <strong>[ {{ $pelanggan->namapel }} ]</strong></h3>
+                    <h3 class="box-title">Ubah Mesin</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::model($pelanggan, ['method' => 'PATCH','route' => ['pelanggan.update', $pelanggan->id]]) !!}
+                {!! Form::model($mesin, ['method' => 'PATCH','route' => ['mesin.update', $mesin->id]]) !!}
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="name">Nama Pelanggan</label>
-                        {!! Form::text('namapel', null, array('placeholder' => 'Nama Pelanggan','class' =>
+                        <label for="name">Nama Mesin</label>
+                        {!! Form::text('nama_mesin', null, array('placeholder' => 'Nama Mesin','class' =>
                         'form-control','autofocus')) !!}
                     </div>
                     <div class="form-group">
-                        <label for="email">No Telp</label>
-                        {!! Form::text('notelp', null, array('placeholder' => 'No Telepon / HP','class' =>
-                        'form-control')) !!}
+                        <label for="iTipeMesin">Tipe Mesin</label>
+                        {!! Form::text('tipe_mesin', null, array('placeholder' => 'Tipe Mesin','class' =>
+                        'form-control','id'=>'iTipeMesin')) !!}
                     </div>
                     <div class="form-group">
-                        <label for="password">Alamat</label>
-                        {!! Form::text('alamat', null,array('placeholder' => 'Alamat Pelanggan','class' => 'form-control'))
+                        <label for="iHarga">Harga</label>
+                        {!! Form::text('hpp', null,array('placeholder' => 'Harga jual','class' => 'form-control',
+                        'id'=> 'iHarga'))
                          !!}
                     </div>
-                    <div class="form-group">
-                        <label for="confirm">Tanggal Ambil Cetakan</label>
-                        {!! Form::text('tgl_ambil',null, array('placeholder' => 'Tanggal Pengambilan','class' =>
-                        'form-control','id'=> 'tglAmbil')) !!}
-                    </div>
-                    <div class="form-group">
-                        <label for="confirm">Status Bayar</label>
-                        {!! Form::select('status_bayar',$arrPelanggan,$pelanggan->status_bayar, array
-                        ('placeholder' => 'Status Bayar','class' =>'form-control')) !!}
-                    </div>
-                    {{--<div class="form-group">--}}
-                        {{--<label for="roles">Role</label>--}}
-                        {{--{!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}--}}
-                    {{--</div>--}}
 
                     <div class="box-footer text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{ route('pelanggan.index') }}" class="btn btn-default">Kembali</a>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href="{{ route('mesin.index') }}" class="btn btn-default">Kembali</a>
                     </div>
                 </div>
             {!! Form::close() !!}
@@ -80,10 +67,5 @@
 @endsection
 @push('js')
     <script>
-        //Date picker
-        $('#tglAmbil').datepicker({
-            autoclose: true,
-            format: "yyyy-mm-dd"
-        })
     </script>
 @endpush

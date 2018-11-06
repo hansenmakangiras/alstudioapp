@@ -85,7 +85,8 @@ class BahanController extends Controller
     public function edit($id)
     {
         $bahan = Bahan::find($id);
-        return view('bahan.edit',compact('bahan','id'));
+        $satuan = JenisSatuan::pluck('satuan','id');
+        return view('bahan.edit',compact('bahan','id','satuan'));
     }
 
     /**
@@ -98,21 +99,18 @@ class BahanController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'id_satuan' => 'required',
             'nama_bahan' => 'required',
+            'id_satuan' => 'required|integer',
             'hpp' => 'required',
         ]);
 
         $bahan = Bahan::find($id);
 
         if($bahan){
-
             $bahan->update($request->all());
             return redirect()->route('bahan.index')
                 ->with('Sukses','Bahan updated successfully');
         }
-
-
 
         return back()->with('Gagal','Bahan gagal di ubah');
     }

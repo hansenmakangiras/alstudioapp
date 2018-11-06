@@ -52,8 +52,8 @@
                     </div>
 
                     <div class="box-footer text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{ route('bahan.index') }}" class="btn btn-default">Kembali</a>
+                        <button type="submit" class="btn btn-primary btn-flat">Submit</button>
+                        <a href="{{ route('bahan.index') }}" class="btn btn-default btn-flat">Kembali</a>
                     </div>
                 </div>
             {!! Form::close() !!}
