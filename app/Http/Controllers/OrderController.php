@@ -88,7 +88,9 @@ class OrderController extends Controller
             'status_bayar' => 'required',
             'status_order' => 'required',
         ]);
+
         $input = $request->all();
+//        dd($input);
         $cari = Order::where('orderid',$input['orderid'])->with('orderDetail')->first();
         if(!$cari){
             $order = new Order();
@@ -118,7 +120,7 @@ class OrderController extends Controller
                     'status_order' => $input['status_order'],
                 ]);
 
-                return redirect()->route('order.index')
+                return redirect()->route('order.create', compact('cariOrder'))
                     ->with('Sukses','Order created successfully');
 
             }

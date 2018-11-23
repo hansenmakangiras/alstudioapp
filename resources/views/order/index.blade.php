@@ -57,26 +57,27 @@
                             {{--$val->cetakid) }}</td>--}}
                                 {{--<td>{{ \App\Models\JenisPaket::getDataPaket($val->jenispaketid)->nama_paket }}</td>--}}
                                 {{--<td>{{ \App\Models\Pelanggan::getPelangganName($val->pelangganid) }}</td>--}}
+                                {{--<td>{{ number_format($val->total_harga) }}</td>--}}
                                 {{--<td><label class="label bg-fuchsia-active">{{ \App\Models\StatusBayar::getStatusName($val->status_bayar) }}</label></td>--}}
                                 {{--<td><label class="label bg-blue-active">{{ \App\Models\StatusOrder::getStatusOrderName--}}
-                                {{--($val->promoid)--}}
+                                {{--($val->status_order)--}}
                                 {{--}}</label></td>--}}
                                 {{--<td>--}}
                                     {{--@can("viewOrder")--}}
                                     {{--<a class="btn btn-success btn-xs" href="{{ route('order.show',$val->id)--}}
                                     {{--}}">View</a>--}}
                                     {{--@endcan--}}
-                                    {{--@can('editOrder')--}}
+{{--                                    @can('editOrder')--}}
                                     {{--<a href="{{ route('order.edit',$val->id) }}" class="btn btn-primary--}}
                                 {{--btn-xs">Edit</a>--}}
                                     {{--@endcan--}}
-                                    {{--@can('deleteOrder')--}}
+{{--                                    @can('deleteOrder')--}}
                                     {{--{!! Form::open(['method' => 'DELETE','route' => ['order.destroy', $val->id],--}}
                                     {{--'style'=>'display:inline']) !!}--}}
                                     {{--{!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}--}}
                                     {{--{!! Form::close() !!}--}}
                                     {{--@endcan--}}
-                                    {{--@can('editOrder')--}}
+{{--                                    @can('editOrder')--}}
                                         {{--{!! Form::open(['method' => 'POST','route' => ['order.proses', $val->id],--}}
                                     {{--'style'=>'display:inline']) !!}--}}
                                         {{--{!! Form::submit('Proses', ['class' => 'btn btn-warning btn-xs']) !!}--}}
@@ -123,8 +124,8 @@
             { data: 'id', name: 'id' },
             { data: 'orderid', name: 'orderid' },
             { data: 'cetakid', name: 'cetakid' },
-            { data: 'pelangganid', name: 'pelangganid' },
             { data: 'jenispaketid', name: 'jenispaketid' },
+            { data: 'pelangganid', name: 'pelangganid' },
             { data: 'total_harga', name: 'total_harga' },
             { data: 'status_bayar', name: 'status_bayar' },
             { data: 'status_order', name: 'status_order' },

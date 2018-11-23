@@ -69,11 +69,16 @@ class AjaxController extends Controller
         if ($request->ajax())
             $order = Order::select();
         return DataTables::of($order)
-//                ->editColumn('status_bayar', '{{ }}')
+            ->editColumn('cetakid', '{{ \App\Models\JenisCetakan::getJenisCetakName((int) $cetakid) }}')
+            ->editColumn('jenispaketid', '{{ \App\Models\JenisPaket::getDataPaket($jenispaketid)->nama_paket }}')
+            ->editColumn('pelangganid', '{{ \App\Models\Pelanggan::getPelangganName($pelangganid) }}')
+            ->editColumn('total_harga', '{{ number_format($total_harga) }}')
+            ->editColumn('status_order', '{{ \App\Models\StatusOrder::getStatusOrderName($status_order) }}')
+            ->editColumn('status_bayar', '{{ \App\Models\StatusBayar::getStatusName($status_bayar)  }}')
             ->addColumn('action', function ($order) {
 //                    return '<a href="'.route('order.edit', $order->id).'" class="btn btn-xs btn-primary btn-flat"><i class="fa fa-edit"></i> Edit</a>';
                 return '<div class="btn-group">
-                      <button type="button" class="btn btn-warning btn-flat btn-sm dropdown-toggle" 
+                      <button type="button" class="btn btn-warning btn-flat btn-sm dropdown-toggle"
                         data-toggle="dropdown" aria-expanded="true"> Operasi
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
@@ -83,26 +88,27 @@ class AjaxController extends Controller
                         <li><a href="' . route('order.edit', $order->id) . '"><i class="fa fa-edit"></i> Edit</a></li>
                         <li>
                             <a href="' . route('order.destroy', $order->id) . '"><i class="fa fa-trash" onclick="$
-                            (\'#frmdelete\').submit();"></i> 
+                            (\'#frmdelete\').submit();"></i>
                             Hapus</a>
-                            <form id="frmdelete" action="'.route('order.destroy', $order->id).'" method="POST" 
+                            <form id="frmdelete" action="'.route('order.destroy', $order->id).'" method="POST"
                             style="display:none;">
                             </form>
                         </li>
-                        
+
                         <li><a href="' . route('order.proses', $order->id) . '"><i class="fa fa-balance-scale"></i> Proses</a></li>
                       </ul>
                     </div>';
             })
+            ->rawColumns(['action'])
             ->make(true);
 
     }
 
     public function getMasterData()
     {
-        $users = User::select();
+        $orders = Order::select();
 
-        return Datatables::of($users)
+        return Datatables::of($orders)
             ->addColumn('details_url', function ($user) {
                 return url('eloquent/details-data/' . $user->id);
             })

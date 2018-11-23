@@ -52,6 +52,9 @@ Route::group(['middleware' => 'role:Kasir|Admin|Superadmin'], function() {
     Route::get('/getorderdata', 'AjaxController@getOrderData')->name('ajax.getOrderData');
     Route::get('/getorderdetail/{id}', 'AjaxController@getOrderDetailsData')->name('ajax.getOrderDetail');
     Route::post('/postJenisCetak', 'AjaxController@postJenisCetak')->name('ajax.postJenisCetak');
+    Route::get('/invoice', function (){
+        return view('widget.invoice');
+    });
 });
 
 Route::group(['middleware' => 'role:Cetak|Foto|Superadmin'], function() {

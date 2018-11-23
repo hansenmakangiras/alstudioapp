@@ -17,7 +17,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="{{ route('order.index') }}"><i class="fa fa-dashboard"></i> Oorder</a></li>
+            <li><a href="{{ route('order.index') }}"><i class="fa fa-dashboard"></i> Order</a></li>
             <li class="active">Create</li>
         </ol>
     </section>
@@ -76,22 +76,6 @@
         {{--</div>--}}
         <div class="col-xs-12">
             @include('widget.alert')
-            {{--@component('components.alert')--}}
-                {{--@slot('alertid')--}}
-                    {{--success--}}
-                {{--@endslot--}}
-                {{--@slot('alertclass')--}}
-                    {{--success--}}
-                {{--@endslot--}}
-                {{--@slot('alerticon')--}}
-                    {{--check--}}
-                {{--@endslot--}}
-                {{--@slot('alerttitle')--}}
-                    {{--Good Job !!!--}}
-                {{--@endslot--}}
-
-                {{--{{ session('Sukses') }}--}}
-            {{--@endcomponent--}}
             <div class="box box-danger">
                 {{--<div class="box-header">--}}
                     {{--<h3 class="box-title">Buat Order</h3>--}}
@@ -111,16 +95,17 @@
                     </div>
                     <div class="form-group">
                         <label for="orderid" class="col-xs-2 control-label">No. Order</label>
-                        {{--{!! Form::text('orderid', $orderid2, array('placeholder' => 'No Order','class' =>--}}
-                        {{--'form-control','autofocus','required','readonly')) !!}--}}
+
                         <div class="col-xs-8">
                             {!! Form::text('orderid', $orderid, array('placeholder' => 'No Order','class' =>
-                            'form-control','autofocus','required','readonly')) !!}
+                        'form-control','autofocus','required','readonly','id' => 'orderid')) !!}
+                            {{--{!! Form::hidden('orderid', $orderid, array('placeholder' => 'No Order','class' =>--}}
+                            {{--'form-control','autofocus','required','readonly','id' => 'orderid')) !!}--}}
 
                             {{--{!! Form::select('orderid', $arrOrder, null,--}}
-                        {{--['placeholder' =>'Pilih orderid','class' =>'form-control select2',--}}
-                        {{--'id'=>'orderid','autofocus','required'])--}}
-                         {{--!!}--}}
+                                {{--['placeholder' =>'Pilih orderid','class' =>'form-control select2',--}}
+                                {{--'id'=>'orderid','autofocus','required'])--}}
+                            {{--!!}--}}
                         </div>
                     </div>
                     {{--@dd($produk->get)--}}
@@ -152,6 +137,8 @@
                             <h3 class="box-title"><strong><i class="fa fa-shopping-cart"></i> Detail Order</strong></h3>
                         </div>
                         <div class="box-body">
+                            {{--{!! Form::open(array('route' => 'order.store','method'=>'POST','class' =>--}}
+                            {{--'form-horizontal','name' =>'frmDetail','id'=>'frmDetail')) !!}--}}
                             <div class="col-sm-10">
                                 <div class="box box-default">
                                     <div class="box-header">
@@ -161,20 +148,21 @@
                                         <div class="form-group">
                                             <label for="email" class="col-xs-2 control-label">Jenis Cetakan</label>
                                             <div class="col-xs-10">
-                                                <div class="input-group">
-                                                    <!-- /btn-group -->
-                                                    <input type="text" class="form-control" readonly="readonly">
-                                                    <div class="input-group-btn">
-                                                        <button id="btnProduk" onclick="open_container();"
-                                                                type="button"
-                                                                class="btn
-                                                        btn-danger"><i
-                                                                class="fa fa-list"></i> Lihat
-                                                                Data</button>
-                                                    </div>
+                                                {{--<div class="input-group">--}}
+                                                    {{--<!-- /btn-group -->--}}
+                                                    {{--<input type="text" class="form-control" readonly="readonly">--}}
+                                                    {{--<div class="input-group-btn">--}}
+                                                        {{--<button id="btnProduk" onclick="open_container();"--}}
+                                                                {{--type="button"--}}
+                                                                {{--class="btn--}}
+                                                        {{--btn-danger"><i--}}
+                                                                {{--class="fa fa-list"></i> Lihat--}}
+                                                                {{--Data</button>--}}
+                                                    {{--</div>--}}
 
-                                                </div>
-                                                {{--<select id="jeniscetak" class="form-control select2"></select>--}}
+                                                {{--</div>--}}
+                                                <select id="jeniscetak" name="jeniscetak" class="form-control
+                                                select2"></select>
                                                 {{--{!! Form::select('jeniscetak', $jeniscetak, null,--}}
                                                 {{--['placeholder' =>'Pilih Jenis cetakan','class' =>'form-control select2',--}}
                                                 {{--'id'=>'jeniscetak'])--}}
@@ -244,15 +232,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{--<div class="box-footer text-center">--}}
-                                        {{--<button type="submit" class="btn btn-primary btn-flat">Tambah Ke Tabel</button>--}}
-                                        {{--<a href="{{ route('order.index') }}" class="btn btn-default btn-flat">Reset</a>--}}
+                                    <div class="box-footer text-center">
+                                        <button id="tambahKeTabel" type="submit" class="btn btn-primary btn-flat">Tambah
+                                            Ke
+                                            Tabel</button>
+                                        <a href="{{ route('order.index') }}" class="btn btn-default btn-flat">Reset</a>
                                         {{--<button onClick="open_container();" type="button" class="btn btn-default--}}
                                         {{--btn-flat">Show Modal</button>--}}
-                                    {{--</div>--}}
+                                    </div>
                                 </div>
-
                             </div>
+                            {{--{!! Form::close() !!}--}}
                             <div class="col-sm-12">
                                 <div class="box box-success">
                                     <div class="box-header with-border">
@@ -260,31 +250,29 @@
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body no-padding">
-                                        <table class="table table-condensed table-hover">
+                                        <table id="tblDetail" class="table table-condensed table-hover">
                                             <thead>
                                             <tr>
-                                                <th>#</th>
+                                                {{--<th>#</th>--}}
                                                 <th>No. Order</th>
                                                 <th>Jenis Cetakan</th>
                                                 <th>Jenis Paket</th>
-                                                <th>Pelanggan</th>
-                                                <th>Status Bayar</th>
-                                                <th>Status Pesanan</th>
+                                                <th>Keterangan</th>
+                                                <th>Subtotal</th>
+                                                {{--<th>Status Pesanan</th>--}}
                                                 <th>Operation</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            </tbody></table>
+                                            @isset($cariOrder)
+                                                @foreach($cariOrder as $val)
+                                                    <tr>
+                                                        <td>{{ $val->orderid }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            @endisset
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <!-- /.box-body -->
                                 </div>
@@ -314,14 +302,14 @@
                     <div class="form-group">
                         <label for="confirm" class="col-xs-2 control-label">Status Bayar</label>
                         <div class="col-xs-8">
-                            {!! Form::select('status_bayar',$statusByr,null, array
+                            {!! Form::select('status_bayar',$statusByr,1, array
                         ('placeholder' => 'Status Bayar','class' =>'form-control select2')) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="confirm" class="col-xs-2 control-label">Status Order</label>
                         <div class="col-xs-8">
-                            {!! Form::select('status_order',$statusOrder,null,array
+                            {!! Form::select('status_order',$statusOrder,1,array
                             ('placeholder' => 'Status Order','class' =>'form-control select2')) !!}
                         </div>
                     </div>
@@ -336,13 +324,14 @@
                     </div>
                 </div>
 
-                {!! Form::close() !!}
+
 
                 <div class="box-footer text-center">
                     <button type="submit" class="btn btn-primary btn-flat">Submit</button>
                     <a href="{{ route('order.index') }}" class="btn btn-default btn-flat">Kembali</a>
                 </div>
                 <!-- /.box-body -->
+                    {!! Form::close() !!}
             </div>
             <!-- /.box -->
         </div>
@@ -357,10 +346,42 @@
         });
 
         // Get Jenis Paket Select
-        let jeniscetak = $('#jeniscetak').select2();
+        let jeniscetak = $('#jeniscetak');
         let jenispaket = $('#jenispaket');
         let hargajual = $("#hargajual");
-        let produk = $('#produk').select2();
+        let produk = $('#produk');
+
+        jeniscetak.select2({
+            placeholder: "Pilih Jenis Cetak",
+        });
+        jenispaket.select2({
+            placeholder: "Pilih Jenis Paket",
+        });
+
+        produk.on('change',function (e) {
+            let request = $.ajax({
+                url: "{!! route('ajax.postJenisCetak') !!}",
+                method: "POST",
+                data: { id : this.value },
+            });
+
+            request.done(function( data ) {
+
+                jeniscetak.empty();
+                jenispaket.empty();
+                jeniscetak.append($('<option>').text('Pilih Jenis Cetak').attr('value', null));
+                jenispaket.append($('<option>').text('Pilih Jenis Paket').attr('value', null));
+
+                $.each(data.items, function (key,value) {
+                    jeniscetak.append($('<option>').text(value.jenis_cetak).attr('value', value.id));
+                });
+            });
+
+            request.fail(function( jqXHR, textStatus ) {
+                console.log(jqXHR);
+                alert( "Request failed: " + textStatus );
+            });
+        });
 
         jeniscetak.change(function (data) {
             let jenisctkid = $( "#jeniscetak" ).val();
@@ -374,12 +395,11 @@
 
             request.done(function( data ) {
                 jenispaket.empty();
-                hargajual.val("");
-                // jenispaket.append($('<option>').text("Select"));
+                jenispaket.append($('<option>').text('Pilih Jenis Paket').attr('value', null));
                 $.each(data, function (key,value) {
 
                     jenispaket.append($('<option>').text(value.nama_paket).attr('value', value.id));
-                    hargajual.val(value.harga_jual);
+                    //hargajual.val(value.harga_jual);
                 })
             });
 
@@ -397,7 +417,6 @@
             });
 
             request.done(function( data ) {
-                console.log(data.harga_jual);
                 hargajual.val(data.harga_jual);
             });
 
@@ -418,6 +437,12 @@
             }
 
         });
+
+        function showForm(){
+            if(jeniscetak.val() === 1){
+                $('form')
+            }
+        }
 
         function makeTable(container, data) {
             let table = $("<table/>").addClass('table table-condensed table-hover');
@@ -503,14 +528,6 @@
             });
 
             request.done(function( data ) {
-                console.log(data.items);
-
-                // $('#tblProduk > tbody > tr').each(function (data) {
-                //     '<td>'+ data.items.id +'</td>' +
-                //     '<td>'+ data.items.kode_jenis +'</td>' +
-                //     '<td>'+ data.items.jenis_cetak +'</td>' +
-                //     '<td><a href="" class="btn btn-flat btn-primary"> Pilih</a> </td>'
-                // });
 
                 $.each(data.items, function (key, value) {
                     console.log(value);
@@ -534,47 +551,26 @@
 
         }
 
-        {{--produk.on('change',function (e) {--}}
+        $('#tambahKeTabel').click(function () {
+            let a = jeniscetak.val();
+            let b = jenispaket.val();
+            let c = $('#panjang').val();
+            let d = $('#lebar').val();
+            let e = $('#totalharga').val();
+            let f = $('#orderid').val();
+            let html =
+                '<tr>' +
+                '<td>'+ f +'</td>' +
+                '<td>'+ a +'</td>' +
+                '<td>'+ b +'</td>' +
+                '<td>Ukuran panjang = '+ c + ' Meter' +' dan lebar = '+ d + ' Meter' +'</td>' +
+                '<td>'+ e +'</td>' +
+                '<td><button type="button" class="btn btn-flat btn-primary"><i class="fa fa-check-circle"></i> ' +
+                'Pilih</button></td>' +
+                '</tr>'
+            ;
 
-            {{--let request = $.ajax({--}}
-                {{--url: "{!! route('ajax.postJenisCetak') !!}",--}}
-                {{--method: "POST",--}}
-                {{--data: { id : this.value },--}}
-            {{--});--}}
-
-            {{--request.done(function( data ) {--}}
-                {{--// console.log(data.items);--}}
-                {{--$.each(data.items, function (key, value) {--}}
-                    {{--// console.log(value.id);--}}
-                    {{--let html = '<td>'+ value.id +'</td>';--}}
-                    {{--$('#tblProduk > tbody > tr').html(html);--}}
-                    {{--// console.log(html);--}}
-                {{--});--}}
-
-                {{--// let cJenis = $.map(data.items, function (obj) {--}}
-                {{--//     obj.id = obj.id || obj.id; // replace id_kab with your identifier--}}
-                {{--//     obj.text = obj.text || obj.jenis_cetak; // replace nama with your identifier--}}
-                {{--//     return obj;--}}
-                {{--// });--}}
-
-                {{--//jeniscetak.select2('data', {id : cJenis.id, text: cJenis.jenis_cetak});--}}
-
-                {{--// jeniscetak.select2({--}}
-                {{--//     placeholder: "Pilih Jenis Cetak",--}}
-                {{--//     data : cJenis,--}}
-                {{--//     allowClear: false,--}}
-                {{--// });--}}
-
-            {{--});--}}
-
-            {{--request.fail(function( jqXHR, textStatus ) {--}}
-                {{--console.log(jqXHR);--}}
-                {{--alert( "Request failed: " + textStatus );--}}
-            {{--});--}}
-        {{--});--}}
-
-
-
-
+            $('#tblDetail > tbody').append(html);
+        })
     </script>
 @endpush
