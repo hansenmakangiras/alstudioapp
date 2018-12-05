@@ -66,18 +66,24 @@ class AjaxController extends Controller
 
     public function getOrderData(Request $request)
     {
-        if ($request->ajax())
+        if ($request->ajax()){
             $order = Order::select();
-        return DataTables::of($order)
+            $model = Order::query();
+        return DataTables::of($model)
             ->editColumn('cetakid', '{{ \App\Models\JenisCetakan::getJenisCetakName((int) $cetakid) }}')
             ->editColumn('jenispaketid', '{{ \App\Models\JenisPaket::getDataPaket($jenispaketid)->nama_paket }}')
             ->editColumn('pelangganid', '{{ \App\Models\Pelanggan::getPelangganName($pelangganid) }}')
             ->editColumn('total_harga', '{{ number_format($total_harga) }}')
             ->editColumn('status_order', '{{ \App\Models\StatusOrder::getStatusOrderName($status_order) }}')
             ->editColumn('status_bayar', '{{ \App\Models\StatusBayar::getStatusName($status_bayar)  }}')
-            ->addColumn('action', function ($order) {
-//                    return '<a href="'.route('order.edit', $order->id).'" class="btn btn-xs btn-primary btn-flat"><i class="fa fa-edit"></i> Edit</a>';
-                return '<div class="btn-group">
+            ->addColumn('action', function ($model) {
+                return view('widget._action', [
+                    'model' => $model,
+                    'url_detail' => route('order.show', $model->id),
+                    'url_edit' => route('order.edit', $model->id),
+                    'url_delete' => route('order.destroy', $model->id)
+                ]);
+                /*return '<div class="btn-group">
                       <button type="button" class="btn btn-warning btn-flat btn-sm dropdown-toggle"
                         data-toggle="dropdown" aria-expanded="true"> Operasi
                         <span class="caret"></span>
@@ -97,10 +103,11 @@ class AjaxController extends Controller
 
                         <li><a href="' . route('order.proses', $order->id) . '"><i class="fa fa-balance-scale"></i> Proses</a></li>
                       </ul>
-                    </div>';
+                    </div>';*/
             })
             ->rawColumns(['action'])
             ->make(true);
+        }
 
     }
 

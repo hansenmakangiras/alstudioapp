@@ -5,7 +5,7 @@
 @stop
 
 @section('subtitle')
-    | Order
+    | Checkout
 @endsection
 
 @section('content-header')
@@ -13,12 +13,12 @@
     <section class="content-header">
         <h1>
             <i class="fa fa-shopping-cart"></i>
-            Create Order
+            Checkout
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="{{ route('order.index') }}"><i class="fa fa-dashboard"></i> Order</a></li>
-            <li class="active">Create</li>
+            <li class="active">Checkout</li>
         </ol>
     </section>
 @stop
@@ -28,61 +28,15 @@
     <p><a title="Return" href="{{ route('order.index') }}"><i class="fa fa-chevron-circle-left "></i>
             &nbsp; Kembali ke list order</a></p>
     <div class="row">
-        {{--@include('widget.alert')--}}
-        {{--<div class="col-xs-6">--}}
-            {{--<div class="box">--}}
-                {{--<div class="box-header">--}}
-                    {{--<h3 class="box-title">Data Pelanggan</h3>--}}
-                {{--</div>--}}
-                {{--<!-- /.box-header -->--}}
-                {{--<!-- form start -->--}}
-                {{--{!! Form::open(array('route' => 'pelanggan.store','method'=>'POST')) !!}--}}
-                {{--<div class="box-body">--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="name">Nama Pelanggan</label>--}}
-                        {{--{!! Form::text('namapel', null, array('placeholder' => 'Nama Pelanggan','class' =>--}}
-                        {{--'form-control','autofocus')) !!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="email">No Telp</label>--}}
-                        {{--{!! Form::text('notelp', null, array('placeholder' => 'No Telepon / HP','class' =>--}}
-                        {{--'form-control')) !!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="password">Alamat</label>--}}
-                        {{--{!! Form::text('alamat', null,array('placeholder' => 'Alamat Pelanggan','class' => 'form-control'))--}}
-                         {{--!!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="confirm">Kode Promo</label>--}}
-                        {{--{!! Form::select('promoid',$arrPromo, null, array--}}
-                        {{--('placeholder' => 'Pilih Kode Promo','class' =>'form-control')) !!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="confirm">Jenis Pelanggan</label>--}}
-                        {{--{!! Form::select('jenis_pelanggan',$arrJenisPelanggan, null, array--}}
-                        {{--('placeholder' => 'Pilih Tipe Pelanggan','class' =>'form-control')) !!}--}}
-                    {{--</div>--}}
-
-                    {{--<div class="box-footer text-center">--}}
-                        {{--<button type="submit" class="btn btn-primary btn-flat">Submit</button>--}}
-                        {{--<a href="{{ route('pelanggan.index') }}" class="btn btn-default btn-flat">Kembali</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--{!! Form::close() !!}--}}
-            {{--<!-- /.box-body -->--}}
-            {{--</div>--}}
-            {{--<!-- /.box -->--}}
-        {{--</div>--}}
         <div class="col-xs-12">
             @include('widget.alert')
             <div class="box box-danger">
-                {{--<div class="box-header">--}}
-                    {{--<h3 class="box-title">Buat Order</h3>--}}
-                {{--</div>--}}
-                <!-- /.box-header -->
+            {{--<div class="box-header">--}}
+            {{--<h3 class="box-title">Buat Order</h3>--}}
+            {{--</div>--}}
+            <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::open(array('route' => 'order.store','method'=>'POST','class' => 'form-horizontal')) !!}
+                {!! Form::open(array('route' => 'order.checkout','method'=>'POST','class' => 'form-horizontal')) !!}
                 <div class="box-body">
                     <div class="form-group">
                         <label for="email" class="col-xs-2 control-label">Pelanggan</label>
@@ -103,8 +57,8 @@
                             {{--'form-control','autofocus','required','readonly','id' => 'orderid')) !!}--}}
 
                             {{--{!! Form::select('orderid', $arrOrder, null,--}}
-                                {{--['placeholder' =>'Pilih orderid','class' =>'form-control select2',--}}
-                                {{--'id'=>'orderid','autofocus','required'])--}}
+                            {{--['placeholder' =>'Pilih orderid','class' =>'form-control select2',--}}
+                            {{--'id'=>'orderid','autofocus','required'])--}}
                             {{--!!}--}}
                         </div>
                     </div>
@@ -121,24 +75,12 @@
                          !!}
                         </div>
                     </div>
-                    {{--<div class="form-group">--}}
-                        {{--<label class="col-xs-2 control-label">Size</label>--}}
-                        {{--<div class="col-xs-8">--}}
-                            {{--<select class="form-control" id="mysize">--}}
-                                {{--<option value="small">Small</option>--}}
-                                {{--<option value="standart">Standart</option>--}}
-                                {{--<option value="large">Large</option>--}}
-                            {{--</select>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
 
                     <div class="box box-warning">
                         <div class="box-header with-border">
                             <h3 class="box-title"><strong><i class="fa fa-shopping-cart"></i> Detail Order</strong></h3>
                         </div>
                         <div class="box-body">
-                            {{--{!! Form::open(array('route' => 'order.store','method'=>'POST','class' =>--}}
-                            {{--'form-horizontal','name' =>'frmDetail','id'=>'frmDetail')) !!}--}}
                             <div class="col-sm-10">
                                 <div class="box box-default">
                                     <div class="box-header">
@@ -148,36 +90,10 @@
                                         <div class="form-group">
                                             <label for="email" class="col-xs-2 control-label">Jenis Cetakan</label>
                                             <div class="col-xs-10">
-                                                {{--<div class="input-group">--}}
-                                                    {{--<!-- /btn-group -->--}}
-                                                    {{--<input type="text" class="form-control" readonly="readonly">--}}
-                                                    {{--<div class="input-group-btn">--}}
-                                                        {{--<button id="btnProduk" onclick="open_container();"--}}
-                                                                {{--type="button"--}}
-                                                                {{--class="btn--}}
-                                                        {{--btn-danger"><i--}}
-                                                                {{--class="fa fa-list"></i> Lihat--}}
-                                                                {{--Data</button>--}}
-                                                    {{--</div>--}}
-
-                                                {{--</div>--}}
-                                                {{--<select id="jeniscetak" name="jeniscetak" class="form-control--}}
-                                                {{--select2"></select>--}}
                                                 {!! Form::select('jeniscetak', [] , null,
                                                 ['placeholder' =>'Pilih Jenis Cetakan','class' =>'form-control select2',
                                                 'id'=>'jeniscetak'])
                                                 !!}
-                                                {{--<div class="input-group input-group-sm">--}}
-                                                    {{--{!! Form::text('jeniscetak', null, array('placeholder' => 'Ukuran--}}
-                                                    {{--Panjang','class' =>'form-control','id'=>'jeniscetak',--}}
-                                                    {{--'readonly'=>true))--}}
-                                                     {{--!!}--}}
-                                                    {{--<span class="input-group-btn">--}}
-                                                      {{--<button type="button" class="btn btn-primary--}}
-                                                      {{--btn-flat">Browse Data</button>--}}
-                                                    {{--</span>--}}
-                                                {{--</div>--}}
-
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -210,8 +126,6 @@
                                                 Satuan','class' =>
                                             'form-control select2','id'=>'satuan'))
                                              !!}
-                                                {{--{!! Form::text('satuan', null, array('placeholder' => 'Satuan','class' =>--}}
-                                            {{--'form-control','id'=>'satuan')) !!}--}}
                                             </div>
                                         </div>
 
@@ -243,12 +157,9 @@
                                             Tabel</button>
                                         <button id="btn-reset" type="reset" class="btn btn-default
                                         btn-flat">Reset</button>
-                                        {{--<button onClick="open_container();" type="button" class="btn btn-default--}}
-                                        {{--btn-flat">Show Modal</button>--}}
                                     </div>
                                 </div>
                             </div>
-                            {{--{!! Form::close() !!}--}}
                             <div class="col-sm-12">
                                 <div class="box box-success">
                                     <div class="box-header with-border">
@@ -294,8 +205,6 @@
                         'form-control select2','id'=>'promo'))
                          !!}
                         </div>
-                        {{--{!! Form::text('promo', null, array('placeholder' => 'Diskon Bila ada','class' =>--}}
-                        {{--'form-control','id'=>'diskon')) !!}--}}
                     </div>
 
                     <div class="form-group">
@@ -324,8 +233,6 @@
                         <div class="col-xs-8">
                             {!! Form::text('keterangan',null, ['class' => 'form-control',
                         'placeholder'=>'Keterangan']) !!}
-                            {{--{!! Form::textarea('keterangan', null, ['class' => 'form-control',--}}
-                            {{--'placeholder'=>'Keterangan']) !!}--}}
                         </div>
                     </div>
                 </div>
@@ -335,7 +242,7 @@
                     <a href="{{ route('order.index') }}" class="btn btn-default btn-flat">Kembali</a>
                 </div>
                 <!-- /.box-body -->
-                    {!! Form::close() !!}
+                {!! Form::close() !!}
             </div>
             <!-- /.box -->
         </div>
@@ -354,13 +261,6 @@
         let jenispaket = $('#jenispaket');
         let hargajual = $("#hargajual");
         let produk = $('#produk');
-
-        // jeniscetak.select2({
-        //     placeholder: "Pilih Jenis Cetak",
-        // });
-        // jenispaket.select2({
-        //     placeholder: "Pilih Jenis Paket",
-        // });
 
         produk.on('change',function (e) {
             let request = $.ajax({

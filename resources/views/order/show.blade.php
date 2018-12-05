@@ -12,8 +12,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Show User
-            <small>Data Pengguna</small>
+            Show Order
+            <small>Data Order</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -28,34 +28,26 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Lihat Pengguna</h3>
+                    <h3 class="box-title">Lihat Detail Order</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        {!! Form::text('name', $user->name, array('placeholder' => 'Name','class' => 'form-control',
+                        <label for="name">Jenis Cetak</label>
+                        {!! Form::text('cetakid', $order->cetakid, array('placeholder' => 'Name','class' => 'form-control',
                         'readonly'))
                          !!}
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        {!! Form::text('email', $user->email, array('placeholder' => 'Email','class' =>
+                        {!! Form::text('email', $order->email, array('placeholder' => 'Email','class' =>
                         'form-control','readonly'))
                          !!}
                     </div>
-                    <div class="form-group">
-                        <label for="roles">Role</label>
-                        @if(!empty($user->getRoleNames()))
-                            @foreach($user->getRoleNames() as $v)
-                                <label class="label bg-red">{{ $v }}</label>
-                            @endforeach
-                        @endif
-                    </div>
 
                     <div class="box-footer text-center">
-                        <a href="{{ route('users.index') }}" class="btn btn-default">Kembali</a>
+                        <a href="{{ route('order.index') }}" class="btn btn-default">Kembali</a>
                     </div>
 
                 </div>
