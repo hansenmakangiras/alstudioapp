@@ -120,50 +120,6 @@
                          !!}
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email" class="col-xs-2 control-label">Jenis Cetakan</label>
-                        <div class="col-xs-8">
-                            {{--<div class="input-group">--}}
-                            {{--<!-- /btn-group -->--}}
-                            {{--<input type="text" class="form-control" readonly="readonly">--}}
-                            {{--<div class="input-group-btn">--}}
-                            {{--<button id="btnProduk" onclick="open_container();"--}}
-                            {{--type="button"--}}
-                            {{--class="btn--}}
-                            {{--btn-danger"><i--}}
-                            {{--class="fa fa-list"></i> Lihat--}}
-                            {{--Data</button>--}}
-                            {{--</div>--}}
-
-                            {{--</div>--}}
-                            {{--<select id="jeniscetak" name="jeniscetak" class="form-control--}}
-                            {{--select2"></select>--}}
-                            {!! Form::select('jeniscetak', [] , null,
-                            ['placeholder' =>'Pilih Jenis Cetakan','class' =>'form-control select2',
-                            'id'=>'jeniscetak'])
-                            !!}
-                            {{--<div class="input-group input-group-sm">--}}
-                            {{--{!! Form::text('jeniscetak', null, array('placeholder' => 'Ukuran--}}
-                            {{--Panjang','class' =>'form-control','id'=>'jeniscetak',--}}
-                            {{--'readonly'=>true))--}}
-                            {{--!!}--}}
-                            {{--<span class="input-group-btn">--}}
-                            {{--<button type="button" class="btn btn-primary--}}
-                            {{--btn-flat">Browse Data</button>--}}
-                            {{--</span>--}}
-                            {{--</div>--}}
-
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="col-xs-2 control-label">Jenis Paket</label>
-                        <div class="col-xs-8">
-                            {!! Form::select('jenispaket',[] , null,array('placeholder' =>'Pilih
-                            Jenis Paket','class' =>
-                        'form-control select2','id'=>'jenispaket'))
-                         !!}
-                        </div>
-                    </div>
                     {{--<div class="form-group">--}}
                         {{--<label class="col-xs-2 control-label">Size</label>--}}
                         {{--<div class="col-xs-8">--}}
@@ -175,7 +131,160 @@
                         {{--</div>--}}
                     {{--</div>--}}
 
-                    <div id="formload"></div>
+                    <div class="box box-warning">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><strong><i class="fa fa-shopping-cart"></i> Detail Order</strong></h3>
+                        </div>
+                        <div class="box-body">
+                            {{--{!! Form::open(array('route' => 'order.store','method'=>'POST','class' =>--}}
+                            {{--'form-horizontal','name' =>'frmDetail','id'=>'frmDetail')) !!}--}}
+                            <div class="col-sm-10">
+                                <div class="box box-default">
+                                    <div class="box-header">
+                                        <i class="fa fa-list"></i> Detail Form
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="email" class="col-xs-2 control-label">Jenis Cetakan</label>
+                                            <div class="col-xs-10">
+                                                {{--<div class="input-group">--}}
+                                                    {{--<!-- /btn-group -->--}}
+                                                    {{--<input type="text" class="form-control" readonly="readonly">--}}
+                                                    {{--<div class="input-group-btn">--}}
+                                                        {{--<button id="btnProduk" onclick="open_container();"--}}
+                                                                {{--type="button"--}}
+                                                                {{--class="btn--}}
+                                                        {{--btn-danger"><i--}}
+                                                                {{--class="fa fa-list"></i> Lihat--}}
+                                                                {{--Data</button>--}}
+                                                    {{--</div>--}}
+
+                                                {{--</div>--}}
+                                                {{--<select id="jeniscetak" name="jeniscetak" class="form-control--}}
+                                                {{--select2"></select>--}}
+                                                {!! Form::select('jeniscetak', [] , null,
+                                                ['placeholder' =>'Pilih Jenis Cetakan','class' =>'form-control select2',
+                                                'id'=>'jeniscetak'])
+                                                !!}
+                                                {{--<div class="input-group input-group-sm">--}}
+                                                    {{--{!! Form::text('jeniscetak', null, array('placeholder' => 'Ukuran--}}
+                                                    {{--Panjang','class' =>'form-control','id'=>'jeniscetak',--}}
+                                                    {{--'readonly'=>true))--}}
+                                                     {{--!!}--}}
+                                                    {{--<span class="input-group-btn">--}}
+                                                      {{--<button type="button" class="btn btn-primary--}}
+                                                      {{--btn-flat">Browse Data</button>--}}
+                                                    {{--</span>--}}
+                                                {{--</div>--}}
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password" class="col-xs-2 control-label">Jenis Paket</label>
+                                            <div class="col-xs-10">
+                                                {!! Form::select('jenispaket',[] , null,array('placeholder' =>'Pilih
+                                                Jenis Paket','class' =>
+                                            'form-control select2','id'=>'jenispaket'))
+                                             !!}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="panjang" class="col-xs-2 control-label">Panjang</label>
+                                            <div class="col-xs-10">
+                                                {!! Form::text('panjang', null, array('placeholder' => 'Ukuran Panjang','class' =>
+                                            'form-control','id'=>'panjang')) !!}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lebar" class="col-xs-2 control-label">Lebar</label>
+                                            <div class="col-xs-10">
+                                                {!! Form::text('lebar', null, array('placeholder' => 'Ukuran Lebar','class' =>
+                                            'form-control','id'=>'lebar')) !!}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-xs-2 control-label">Satuan</label>
+                                            <div class="col-xs-10">
+                                                {!! Form::select('satuan',$satuan , null,array('placeholder' =>'Pilih
+                                                Satuan','class' =>
+                                            'form-control select2','id'=>'satuan'))
+                                             !!}
+                                                {{--{!! Form::text('satuan', null, array('placeholder' => 'Satuan','class' =>--}}
+                                            {{--'form-control','id'=>'satuan')) !!}--}}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-xs-2 control-label">Jumlah</label>
+                                            <div class="col-xs-10">
+                                                {!! Form::text('qty', null, array('placeholder' => 'Jumlah','class' =>
+                                            'form-control','id'=>'jumlah')) !!}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-xs-2 control-label">Harga Jual</label>
+                                            <div class="col-xs-10">
+                                                {!! Form::text('hargajual', null, array('placeholder' => 'Harga Jual','class' =>
+                                            'form-control','readonly','id'=>'hargajual')) !!}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirm" class="col-xs-2 control-label">Tanggal Ambil</label>
+                                            <div class="col-xs-10">
+                                                {!! Form::text('tgl_ambil',null, array('placeholder' => 'Tanggal Pengambilan','class' =>
+                                            'form-control date','id'=>'tglAmbil')) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-footer text-center">
+                                        <button id="tambahKeTabel" type="button" class="btn btn-primary btn-flat">Tambah
+                                            Ke
+                                            Tabel</button>
+                                        <button id="btn-reset" type="reset" class="btn btn-default
+                                        btn-flat">Reset</button>
+                                        {{--<button onClick="open_container();" type="button" class="btn btn-default--}}
+                                        {{--btn-flat">Show Modal</button>--}}
+                                    </div>
+                                </div>
+                            </div>
+                            {{--{!! Form::close() !!}--}}
+                            <div class="col-sm-12">
+                                <div class="box box-success">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title"><i class="fa fa-list"></i> Tabel Order Detail </h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body no-padding">
+                                        <table id="tblDetail" class="table table-condensed table-hover">
+                                            <thead>
+                                            <tr>
+                                                {{--<th>#</th>--}}
+                                                <th>No. Order</th>
+                                                <th>Jenis Cetakan</th>
+                                                <th>Jenis Paket</th>
+                                                <th>Keterangan</th>
+                                                <th>Subtotal</th>
+                                                {{--<th>Status Pesanan</th>--}}
+                                                <th>Operation</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @isset($cariOrder)
+                                                @foreach($cariOrder as $val)
+                                                    <tr>
+                                                        <td>{{ $val->orderid }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            @endisset
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="promo" class="col-xs-2 control-label">Promo</label>
@@ -234,7 +343,6 @@
 @endsection
 @push('js')
     <script>
-
         $('#tglAmbil').datepicker({
             format: "yyyy-mm-dd",
             autoclose: true
@@ -253,30 +361,6 @@
         //     placeholder: "Pilih Jenis Paket",
         // });
 
-        function loadform(id){
-            if(id === 1){
-                return $.ajax({
-                    url: "{!! url('get-form') !!}",
-                    success: function (data) { $('#formload').append(data); },
-                    dataType: 'html'
-                });
-            }else{
-                alert('Hola');
-            }
-
-        }
-
-       /* $(document).ready(function() {
-            $("#id_product").change(function(e){
-                e.preventDefault();  // stops the jump when an anchor clicked.
-                var id  = $('#id_product').val(); // anchors do have text not values.
-                var site_url = 'http://pos.dyndns-server.com:8080/demo1/harga_jual/loadform/' + id;
-                //alert(site_url);
-                $("#load_form").load(site_url);
-            });
-        });*/
-
-
         produk.on('change',function (e) {
             let request = $.ajax({
                 url: "{!! route('ajax.postJenisCetak') !!}",
@@ -285,6 +369,7 @@
             });
 
             request.done(function( data ) {
+
                 jeniscetak.empty();
                 jenispaket.empty();
                 jeniscetak.append($('<option>').text('Pilih Jenis Cetakan').attr('value', null));
@@ -335,7 +420,6 @@
             });
 
             request.done(function( data ) {
-                loadform(1);
                 hargajual.val(data.harga_jual);
             });
 

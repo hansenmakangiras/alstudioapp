@@ -5,7 +5,7 @@
 @stop
 
 @section('subtitle')
-    | Order
+    | Edit Order
 @endsection
 
 @section('content-header')
@@ -13,12 +13,12 @@
     <section class="content-header">
         <h1>
             <i class="fa fa-shopping-cart"></i>
-            Create Order
+            Edit Order
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="{{ route('order.index') }}"><i class="fa fa-dashboard"></i> Order</a></li>
-            <li class="active">Create</li>
+            <li class="active">Edit</li>
         </ol>
     </section>
 @stop
@@ -28,61 +28,9 @@
     <p><a title="Return" href="{{ route('order.index') }}"><i class="fa fa-chevron-circle-left "></i>
             &nbsp; Kembali ke list order</a></p>
     <div class="row">
-        {{--@include('widget.alert')--}}
-        {{--<div class="col-xs-6">--}}
-        {{--<div class="box">--}}
-        {{--<div class="box-header">--}}
-        {{--<h3 class="box-title">Data Pelanggan</h3>--}}
-        {{--</div>--}}
-        {{--<!-- /.box-header -->--}}
-        {{--<!-- form start -->--}}
-        {{--{!! Form::open(array('route' => 'pelanggan.store','method'=>'POST')) !!}--}}
-        {{--<div class="box-body">--}}
-        {{--<div class="form-group">--}}
-        {{--<label for="name">Nama Pelanggan</label>--}}
-        {{--{!! Form::text('namapel', null, array('placeholder' => 'Nama Pelanggan','class' =>--}}
-        {{--'form-control','autofocus')) !!}--}}
-        {{--</div>--}}
-        {{--<div class="form-group">--}}
-        {{--<label for="email">No Telp</label>--}}
-        {{--{!! Form::text('notelp', null, array('placeholder' => 'No Telepon / HP','class' =>--}}
-        {{--'form-control')) !!}--}}
-        {{--</div>--}}
-        {{--<div class="form-group">--}}
-        {{--<label for="password">Alamat</label>--}}
-        {{--{!! Form::text('alamat', null,array('placeholder' => 'Alamat Pelanggan','class' => 'form-control'))--}}
-        {{--!!}--}}
-        {{--</div>--}}
-        {{--<div class="form-group">--}}
-        {{--<label for="confirm">Kode Promo</label>--}}
-        {{--{!! Form::select('promoid',$arrPromo, null, array--}}
-        {{--('placeholder' => 'Pilih Kode Promo','class' =>'form-control')) !!}--}}
-        {{--</div>--}}
-        {{--<div class="form-group">--}}
-        {{--<label for="confirm">Jenis Pelanggan</label>--}}
-        {{--{!! Form::select('jenis_pelanggan',$arrJenisPelanggan, null, array--}}
-        {{--('placeholder' => 'Pilih Tipe Pelanggan','class' =>'form-control')) !!}--}}
-        {{--</div>--}}
-
-        {{--<div class="box-footer text-center">--}}
-        {{--<button type="submit" class="btn btn-primary btn-flat">Submit</button>--}}
-        {{--<a href="{{ route('pelanggan.index') }}" class="btn btn-default btn-flat">Kembali</a>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--{!! Form::close() !!}--}}
-        {{--<!-- /.box-body -->--}}
-        {{--</div>--}}
-        {{--<!-- /.box -->--}}
-        {{--</div>--}}
         <div class="col-xs-12">
             @include('widget.alert')
             <div class="box box-danger">
-            {{--<div class="box-header">--}}
-            {{--<h3 class="box-title">Buat Order</h3>--}}
-            {{--</div>--}}
-            <!-- /.box-header -->
-                <!-- form start -->
-{{--                {!! Form::open(array('route' => 'order.store','method'=>'POST','class' => 'form-horizontal')) !!}--}}
                 {!! Form::model($order, ['method' => 'PATCH','route' => ['order.update', $order->id],'class'
                 =>'form-control']) !!}
                 <div class="box-body">
@@ -101,16 +49,9 @@
                         <div class="col-xs-8">
                             {!! Form::text('orderid', $orderid, array('placeholder' => 'No Order','class' =>
                         'form-control','autofocus','required','readonly','id' => 'orderid')) !!}
-                            {{--{!! Form::hidden('orderid', $orderid, array('placeholder' => 'No Order','class' =>--}}
-                            {{--'form-control','autofocus','required','readonly','id' => 'orderid')) !!}--}}
-
-                            {{--{!! Form::select('orderid', $arrOrder, null,--}}
-                            {{--['placeholder' =>'Pilih orderid','class' =>'form-control select2',--}}
-                            {{--'id'=>'orderid','autofocus','required'])--}}
-                            {{--!!}--}}
                         </div>
                     </div>
-                    {{--@dd($produk->get)--}}
+
                     <div class="form-group">
                         <label for="produk" class="col-xs-2 control-label">Produk</label>
                         {{--{!! Form::text('produk', [], array('placeholder' => 'No Order','class' =>--}}
@@ -123,24 +64,12 @@
                          !!}
                         </div>
                     </div>
-                    {{--<div class="form-group">--}}
-                    {{--<label class="col-xs-2 control-label">Size</label>--}}
-                    {{--<div class="col-xs-8">--}}
-                    {{--<select class="form-control" id="mysize">--}}
-                    {{--<option value="small">Small</option>--}}
-                    {{--<option value="standart">Standart</option>--}}
-                    {{--<option value="large">Large</option>--}}
-                    {{--</select>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
 
                     <div class="box box-warning">
                         <div class="box-header with-border">
                             <h3 class="box-title"><strong><i class="fa fa-shopping-cart"></i> Detail Order</strong></h3>
                         </div>
                         <div class="box-body">
-                            {{--{!! Form::open(array('route' => 'order.store','method'=>'POST','class' =>--}}
-                            {{--'form-horizontal','name' =>'frmDetail','id'=>'frmDetail')) !!}--}}
                             <div class="col-sm-10">
                                 <div class="box box-default">
                                     <div class="box-header">
@@ -163,12 +92,12 @@
                                                 {{--</div>--}}
 
                                                 {{--</div>--}}
-                                                <select id="jeniscetak" name="jeniscetak" class="form-control
-                                                select2"></select>
-                                                {{--{!! Form::select('jeniscetak', $jeniscetak, null,--}}
-                                                {{--['placeholder' =>'Pilih Jenis cetakan','class' =>'form-control select2',--}}
-                                                {{--'id'=>'jeniscetak'])--}}
-                                                {{--!!}--}}
+                                                {{--<select id="jeniscetak" name="jeniscetak" class="form-control--}}
+                                                {{--select2"></select>--}}
+                                                {!! Form::select('jeniscetak', $jeniscetak, null,
+                                                ['placeholder' =>'Pilih Jenis cetakan','class' =>'form-control select2',
+                                                'id'=>'jeniscetak'])
+                                                !!}
                                                 {{--<div class="input-group input-group-sm">--}}
                                                 {{--{!! Form::text('jeniscetak', null, array('placeholder' => 'Ukuran--}}
                                                 {{--Panjang','class' =>'form-control','id'=>'jeniscetak',--}}

@@ -116,11 +116,11 @@ class OrderController extends Controller
                     'qty' => $input['qty'],
                     'harga_jual' => $input['hargajual'],
                     'satuan' => $input['satuan'],
-                    'promo' => $input['promo'],
+                    'promo' => $input['promo'] ?? 1,
                     'keterangan' => $input['keterangan'],
                     'tgl_ambil' => $input['tgl_ambil'],
-                    'status_bayar' => $input['status_bayar'],
-                    'status_order' => $input['status_order'],
+                    'status_bayar' => $input['status_bayar'] ?? 1,
+                    'status_order' => $input['status_order'] ?? 1,
                 ]);
 
                 return redirect()->route('order.create', compact('cariOrder'))
@@ -329,6 +329,11 @@ class OrderController extends Controller
     public function postProsesFoto(Request $request)
     {
         return view('order.proses-foto');
+    }
+
+    public function getForm(Request $request){
+        $satuan = JenisSatuan::pluck('satuan','id')->all();
+        return view('forms.order-form', compact('satuan'));
     }
 
 }

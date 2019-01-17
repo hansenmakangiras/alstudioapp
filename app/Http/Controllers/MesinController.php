@@ -71,9 +71,10 @@ class MesinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Bahan $bahan, $id)
+    public function show($id)
     {
-        return view('mesin.show',compact('bahan','id'));
+        $mesin = Mesin::find($id);
+        return view('mesin.show',compact('mesin','id'));
     }
 
     /**

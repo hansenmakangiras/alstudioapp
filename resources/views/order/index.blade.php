@@ -4,7 +4,7 @@
 
 @stop
 @section('subtitle')
-    | Order
+    | List Order
 @endsection
 
 @section('content-header')
@@ -22,11 +22,9 @@
 @stop
 
 @section('content')
-    @include('widget.alert')
-
+    @include('widget.alert', ['errors' => $errors])
     <div class="row">
         <div class="col-xs-12">
-
             <div class="box">
                 <div class="box-header">
                     <a href="{{ route('order.create') }}" class="btn btn-success btn-sm"><i class="fa
@@ -102,88 +100,45 @@
 @endsection
 
 @push('js')
-    {{--<script id="details-template" type="text/x-handlebars-template">--}}
-        {{--<div class="label label-info">User {{ orderid }}'s Posts</div>--}}
-        {{--<table class="table details-table" id="order-{{id}}">--}}
-            {{--<thead>--}}
-            {{--<tr>--}}
-                {{--<th>Id</th>--}}
-                {{--<th>Title</th>--}}
-            {{--</tr>--}}
-            {{--</thead>--}}
-        {{--</table>--}}
-    {{--</script>--}}
-<script>
-    // let template = Handlebars.compile($("#details-template").html());
-    $('#tbl-order').DataTable({
-        // 'dom': 'B<"clear">lfrtip',
-        'processing'  : true,
-        'serverSide'   : true,
-        'ajax' : "{!! route('ajax.getOrderData') !!}",
-        'columns': [
-            { data: 'id', name: 'id' },
-            { data: 'orderid', name: 'orderid' },
-            { data: 'cetakid', name: 'cetakid' },
-            { data: 'jenispaketid', name: 'jenispaketid' },
-            { data: 'pelangganid', name: 'pelangganid' },
-            { data: 'total_harga', name: 'total_harga' },
-            { data: 'status_bayar', name: 'status_bayar' },
-            { data: 'status_order', name: 'status_order' },
-            { data: 'action', name: 'action', orderable: false, searchable: false},
-        ],
-        'order': [[1, 'asc']],
-        'paging'      : true,
-        'lengthChange': true,
-        'searching'   : true,
-        'ordering'    : true,
-        'autoWidth'   : true,
-        "language": {
-            "lengthMenu": "Tampilkan _MENU_ baris per page",
-            "zeroRecords": "Maaf, Data tidak ditemukan dalam database",
-            //"info": "Showing page _PAGE_ of _PAGES_",
-            "infoEmpty": "Data tidak tersedia",
-            "infoFiltered": "(Filter dari _MAX_ total data)",
-            "search" : "Pencarian",
-            "paginate" : {
-                "first" : "Awal",
-                "last" : "Akhir",
-                "next" : "&gt;",
-                "previous" : "&lt;"
-            }
-        },
-        "pagingType": "full_numbers",
-        'buttons': true
-    });
-
-    // Add event listener for opening and closing details
-    // $('#tbl-order tbody').on('click', 'td.details-control', function () {
-    //     var tr = $(this).closest('tr');
-    //     var row = table.row(tr);
-    //     var tableId = 'order-' + row.data().id;
-    //
-    //     if (row.child.isShown()) {
-    //         // This row is already open - close it
-    //         row.child.hide();
-    //         tr.removeClass('shown');
-    //     } else {
-    //         // Open this row
-    //         row.child(template(row.data())).show();
-    //         initTable(tableId, row.data());
-    //         tr.addClass('shown');
-    //         tr.next().find('td').addClass('no-padding bg-gray');
-    //     }
-    // });
-    //
-    // function initTable(tableId, data) {
-    //     $('#' + tableId).DataTable({
-    //         processing: true,
-    //         serverSide: true,
-    //         ajax: data.details_url,
-    //         columns: [
-    //             { data: 'id', name: 'id' },
-    //             { data: 'title', name: 'title' }
-    //         ]
-    //     })
-    // }
-</script>
+    <script>
+        $('#tbl-order').DataTable({
+            // 'dom': 'B<"clear">lfrtip',
+            'processing'  : true,
+            'serverSide'   : true,
+            'ajax' : "{!! route('ajax.getOrderData') !!}",
+            'columns': [
+                { data: 'id', name: 'id' },
+                { data: 'orderid', name: 'orderid' },
+                { data: 'cetakid', name: 'cetakid' },
+                { data: 'jenispaketid', name: 'jenispaketid' },
+                { data: 'pelangganid', name: 'pelangganid' },
+                { data: 'total_harga', name: 'total_harga' },
+                { data: 'status_bayar', name: 'status_bayar' },
+                { data: 'status_order', name: 'status_order' },
+                { data: 'action', name: 'action', orderable: false, searchable: false},
+            ],
+            'order': [[1, 'asc']],
+            'paging'      : true,
+            'lengthChange': true,
+            'searching'   : true,
+            'ordering'    : true,
+            'autoWidth'   : true,
+            "language": {
+                "lengthMenu": "Tampilkan _MENU_ baris per page",
+                "zeroRecords": "Maaf, Data tidak ditemukan dalam database",
+                //"info": "Showing page _PAGE_ of _PAGES_",
+                "infoEmpty": "Data tidak tersedia",
+                "infoFiltered": "(Filter dari _MAX_ total data)",
+                "search" : "Pencarian",
+                "paginate" : {
+                    "first" : "Awal",
+                    "last" : "Akhir",
+                    "next" : "&gt;",
+                    "previous" : "&lt;"
+                }
+            },
+            "pagingType": "full_numbers",
+            'buttons': true
+        });
+    </script>
 @endpush

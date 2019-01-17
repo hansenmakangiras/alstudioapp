@@ -55,6 +55,11 @@ Route::group(['middleware' => 'role:Kasir|Admin|Superadmin'], function() {
     Route::get('/invoice', function (){
         return view('widget.invoice');
     });
+
+    Route::get('get-form', 'OrderController@getForm')->name('order.getform');
+    Route::get('view/{name_view}', function ($name_view) {
+        return view($name_view);
+    });
 });
 
 Route::group(['middleware' => 'role:Cetak|Foto|Superadmin'], function() {
