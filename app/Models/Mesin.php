@@ -25,4 +25,11 @@ class Mesin extends Model
     protected $hidden = [
         '_token',
     ];
+
+    public static function getMesinName($id){
+//        dd($id);
+        $name = Mesin::find($id);
+        return $name->nama_mesin;
+
+    }
 }

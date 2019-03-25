@@ -29,72 +29,74 @@
     <div class="row">
         {{--@include('widget.alert')--}}
         {{--<div class="col-xs-6">--}}
-            {{--<div class="box">--}}
-                {{--<div class="box-header">--}}
-                    {{--<h3 class="box-title">Data Pelanggan</h3>--}}
-                {{--</div>--}}
-                {{--<!-- /.box-header -->--}}
-                {{--<!-- form start -->--}}
-                {{--{!! Form::open(array('route' => 'pelanggan.store','method'=>'POST')) !!}--}}
-                {{--<div class="box-body">--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="name">Nama Pelanggan</label>--}}
-                        {{--{!! Form::text('namapel', null, array('placeholder' => 'Nama Pelanggan','class' =>--}}
-                        {{--'form-control','autofocus')) !!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="email">No Telp</label>--}}
-                        {{--{!! Form::text('notelp', null, array('placeholder' => 'No Telepon / HP','class' =>--}}
-                        {{--'form-control')) !!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="password">Alamat</label>--}}
-                        {{--{!! Form::text('alamat', null,array('placeholder' => 'Alamat Pelanggan','class' => 'form-control'))--}}
-                         {{--!!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="confirm">Kode Promo</label>--}}
-                        {{--{!! Form::select('promoid',$arrPromo, null, array--}}
-                        {{--('placeholder' => 'Pilih Kode Promo','class' =>'form-control')) !!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="confirm">Jenis Pelanggan</label>--}}
-                        {{--{!! Form::select('jenis_pelanggan',$arrJenisPelanggan, null, array--}}
-                        {{--('placeholder' => 'Pilih Tipe Pelanggan','class' =>'form-control')) !!}--}}
-                    {{--</div>--}}
+        {{--<div class="box">--}}
+        {{--<div class="box-header">--}}
+        {{--<h3 class="box-title">Data Pelanggan</h3>--}}
+        {{--</div>--}}
+        {{--<!-- /.box-header -->--}}
+        {{--<!-- form start -->--}}
+        {{--{!! Form::open(array('route' => 'pelanggan.store','method'=>'POST')) !!}--}}
+        {{--<div class="box-body">--}}
+        {{--<div class="form-group">--}}
+        {{--<label for="name">Nama Pelanggan</label>--}}
+        {{--{!! Form::text('namapel', null, array('placeholder' => 'Nama Pelanggan','class' =>--}}
+        {{--'form-control','autofocus')) !!}--}}
+        {{--</div>--}}
+        {{--<div class="form-group">--}}
+        {{--<label for="email">No Telp</label>--}}
+        {{--{!! Form::text('notelp', null, array('placeholder' => 'No Telepon / HP','class' =>--}}
+        {{--'form-control')) !!}--}}
+        {{--</div>--}}
+        {{--<div class="form-group">--}}
+        {{--<label for="password">Alamat</label>--}}
+        {{--{!! Form::text('alamat', null,array('placeholder' => 'Alamat Pelanggan','class' => 'form-control'))--}}
+        {{--!!}--}}
+        {{--</div>--}}
+        {{--<div class="form-group">--}}
+        {{--<label for="confirm">Kode Promo</label>--}}
+        {{--{!! Form::select('promoid',$arrPromo, null, array--}}
+        {{--('placeholder' => 'Pilih Kode Promo','class' =>'form-control')) !!}--}}
+        {{--</div>--}}
+        {{--<div class="form-group">--}}
+        {{--<label for="confirm">Jenis Pelanggan</label>--}}
+        {{--{!! Form::select('jenis_pelanggan',$arrJenisPelanggan, null, array--}}
+        {{--('placeholder' => 'Pilih Tipe Pelanggan','class' =>'form-control')) !!}--}}
+        {{--</div>--}}
 
-                    {{--<div class="box-footer text-center">--}}
-                        {{--<button type="submit" class="btn btn-primary btn-flat">Submit</button>--}}
-                        {{--<a href="{{ route('pelanggan.index') }}" class="btn btn-default btn-flat">Kembali</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--{!! Form::close() !!}--}}
-            {{--<!-- /.box-body -->--}}
-            {{--</div>--}}
-            {{--<!-- /.box -->--}}
+        {{--<div class="box-footer text-center">--}}
+        {{--<button type="submit" class="btn btn-primary btn-flat">Submit</button>--}}
+        {{--<a href="{{ route('pelanggan.index') }}" class="btn btn-default btn-flat">Kembali</a>--}}
+        {{--</div>--}}
+        {{--</div>--}}
+        {{--{!! Form::close() !!}--}}
+        {{--<!-- /.box-body -->--}}
+        {{--</div>--}}
+        {{--<!-- /.box -->--}}
         {{--</div>--}}
         <div class="col-xs-12">
             @include('widget.alert')
             <div class="box box-danger">
-                {{--<div class="box-header">--}}
-                    {{--<h3 class="box-title">Buat Order</h3>--}}
-                {{--</div>--}}
-                <!-- /.box-header -->
+            {{--<div class="box-header">--}}
+            {{--<h3 class="box-title">Buat Order</h3>--}}
+            {{--</div>--}}
+            <!-- /.box-header -->
                 <!-- form start -->
                 {!! Form::open(array('route' => 'order.store','method'=>'POST','class' => 'form-horizontal')) !!}
                 <div class="box-body">
                     <div class="form-group">
                         <label for="email" class="col-xs-2 control-label">Pelanggan</label>
-                        <div class="col-xs-8">
+                        <div class="col-xs-7">
                             {!! Form::select('pelanggan', $pelanggan, null,
                         ['placeholder' =>'Pilih Pelanggan','class' =>'form-control select2',
                         'id'=>'pelanggan'])
                          !!}
                         </div>
+                        <div class="col-xs-1">
+                            <a href="#" class="btn btn-flat bg-navy">...</a>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="orderid" class="col-xs-2 control-label">No. Order</label>
-
                         <div class="col-xs-8">
                             {!! Form::text('orderid', $orderid, array('placeholder' => 'No Order','class' =>
                         'form-control','autofocus','required','readonly','id' => 'orderid')) !!}
@@ -102,8 +104,8 @@
                             {{--'form-control','autofocus','required','readonly','id' => 'orderid')) !!}--}}
 
                             {{--{!! Form::select('orderid', $arrOrder, null,--}}
-                                {{--['placeholder' =>'Pilih orderid','class' =>'form-control select2',--}}
-                                {{--'id'=>'orderid','autofocus','required'])--}}
+                            {{--['placeholder' =>'Pilih orderid','class' =>'form-control select2',--}}
+                            {{--'id'=>'orderid','autofocus','required'])--}}
                             {{--!!}--}}
                         </div>
                     </div>
@@ -114,14 +116,14 @@
                         {{--'form-control','autofocus','required','readonly')) !!}--}}
                         <div class="col-xs-8">
                             {{--<select id="produk" class="form-control select2"></select>--}}
-                            {!! Form::select('produk', $produk, null,
-                        ['placeholder' =>'Pilih produk','class' =>'form-control select2',
-                        'id'=>'produk','required'])
-                         !!}
+                            {!! Form::select('produk', $produk, $idproduk,
+                                ['placeholder' =>'Pilih produk','class' =>'form-control select2',
+                                'id'=>'produk','required'])
+                            !!}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="col-xs-2 control-label">Jenis Cetakan</label>
+                        <label for="email" class="col-xs-2 control-label">Kategori Produk</label>
                         <div class="col-xs-8">
                             {{--<div class="input-group">--}}
                             {{--<!-- /btn-group -->--}}
@@ -165,28 +167,28 @@
                         </div>
                     </div>
                     {{--<div class="form-group">--}}
-                        {{--<label class="col-xs-2 control-label">Size</label>--}}
-                        {{--<div class="col-xs-8">--}}
-                            {{--<select class="form-control" id="mysize">--}}
-                                {{--<option value="small">Small</option>--}}
-                                {{--<option value="standart">Standart</option>--}}
-                                {{--<option value="large">Large</option>--}}
-                            {{--</select>--}}
-                        {{--</div>--}}
+                    {{--<label class="col-xs-2 control-label">Size</label>--}}
+                    {{--<div class="col-xs-8">--}}
+                    {{--<select class="form-control" id="mysize">--}}
+                    {{--<option value="small">Small</option>--}}
+                    {{--<option value="standart">Standart</option>--}}
+                    {{--<option value="large">Large</option>--}}
+                    {{--</select>--}}
+                    {{--</div>--}}
                     {{--</div>--}}
 
                     <div id="formload"></div>
 
-                    <div class="form-group">
-                        <label for="promo" class="col-xs-2 control-label">Promo</label>
-                        <div class="col-xs-8">
-                            {!! Form::select('promo',[null => 'Pilih Paket'] + $arrPromo , null,array('class' =>
-                        'form-control select2','id'=>'promo'))
-                         !!}
-                        </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="promo" class="col-xs-2 control-label">Promo</label>--}}
+                        {{--<div class="col-xs-8">--}}
+                            {{--{!! Form::select('promo',[null => 'Pilih Paket'] + $arrPromo , null,array('class' =>--}}
+                        {{--'form-control select2','id'=>'promo'))--}}
+                         {{--!!}--}}
+                        {{--</div>--}}
                         {{--{!! Form::text('promo', null, array('placeholder' => 'Diskon Bila ada','class' =>--}}
                         {{--'form-control','id'=>'diskon')) !!}--}}
-                    </div>
+                    {{--</div>--}}
 
                     <div class="form-group">
                         <label for="name" class="col-xs-2 control-label">Total Harga</label>
@@ -225,7 +227,7 @@
                     <a href="{{ route('order.index') }}" class="btn btn-default btn-flat">Kembali</a>
                 </div>
                 <!-- /.box-body -->
-                    {!! Form::close() !!}
+                {!! Form::close() !!}
             </div>
             <!-- /.box -->
         </div>
@@ -253,76 +255,98 @@
         //     placeholder: "Pilih Jenis Paket",
         // });
 
-        function loadform(id){
-            if(id === 1){
+        function loadform(id) {
+            if (id === 1) {
                 return $.ajax({
                     url: "{!! url('get-form') !!}",
-                    success: function (data) { $('#formload').append(data); },
+                    success: function (data) {
+                        $('#formload').append(data);
+                    },
                     dataType: 'html'
                 });
-            }else{
+            } else {
                 alert('Hola');
             }
 
         }
 
-       /* $(document).ready(function() {
-            $("#id_product").change(function(e){
-                e.preventDefault();  // stops the jump when an anchor clicked.
-                var id  = $('#id_product').val(); // anchors do have text not values.
-                var site_url = 'http://pos.dyndns-server.com:8080/demo1/harga_jual/loadform/' + id;
-                //alert(site_url);
-                $("#load_form").load(site_url);
-            });
-        });*/
+        /* $(document).ready(function() {
+             $("#id_product").change(function(e){
+                 e.preventDefault();  // stops the jump when an anchor clicked.
+                 var id  = $('#id_product').val(); // anchors do have text not values.
+                 var site_url = 'http://pos.dyndns-server.com:8080/demo1/harga_jual/loadform/' + id;
+                 //alert(site_url);
+                 $("#load_form").load(site_url);
+             });
+         });*/
 
+        let request = $.ajax({
+            url: "{!! route('ajax.postJenisCetak') !!}",
+            method: "POST",
+            data: {id: produk.val()},
+        });
 
-        produk.on('change',function (e) {
-            let request = $.ajax({
-                url: "{!! route('ajax.postJenisCetak') !!}",
-                method: "POST",
-                data: { id : this.value },
-            });
+        request.done(function (data) {
+            jeniscetak.empty();
+            jenispaket.empty();
+            jeniscetak.append($('<option>').text('Pilih Jenis Cetakan').attr('value', null));
+            jenispaket.append($('<option>').text('Pilih Jenis Paket').attr('value', null));
 
-            request.done(function( data ) {
-                jeniscetak.empty();
-                jenispaket.empty();
-                jeniscetak.append($('<option>').text('Pilih Jenis Cetakan').attr('value', null));
-                jenispaket.append($('<option>').text('Pilih Jenis Paket').attr('value', null));
-
-                $.each(data.items, function (key,value) {
-                    jeniscetak.append($('<option>').text(value.jenis_cetak).attr('value', value.id));
-                });
-            });
-
-            request.fail(function( jqXHR, textStatus ) {
-                console.log(jqXHR);
-                alert( "Request failed: " + textStatus );
+            $.each(data.items, function (key, value) {
+                jeniscetak.append($('<option>').text(value.jenis_cetak).attr('value', value.id));
             });
         });
 
+        request.fail(function (jqXHR, textStatus) {
+            console.log(jqXHR);
+            alert("Request failed: " + textStatus);
+        });
+        {{--produk.on('change', function (e) {--}}
+            {{--let request = $.ajax({--}}
+                {{--url: "{!! route('ajax.postJenisCetak') !!}",--}}
+                {{--method: "POST",--}}
+                {{--data: {id: this.value},--}}
+            {{--});--}}
+
+            {{--request.done(function (data) {--}}
+                {{--jeniscetak.empty();--}}
+                {{--jenispaket.empty();--}}
+                {{--jeniscetak.append($('<option>').text('Pilih Jenis Cetakan').attr('value', null));--}}
+                {{--jenispaket.append($('<option>').text('Pilih Jenis Paket').attr('value', null));--}}
+
+                {{--$.each(data.items, function (key, value) {--}}
+                    {{--jeniscetak.append($('<option>').text(value.jenis_cetak).attr('value', value.id));--}}
+                {{--});--}}
+            {{--});--}}
+
+            {{--request.fail(function (jqXHR, textStatus) {--}}
+                {{--console.log(jqXHR);--}}
+                {{--alert("Request failed: " + textStatus);--}}
+            {{--});--}}
+        {{--});--}}
+
         jeniscetak.change(function (e) {
-            let jenisctkid = $( "#jeniscetak" ).val();
+            let jenisctkid = $("#jeniscetak").val();
 
             let request = $.ajax({
                 url: "{!! route('ajax.getJenisPaket') !!}",
                 method: "POST",
-                data: { id : jenisctkid },
+                data: {id: jenisctkid},
 
             });
 
-            request.done(function( data ) {
+            request.done(function (data) {
                 jenispaket.empty();
                 jenispaket.append($('<option>').text('Pilih Jenis Paket').attr('value', null));
-                $.each(data, function (key,value) {
+                $.each(data, function (key, value) {
 
                     jenispaket.append($('<option>').text(value.nama_paket).attr('value', value.id));
                     //hargajual.val(value.harga_jual);
                 })
             });
 
-            request.fail(function( jqXHR, textStatus ) {
-                alert( "Request failed: " + textStatus );
+            request.fail(function (jqXHR, textStatus) {
+                alert("Request failed: " + textStatus);
             });
         });
 
@@ -330,45 +354,45 @@
             let request = $.ajax({
                 url: "{!! route('ajax.getDataPaket') !!}",
                 method: "POST",
-                data: { id : this.value },
+                data: {id: this.value},
                 //dataType: "html"
             });
 
-            request.done(function( data ) {
+            request.done(function (data) {
                 loadform(1);
                 hargajual.val(data.harga_jual);
             });
 
-            request.fail(function( jqXHR, textStatus ) {
-                alert( "Request failed: " + textStatus );
+            request.fail(function (jqXHR, textStatus) {
+                alert("Request failed: " + textStatus);
             });
         });
 
         $("#jumlah").change(function (dt) {
             let total = $("#totalharga");
             let harga = $("#hargajual").val();
-            if(this.value !== ""){
+            if (this.value !== "") {
                 let totalharga = $("#jumlah").val() * harga;
                 total.val(totalharga);
-            }else{
+            } else {
                 let totalharga = $("#jumlah").val(1) * harga;
                 total.val(totalharga);
             }
 
         });
 
-        function showForm(){
-            if(jeniscetak.val() === 1){
+        function showForm() {
+            if (jeniscetak.val() === 1) {
                 $('form')
             }
         }
 
         function makeTable(container, data) {
             let table = $("<table/>").addClass('table table-condensed table-hover');
-            $.each(data, function(rowIndex, r) {
+            $.each(data, function (rowIndex, r) {
                 let row = $("<tr/>");
-                $.each(r, function(colIndex, c) {
-                    row.append($("<t"+(rowIndex === 0 ?  "h" : "d")+"/>").text(c));
+                $.each(r, function (colIndex, c) {
+                    row.append($("<t" + (rowIndex === 0 ? "h" : "d") + "/>").text(c));
                 });
                 table.append(row);
             });
@@ -377,7 +401,7 @@
 
         function appendTableColumn(table, rowData) {
             var lastRow = $('<tr/>').appendTo(table.find('tbody:last'));
-            $.each(rowData, function(colIndex, c) {
+            $.each(rowData, function (colIndex, c) {
                 lastRow.append($('<td/>').text(c));
             });
 
@@ -396,8 +420,7 @@
             return data;
         }
 
-        function open_container()
-        {
+        function open_container() {
             let data = [["City 1", "City 2", "City 3"], //headers
                 ["New York", "LA", "Seattle"],
                 ["Paris", "Milan", "Rome"],
@@ -427,33 +450,32 @@
             let title = 'Browse Data';
             let footer = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button ' +
                 'type="button" class="btn btn-primary">Save changes</button>';
-            setModalBox(title,content,footer);
+            setModalBox(title, content, footer);
             $('#myModal').modal('show');
         }
 
-        function setModalBox(title,content,footer)
-        {
-            document.getElementById('modal-bodyku').innerHTML=content;
-            document.getElementById('myModalLabel').innerHTML=title;
-            document.getElementById('modal-footerq').innerHTML=footer;
+        function setModalBox(title, content, footer) {
+            document.getElementById('modal-bodyku').innerHTML = content;
+            document.getElementById('myModalLabel').innerHTML = title;
+            document.getElementById('modal-footerq').innerHTML = footer;
 
             $('#myModal').attr('class', 'modal fade')
-                .attr('aria-labelledby','myModalLabel');
-            $('.modal-dialog').attr('class','modal-dialog');
+                .attr('aria-labelledby', 'myModalLabel');
+            $('.modal-dialog').attr('class', 'modal-dialog');
             let request = $.ajax({
                 url: "{!! route('ajax.postJenisCetak') !!}",
                 method: "POST",
-                data: { id : produk.val() },
+                data: {id: produk.val()},
             });
 
-            request.done(function( data ) {
+            request.done(function (data) {
 
                 $.each(data.items, function (key, value) {
                     console.log(value);
                     let html =
-                        '<td>'+ value.id +'</td>' +
-                        '<td>'+ value.kode_jenis +'</td>' +
-                        '<td>'+ value.jenis_cetak +'</td>' +
+                        '<td>' + value.id + '</td>' +
+                        '<td>' + value.kode_jenis + '</td>' +
+                        '<td>' + value.jenis_cetak + '</td>' +
                         '<td><button type="button" class="btn btn-flat btn-primary"><i class="fa fa-check-circle"></i> ' +
                         'Pilih</button></td>'
                     ;
@@ -463,9 +485,9 @@
 
             });
 
-            request.fail(function( jqXHR, textStatus ) {
+            request.fail(function (jqXHR, textStatus) {
                 console.log(jqXHR);
-                alert( "Request failed: " + jqXHR.responseJSON.msg );
+                alert("Request failed: " + jqXHR.responseJSON.msg);
             });
 
         }
@@ -479,11 +501,11 @@
             let f = $('#orderid').val();
             let html =
                 '<tr>' +
-                '<td>'+ f +'</td>' +
-                '<td>'+ a +'</td>' +
-                '<td>'+ b +'</td>' +
-                '<td>Ukuran panjang = '+ c + ' Meter' +' dan lebar = '+ d + ' Meter' +'</td>' +
-                '<td>'+ e +'</td>' +
+                '<td>' + f + '</td>' +
+                '<td>' + a + '</td>' +
+                '<td>' + b + '</td>' +
+                '<td>Ukuran panjang = ' + c + ' Meter' + ' dan lebar = ' + d + ' Meter' + '</td>' +
+                '<td>' + e + '</td>' +
                 '<td><button type="button" class="btn btn-flat btn-primary"><i class="fa fa-check-circle"></i> ' +
                 'Pilih</button></td>' +
                 '</tr>'

@@ -51,11 +51,28 @@
 <script src="{{ asset('assets/plugins/iCheck/icheck.min.js') }}"></script>
 <!-- Select2 -->
 <script src="{{ asset('assets/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
-
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.js"></script>--}}
+<script src="{{ asset('assets/plugins/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.5.0/dist/sweetalert2.all.min.js"></script>-->
+<!--{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.js"></script>--}}-->
 @stack('js')
 <script>
     let url = window.location;
+
+    function calculateHarga(){
+        Swal.fire({
+            title: 'Apakah anda yakin ingin keluar?',
+            text:'Keluar dari aplikasi',
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Saya yakin!',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+        });
+    }
+
     /* for sidebar menu but not for treeview submenu */
     $('ul.sidebar-menu a').filter(function() {
         return this.href == url;
@@ -85,6 +102,55 @@
     $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
         checkboxClass: 'icheckbox_flat-green',
         radioClass   : 'iradio_flat-green'
-    })
+    });
 
+    const swalWithCustomButton = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-info btn-flat',
+            cancelButton: 'btn btn-danger btn-flat'
+        },
+        buttonsStyling: false,
+    });
+
+    /* Logout Form */
+    $('#btnLogout').click(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Apakah anda yakin ingin keluar?',
+            text:'Keluar dari aplikasi',
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Saya yakin!',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+        }).then((result) => {
+            if (result.value) {
+                document.getElementById('logout-form').submit();
+            }
+        });
+    });
+
+    /* Hapus Data Form */
+    $('#btnHapus').click(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Apakah anda yakin ingin menghapus data ini?',
+            text:'Hapus Data',
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Saya yakin!',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+        }).then((result) => {
+            if (result.value) {
+                document.getElementById('delete-form').submit();
+            }
+        });
+    });
 </script>

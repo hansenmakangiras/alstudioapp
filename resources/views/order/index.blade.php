@@ -27,8 +27,10 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <a href="{{ route('order.create') }}" class="btn btn-success btn-sm"><i class="fa
-                        fa-plus-circle"></i> Buat Pemesanan</a>
+                    <a href="{{ route('order.create',['produk'=>1]) }}" class="btn btn-success btn-sm"><i class="fa
+                        fa-plus-circle"></i> Order Foto Studio</a>
+                    <a href="{{ route('order.create',['produk'=>2]) }}" class="btn btn-danger btn-sm"><i class="fa
+                        fa-plus-circle"></i> Order Digital Printing</a>
                 </div>
 
                 <div class="box-body">

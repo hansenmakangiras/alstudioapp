@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Finishing;
 use App\Models\JenisCetakan;
 use App\Models\JenisPaket;
 use App\Models\JenisSatuan;
@@ -40,22 +41,34 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
-        $statusByr = StatusBayar::pluck('statusbyr','id')->all();
-        $jeniscetak = JenisCetakan::with('produk')->pluck('jenis_cetak','id')->all();
-//        $produk = Produk::with('jenisCetak')->get()->toArray();
-        $orderid = $this->getNextOrderNumber();
-        $jenisPaket = JenisPaket::pluck('nama_paket','id')->all();
-        $satuan = JenisSatuan::pluck('satuan','id')->all();
-        $pelanggan = Pelanggan::pluck('namapel','id')->all();
-        $statusOrder = StatusOrder::pluck('status_order','id');
-//        $arrOrder = Order::pluck('orderid','orderid')->all();
-        $produk = Produk::pluck('kategori','id')->all();
-        $order = Order::orderBy('id','DESC')->with('orderDetail')->paginate(10);
-//        if(!$arrOrder){
-//            $arrOrder = [$orderid2 => $orderid2];
-//        }
-        $arrPromo = Promo::pluck('kode','id')->all();
-        $arrJenisPelanggan = TipePelanggan::getArrayPelanggan();
+        $idproduk = $request->get('produk');
+        if($idproduk == 2){
+            $statusByr = StatusBayar::pluck('statusbyr','id')->all();
+            $jeniscetak = JenisCetakan::with('produk')->pluck('jenis_cetak','id')->all();
+            $orderid = $this->getNextOrderNumber();
+            $jenisPaket = JenisPaket::pluck('nama_paket','id')->all();
+            $finishing = Finishing::pluck('jenis_finishing','id')->all();
+            $satuan = JenisSatuan::pluck('satuan','id')->all();
+            $pelanggan = Pelanggan::pluck('namapel','id')->all();
+            $statusOrder = StatusOrder::pluck('status_order','id');
+            $produk = Produk::pluck('kategori','id')->all();
+            $order = Order::orderBy('id','DESC')->with('orderDetail')->paginate(10);
+            $arrPromo = Promo::pluck('kode','id')->all();
+            $arrJenisPelanggan = TipePelanggan::getArrayPelanggan();
+        }else{
+            $statusByr = StatusBayar::pluck('statusbyr','id')->all();
+            $jeniscetak = JenisCetakan::with('produk')->pluck('jenis_cetak','id')->all();
+            $orderid = $this->getNextOrderNumber();
+            $finishing = Finishing::pluck('jenis_finishing','id')->all();
+            $jenisPaket = JenisPaket::pluck('nama_paket','id')->all();
+            $satuan = JenisSatuan::pluck('satuan','id')->all();
+            $pelanggan = Pelanggan::pluck('namapel','id')->all();
+            $statusOrder = StatusOrder::pluck('status_order','id');
+            $produk = Produk::pluck('kategori','id')->all();
+            $order = Order::orderBy('id','DESC')->with('orderDetail')->paginate(10);
+            $arrPromo = Promo::pluck('kode','id')->all();
+            $arrJenisPelanggan = TipePelanggan::getArrayPelanggan();
+        }
 
         return view('order.create',compact(
             'statusByr',
@@ -68,7 +81,9 @@ class OrderController extends Controller
             'arrJenisPelanggan',
             'produk',
             'order',
-            'satuan'
+            'satuan',
+            'idproduk',
+            'finishing'
         )) ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
@@ -195,7 +210,8 @@ class OrderController extends Controller
             'arrPromo',
             'arrJenisPelanggan',
             'produk',
-            'order'
+            'order',
+            'id'
         ));
 //        ))->with('i', ($request->input('page', 1) - 1) * 10);
     }

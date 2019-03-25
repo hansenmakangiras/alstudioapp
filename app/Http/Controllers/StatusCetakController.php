@@ -44,7 +44,7 @@ class StatusCetakController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'statusbyr' => 'required',
+            'statuscetak' => 'required',
         ]);
 
 //        $statusCetak = Bahan::create($request->all()->except('_token'));
@@ -92,7 +92,7 @@ class StatusCetakController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'statusbyr' => 'required',
+            'statuscetak' => 'required',
         ]);
 
         $statusCetak = StatusCetak::find($id);

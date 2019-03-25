@@ -51,10 +51,15 @@
                          !!}
                     </div>
                     <div class="form-group">
-                        <label for="confirm">Kode Promo</label>
-                        {!! Form::select('promoid',$arrPromo, null, array
-                        ('placeholder' => 'Pilih Kode Promo','class' =>'form-control')) !!}
+                        <label for="password">Email</label>
+                        {!! Form::text('email', null,array('placeholder' => 'Email Pelanggan','class' => 'form-control'))
+                         !!}
                     </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="confirm">Kode Promo</label>--}}
+                        {{--{!! Form::select('promoid',$arrPromo, null, array--}}
+                        {{--('placeholder' => 'Pilih Kode Promo','class' =>'form-control')) !!}--}}
+                    {{--</div>--}}
                     <div class="form-group">
                         <label for="confirm">Jenis Pelanggan</label>
                         {!! Form::select('jenis_pelanggan',$arrJenisPelanggan, null, array

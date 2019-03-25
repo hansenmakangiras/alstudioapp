@@ -31,7 +31,7 @@
         <div class="col-xs-12">
             @include('widget.alert')
             <div class="box box-danger">
-                {!! Form::model($order, ['method' => 'PATCH','route' => ['order.update', $order->id],'class'
+                {!! Form::model($order, ['method' => 'PATCH','route' => ['order.update', $id],'class'
                 =>'form-control']) !!}
                 <div class="box-body">
                     <div class="form-group">

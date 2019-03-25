@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
-use App\Models\Promo;
 use App\Models\StatusBayar;
 use App\Models\TipePelanggan;
 use Illuminate\Http\Request;
@@ -16,7 +15,7 @@ class PelangganController extends Controller
 //        $this->middleware('permission:createPelanggan', ['only' => ['create','store']]);
 //        $this->middleware('permission:editPelanggan', ['only' => ['edit','update']]);
 //        $this->middleware('permission:deletePelanggan', ['only' => ['destroy']]);
-        $this->middleware('role:Admin|Kasir|Superadmin');
+//        $this->middleware('role:Admin|Kasir|Superadmin');
     }
     /**
      * Display a listing of the resource.
@@ -38,9 +37,9 @@ class PelangganController extends Controller
     public function create()
     {
 //        $arrPromo = \App\Helper\AppHelper::generatePromoCode(10,6,'ALS','FAS',9,'abcdefghijklmn','',true,'AS');
-        $arrPromo = Promo::pluck('kode','id')->all();
+//        $arrPromo = Promo::pluck('kode','id')->all();
         $arrJenisPelanggan = TipePelanggan::getArrayPelanggan();
-        return view('pelanggan.create',compact('arrJenisPelanggan','arrPromo'));
+        return view('pelanggan.create',compact('arrJenisPelanggan'));
     }
 
     /**
@@ -55,8 +54,8 @@ class PelangganController extends Controller
             'namapel' => 'required',
             'alamat' => 'required',
             'notelp' => 'required',
-            'promoid' => 'required',
-            'status_pelanggan' => 'required',
+            'email' => 'required|email|unique:pelanggan',
+//            'status_pelanggan' => 'required',
             'jenis_pelanggan' => 'required'
         ]);
         $input = $request->all();

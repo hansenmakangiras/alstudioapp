@@ -41,7 +41,7 @@
                             <th>Nama</th>
                             <th>Alamat</th>
                             <th>No Telp</th>
-                            <th>Kode Promo</th>
+                            <th>Email</th>
                             <th>Jenis Pelanggan</th>
                             <th>Status Pelanggan</th>
                             <th>Operation</th>
@@ -54,26 +54,26 @@
                                 <td>{{ $val->namapel }}</td>
                                 <td>{{ $val->alamat }}</td>
                                 <td>{{ $val->notelp }}</td>
-                                <td>{{ \App\Models\Promo::getKodePromoWithTipe($val->promoid,$val->jenis_pelanggan) }}</td>
+                                <td>{{ $val->email }}</td>
                                 <td>{!! \App\Models\Pelanggan::getJenisPelanggan
                                 ($val->jenis_pelanggan) !!}</td>
                                 <td><label class="label bg-green">{{ \App\Models\Pelanggan::getStatusPelanggan
                                 ($val->status) }}</label></td>
                                 <td>
-                                    @can("viewPelanggan")
+{{--                                    @can("viewPelanggan")--}}
                                     <a class="btn btn-success btn-xs" href="{{ route('pelanggan.show',$val->id)
                                     }}">View</a>
-                                    @endcan
-                                    @can('editPelanggan')
+                                    {{--@endcan--}}
+                                    {{--@can('editPelanggan')--}}
                                     <a href="{{ route('pelanggan.edit',$val->id) }}" class="btn btn-primary
                                 btn-xs">Edit</a>
-                                    @endcan
-                                    @can('deletePelanggan')
+                                    {{--@endcan--}}
+                                    {{--@can('deletePelanggan')--}}
                                         {!! Form::open(['method' => 'DELETE','route' => ['pelanggan.destroy', $val->id],
                                         'style'=>'display:inline']) !!}
                                         {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-xs']) !!}
                                         {!! Form::close() !!}
-                                    @endcan
+                                    {{--@endcan--}}
                                 </td>
                             </tr>
                         @endforeach

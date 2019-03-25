@@ -1,5 +1,5 @@
 //! moment.js
-//! version : 2.22.2
+//! version : 2.24.0
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -44,7 +44,7 @@ import {normalizeUnits} from './lib/units/units';
 
 import isDate from './lib/utils/is-date';
 
-moment.version = '2.22.2';
+moment.version = '2.24.0';
 
 setHookCallback(local);
 
@@ -85,7 +85,7 @@ moment.HTML5_FMT = {
     TIME: 'HH:mm',                                  // <input type="time" />
     TIME_SECONDS: 'HH:mm:ss',                       // <input type="time" step="1" />
     TIME_MS: 'HH:mm:ss.SSS',                        // <input type="time" step="0.001" />
-    WEEK: 'YYYY-[W]WW',                             // <input type="week" />
+    WEEK: 'GGGG-[W]WW',                             // <input type="week" />
     MONTH: 'YYYY-MM'                                // <input type="month" />
 };
 

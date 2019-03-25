@@ -8,7 +8,7 @@
                     <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p>{{ Auth()->user()->name }}</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -49,6 +49,12 @@
                             Cetakan</a></li>
                     <li><a href="{{ route('satuan.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Satuan</a></li>
                     <li><a href="{{ route('bahan.index') }}"><i class="fa fa-angle-right"></i> Data Bahan</a></li>
+                    <li><a href="{{ route('finishing.index') }}"><i class="fa fa-angle-right"></i> Data Finishing</a></li>
+                    <li><a href="{{ route('jenis-potong.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Potong</a></li>
+                    <li><a href="{{ route('jenis-display.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Display</a></li>
+                    <li><a href="{{ route('jenis-ukuran.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Ukuran</a></li>
+                    <li><a href="{{ route('jenis-bingkai.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Bingkai</a></li>
+                    <li><a href="{{ route('hjp.index') }}"><i class="fa fa-angle-right"></i> Data Harga Jual Produk</a></li>
                     <li><a href="{{ route('mesin.index') }}"><i class="fa fa-angle-right"></i> Data Mesin</a></li>
                     <li><a href="{{ route('jenispaket.index') }}"><i class="fa fa-angle-right"></i> Data Jenis Paket</a></li>
                     <li><a href="{{ route('status-cetak.index') }}"><i class="fa fa-angle-right"></i> Data Status Cetak</a></li>
@@ -88,38 +94,38 @@
                 </ul>
             </li>
             @endrole
-            @hasanyrole('Foto|Admin|Superadmin')
-            <li class="header">MENU FOTO</li>
-            <li>
-                <a href="{{ route('order.prosesfoto') }}">
-                    <i class="fa fa-pie-chart"></i>
-                    <span>Work Order Foto</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-laptop"></i>
-                    <span>Status Order</span>
-                </a>
-            </li>
-            @endhasanyrole
-            @hasanyrole('Cetak|Admin|Superadmin')
-            <li class="header">MENU PRODUKSI</li>
+            {{--@hasanyrole('Foto|Admin|Superadmin')--}}
+            {{--<li class="header">MENU FOTO</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ route('order.prosesfoto') }}">--}}
+                    {{--<i class="fa fa-pie-chart"></i>--}}
+                    {{--<span>Work Order Foto</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="#">--}}
+                    {{--<i class="fa fa-laptop"></i>--}}
+                    {{--<span>Status Order</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--@endhasanyrole--}}
+            {{--@hasanyrole('Cetak|Admin|Superadmin')--}}
+            {{--<li class="header">MENU PRODUKSI</li>--}}
             {{--@can('Manage Cetakan')--}}
-            <li>
-                <a href="{{ route('order.prosescetak') }}">
-                    <i class="fa fa-pie-chart"></i>
-                    <span>Order Cetakan</span>
-                </a>
-            </li>
+            {{--<li>--}}
+                {{--<a href="{{ route('order.prosescetak') }}">--}}
+                    {{--<i class="fa fa-pie-chart"></i>--}}
+                    {{--<span>Order Cetakan</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
             {{--@endcan--}}
-            <li>
-                <a href="#">
-                    <i class="fa fa-laptop"></i>
-                    <span>Status Order</span>
-                </a>
-            </li>
-            @endhasanyrole
+            {{--<li>--}}
+                {{--<a href="#">--}}
+                    {{--<i class="fa fa-laptop"></i>--}}
+                    {{--<span>Status Order</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
+            {{--@endhasanyrole--}}
             @hasanyrole('Kasir|Admin|Superadmin')
             {{--@role('User|Admin')--}}
             <li class="header">MENU RESEPSIONIS</li>
@@ -130,9 +136,9 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('order/foto-studio') }}">
-                    <i class="fa fa-camera-retro"></i>
-                    <span>Foto Studio</span>
+                <a href="{{ route('work-order.index') }}">
+                    <i class="fa fa-briefcase"></i>
+                    <span>Work Order</span>
                 </a>
             </li>
             @endhasanyrole

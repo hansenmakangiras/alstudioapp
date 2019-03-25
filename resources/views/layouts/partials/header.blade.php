@@ -181,14 +181,11 @@
                                 </a>
                             </div>
                             <div class="pull-right">
-                                <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">Sign out</a>
+                                <a id="btnLogout" href="#" class="btn btn-default btn-flat">Sign out</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
                                     @csrf
                                 </form>
-
                             </div>
                         </li>
                     </ul>
@@ -203,3 +200,4 @@
         </div>
     </nav>
 </header>
+

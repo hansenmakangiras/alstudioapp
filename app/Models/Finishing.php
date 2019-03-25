@@ -25,4 +25,11 @@ class Finishing extends Model
     protected $hidden = [
         '_token',
     ];
+
+    public static function getFinishingName($id){
+//        dd($id);
+        $name = Finishing::find($id);
+        return (!empty($name)) ? $name->jenis_finishing : "-";
+
+    }
 }

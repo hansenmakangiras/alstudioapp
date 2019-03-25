@@ -14,7 +14,19 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'cetakid', 'orderid', 'pelangganid','jenispaketid','promoid','total_harga',
+        'cetakid',
+        'orderid',
+        'pelangganid',
+        'jenispaketid',
+        'bahanid',
+        'mesinid',
+        'finishingid',
+        'status_bayar',
+        'status_order',
+        'total_harga',
+        'total_order',
+        'pajak',
+        'diskon',
     ];
 
     /**
@@ -38,6 +50,21 @@ class Order extends Model
     public function jeniscetak()
     {
         return $this->hasMany(JenisCetakan::class,'jeniscetakid','id');
+    }
+
+    public function finishing()
+    {
+        return $this->hasMany(Finishing::class,'finishingid','id');
+    }
+
+    public function mesin()
+    {
+        return $this->hasMany(Mesin::class,',mesinid','id');
+    }
+
+    public function bahan()
+    {
+        return $this->hasMany(Bahan::class,'bahanid','id');
     }
 
 }

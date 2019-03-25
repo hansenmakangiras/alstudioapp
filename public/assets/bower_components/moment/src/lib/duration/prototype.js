@@ -1,7 +1,19 @@
 import {Duration} from './constructor';
 import {abs} from './abs';
 import {add, subtract} from './add-subtract';
-import {as, asDays, asHours, asMilliseconds, asMinutes, asMonths, asSeconds, asWeeks, asYears, valueOf} from './as';
+import {
+    as,
+    asDays,
+    asHours,
+    asMilliseconds,
+    asMinutes,
+    asMonths,
+    asQuarters,
+    asSeconds,
+    asWeeks,
+    asYears,
+    valueOf
+} from './as';
 import {bubble} from './bubble';
 import {clone} from './clone';
 import {days, get, hours, milliseconds, minutes, months, seconds, weeks, years} from './get';
@@ -26,6 +38,7 @@ proto.asHours        = asHours;
 proto.asDays         = asDays;
 proto.asWeeks        = asWeeks;
 proto.asMonths       = asMonths;
+proto.asQuarters     = asQuarters;
 proto.asYears        = asYears;
 proto.valueOf        = valueOf;
 proto._bubble        = bubble;

@@ -38,19 +38,21 @@
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>ID Bahan</th>
                             <th>Nama</th>
-                            <th>Satuan</th>
-                            <th>Harga Jual</th>
-                            <th>Operation</th>
+                            <th>Kategori</th>
+                            <th>HPP</th>
+                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($bahan as $key => $val)
                             <tr>
                                 <td>{{ ++$i }}</td>
+                                <td>{{ $val->id }}</td>
                                 <td>{{ $val->nama_bahan }}</td>
                                 <td>{{ \App\Models\JenisSatuan::getSatuanName($val->id_satuan) }}</td>
-                                <td>{{ $val->hpp }}</td>
+                                <td>{{ \App\Helper\AppHelper::convertToRupiah($val->hpp) }}</td>
                                 <td>
                                     {{--@can("viewPelanggan")--}}
                                     <a class="btn btn-success btn-xs" href="{{ route('bahan.show',$val->id)

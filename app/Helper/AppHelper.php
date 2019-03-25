@@ -82,4 +82,12 @@ class AppHelper
         }
         return $randomString;
     }
+
+    public static function convertToRupiah($number){
+        if($number != 0){
+            return "Rp. " . number_format($number,0,'.',',');
+        }else{
+            return "Rp. " . 0;
+        }
+    }
 }

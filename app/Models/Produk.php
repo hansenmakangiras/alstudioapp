@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
-    protected $table = "kategori_cetak";
+    protected $table = "produk";
 
     /**
      * The attributes that are mass assignable.
@@ -14,7 +14,7 @@ class Produk extends Model
      * @var array
      */
     protected $fillable = [
-        'kategori'
+        'kategori','produk'
     ];
 
     /**
@@ -26,15 +26,14 @@ class Produk extends Model
         '_token',
     ];
 
-    public function jenisCetak()
-    {
-        return $this->belongsTo(JenisCetakan::class,'produk_id','id');
-    }
+//    public function jenisCetak()
+//    {
+//        return $this->belongsTo(JenisCetakan::class,'produk_id','id');
+//    }
 
-    public static function getJenisCetakName($id){
-//        dd($id);
-        $name = JenisCetakan::find($id);
-        return $name->jenis_cetak;
+    public static function getProdukName($id){
+        $name = Produk::find($id);
+        return $name->kategori;
 
     }
 }
