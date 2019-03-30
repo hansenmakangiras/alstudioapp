@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Bahan;
 use App\Models\Pelanggan;
 use App\Models\StatusBayar;
 use App\Models\TipePelanggan;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PelangganController extends Controller
 {
     function __construct()
     {
+        $this->middleware('auth');
 //        $this->middleware('permission:managePelanggan');
 //        $this->middleware('permission:createPelanggan', ['only' => ['create','store']]);
 //        $this->middleware('permission:editPelanggan', ['only' => ['edit','update']]);
@@ -20,7 +23,7 @@ class PelangganController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -32,7 +35,7 @@ class PelangganController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -45,8 +48,8 @@ class PelangganController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -71,8 +74,8 @@ class PelangganController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Bahan  $pelanggan
-     * @return \Illuminate\Http\Response
+     * @param  Bahan  $pelanggan
+     * @return Response
      */
     public function show(Pelanggan $pelanggan)
     {
@@ -82,8 +85,8 @@ class PelangganController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pelanggan  $pelanggan
-     * @return \Illuminate\Http\Response
+     * @param Pelanggan $pelanggan
+     * @return Response
      */
     public function edit(Pelanggan $pelanggan)
     {
@@ -95,9 +98,9 @@ class PelangganController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -121,8 +124,8 @@ class PelangganController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Bahan  $pelanggan
-     * @return \Illuminate\Http\Response
+     * @param  Bahan  $pelanggan
+     * @return Response
      */
     public function destroy(Pelanggan $pelanggan)
     {

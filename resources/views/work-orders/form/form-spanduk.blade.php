@@ -41,12 +41,12 @@
            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="confirm" class="col-sm-4 control-label">Tipe Pelanggan</label>
-        <div class="col-sm-8">
-            {!! Form::select('tipe_pelanggan_id',$tipePelanggan, null, ['class' =>'form-control']) !!}
-        </div>
-    </div>
+    {{--<div class="form-group">--}}
+        {{--<label for="confirm" class="col-sm-4 control-label">Tipe Pelanggan</label>--}}
+        {{--<div class="col-sm-8">--}}
+            {{--{!! Form::select('tipe_pelanggan_id',$tipePelanggan, null, ['class' =>'form-control']) !!}--}}
+        {{--</div>--}}
+    {{--</div>--}}
     {{--<div class="form-group">--}}
         {{--<label for="name" class="col-sm-4 control-label">Harga Jual (Rp)</label>--}}
         {{--<div class="col-sm-8">--}}

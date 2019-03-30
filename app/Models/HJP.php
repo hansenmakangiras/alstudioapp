@@ -26,4 +26,12 @@ class HJP extends Model
     protected $hidden = [
         '_token',
     ];
+
+    public function Produk(){
+        return $this->belongsTo(Produk::class,'produk_id','produkid');
+    }
+
+    public function WorkOrder(){
+        return $this->belongsTo(WorkOrder::class,'produk_id','id');
+    }
 }

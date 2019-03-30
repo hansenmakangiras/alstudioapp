@@ -18,7 +18,7 @@ class WorkOrder extends Model
      * @var array
      */
     protected $fillable = [
-        'hjp_id',
+        'produkid',
         'orderid',
         'pelangganid',
         'status_bayar',
@@ -38,8 +38,12 @@ class WorkOrder extends Model
         '_token',
     ];
 
-    public function hargaJualProduk(){
-        return $this->hasOne(HJP::class,'hjp_id','id');
+    public function Produk(){
+        return $this->hasMany(Produk::class,'produkid','id');
+    }
+
+    public function HargaJualProduk(){
+        return $this->hasMany(HJP::class,'hjp_id','id');
     }
 
 

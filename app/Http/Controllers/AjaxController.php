@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bahan;
 use App\Models\Finishing;
+use App\Models\HJP;
 use App\Models\JenisCetakan;
 use App\Models\JenisDisplay;
 use App\Models\JenisPaket;
@@ -22,6 +23,7 @@ class AjaxController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
         $this->middleware('role:Superadmin|Admin');
     }
 
@@ -239,30 +241,69 @@ class AjaxController extends Controller
     public function loadFormwo(Request $request){
         if($request->ajax()){
             $produkid = $request->get('id');
-            $mesin = Mesin::pluck('nama_mesin','id')->all();
-            $bahan = Bahan::pluck('nama_bahan','id')->all();
-            $finishing = Finishing::pluck('jenis_finishing','id')->all();
-            $potong = JenisPotong::pluck('jenis_potong','id')->all();
-            $ukuran = JenisUkuran::pluck('ukuran','id')->all();
-            $satuan = JenisSatuan::pluck('satuan','id')->all();
-            $tipePelanggan = TipePelanggan::pluck('tipe','id')->all();
-            $display = JenisDisplay::pluck('jenis_display','id')->all();
 
             if($produkid == 1){
+                $hjp = $this->getHJP($produkid);
+
+                $mesin = (isset($hjp['mesin'])) ? $hjp['mesin'] : [];
+                $bahan = (isset($hjp['bahan'])) ? $hjp['bahan'] : [];
+                $finishing = (isset($hjp['finishing'])) ? $hjp['finishing'] : [];
+                $potong = (isset($hjp['potong'])) ? $hjp['potong'] : [];
+                $ukuran = (isset($hjp['ukuran'])) ? $hjp['ukuran'] : [];
+                $satuan = (isset($hjp['satuan'])) ? $hjp['satuan'] : [];
+                $tipePelanggan = isset($hjp['tipePelanggan']) ? $hjp['tipePelanggan'] : [];
+                $display = (isset($hjp['display'])) ? $hjp['display'] : [];
+
                 return view('work-orders.form.form-kartunama', compact(
-                    'mesin','bahan','finishing','potong','display','ukuran','satuan','tipePelanggan'
+                    'mesin','bahan','finishing','potong','display','ukuran','satuan','tipePelanggan','hjp'
                 ));
             }elseif($produkid == 2 || $produkid == 3 || $produkid == 5 || $produkid == 6){
+
+                $hjp = $this->getHJP($produkid);
+
+                $mesin = (isset($hjp['mesin'])) ? $hjp['mesin'] : [];
+                $bahan = (isset($hjp['bahan'])) ? $hjp['bahan'] : [];
+                $finishing = (isset($hjp['finishing'])) ? $hjp['finishing'] : [];
+                $potong = (isset($hjp['potong'])) ? $hjp['potong'] : [];
+                $ukuran = (isset($hjp['ukuran'])) ? $hjp['ukuran'] : [];
+                $satuan = (isset($hjp['satuan'])) ? $hjp['satuan'] : [];
+                $tipePelanggan = isset($hjp['tipePelanggan']) ? $hjp['tipePelanggan'] : [];
+                $display = (isset($hjp['display'])) ? $hjp['display'] : [];
+
                 return view('work-orders.form.form-spanduk', compact(
-                    'mesin','bahan','finishing','potong','display','ukuran','satuan','tipePelanggan'
+                    'mesin','bahan','finishing','potong','display','ukuran','satuan','tipePelanggan','hjp'
                 ));
+
             }elseif($produkid == 4){
+                $hjp = $this->getHJP($produkid);
+
+                $mesin = (isset($hjp['mesin'])) ? $hjp['mesin'] : [];
+                $bahan = (isset($hjp['bahan'])) ? $hjp['bahan'] : [];
+                $finishing = (isset($hjp['finishing'])) ? $hjp['finishing'] : [];
+                $potong = (isset($hjp['potong'])) ? $hjp['potong'] : [];
+                $ukuran = (isset($hjp['ukuran'])) ? $hjp['ukuran'] : [];
+                $satuan = (isset($hjp['satuan'])) ? $hjp['satuan'] : [];
+                $tipePelanggan = isset($hjp['tipePelanggan']) ? $hjp['tipePelanggan'] : [];
+                $display = (isset($hjp['display'])) ? $hjp['display'] : [];
+
                 return view('work-orders.form.form-sticker', compact(
-                    'mesin','bahan','finishing','potong','display','ukuran','satuan','tipePelanggan'
+                    'mesin','bahan','finishing','potong','display','ukuran','satuan','tipePelanggan','hjp'
                 ));
+
             }elseif($produkid == 7){
+                $hjp = $this->getHJP($produkid);
+
+                $mesin = (isset($hjp['mesin'])) ? $hjp['mesin'] : [];
+                $bahan = (isset($hjp['bahan'])) ? $hjp['bahan'] : [];
+                $finishing = (isset($hjp['finishing'])) ? $hjp['finishing'] : [];
+                $potong = (isset($hjp['potong'])) ? $hjp['potong'] : [];
+                $ukuran = (isset($hjp['ukuran'])) ? $hjp['ukuran'] : [];
+                $satuan = (isset($hjp['satuan'])) ? $hjp['satuan'] : [];
+                $tipePelanggan = isset($hjp['tipePelanggan']) ? $hjp['tipePelanggan'] : [];
+                $display = (isset($hjp['display'])) ? $hjp['display'] : [];
+
                 return view('work-orders.form.form-foto', compact(
-                    'mesin','bahan','finishing','potong','display','ukuran','satuan','tipePelanggan'
+                    'mesin','bahan','finishing','potong','display','ukuran','satuan','tipePelanggan','hjp'
                 ));
             }else{
                 return "";
@@ -282,5 +323,71 @@ class AjaxController extends Controller
             return response()->json(['items'=>[],'msg' => 'Ajax Request'],200);
         }
         return response()->json(['items'=>[],'msg' => 'Method not allowed'],405);
+    }
+
+    private function getHJP($produkid){
+        $produkid = isset($produkid) ? $produkid : 0;
+        if($produkid > 0){
+            $hjp = HJP::where('produk_id',$produkid)->get()->toArray();
+            $var = [
+                'mesin_id',
+                'bahan_id',
+                'finishing_id',
+                'potong_id',
+                'ukuran_id',
+                'satuan_id',
+                'tipe_pelanggan_id',
+                'display_id'
+            ];
+
+            $mesin = Mesin::where('id',$this->searchForId('mesin_id', 'mesin_id', $hjp))->pluck('nama_mesin','id')->all();
+            dd($mesin);
+            $bahan = Bahan::where('id',$hjp[0]['bahan_id'])->pluck('nama_bahan','id')->all();
+            $finishing = Finishing::where('id',$hjp[0]['finishing_id'])->pluck('jenis_finishing','id')->all();
+            $potong = JenisPotong::where('id',$hjp[0]['potong_id'])->pluck('jenis_potong','id')->all();
+            $ukuran = JenisUkuran::where('id',$hjp[0]['ukuran_id'])->pluck('ukuran','id')->all();
+            $satuan = JenisSatuan::where('id',$hjp[0]['satuan_id'])->pluck('satuan','id')->all();
+            $tipePelanggan = TipePelanggan::pluck('tipe','id')->all();
+            $display = JenisDisplay::where('id',$hjp[0]['display_id'])->pluck('jenis_display','id')->all();
+
+            foreach ( $hjp as $key => $item) {
+                if(in_array($var, array_keys($item))){
+                    return $item;
+//                    array_filter($arr);
+                }
+            }
+            //dd($arr);
+
+            return [
+                'mesin' => $mesin,
+                'bahan' => $bahan,
+                'finishing' => $finishing,
+                'potong' => $potong,
+                'ukuran' => $ukuran,
+                'satuan' => $satuan,
+                'tipePelanggan' => $tipePelanggan,
+                'display' => $display
+                ];
+        }
+
+        return [
+            'mesin' => [],
+            'bahan' => [],
+            'finishing' => [],
+            'potong' => [],
+            'ukuran' => [],
+            'satuan' => [],
+            'tipePelanggan' => [],
+            'display' => []
+        ];
+    }
+
+    function searchForId($id,$col, $array) {
+        foreach ($array as $key => $val) {
+            if ($val[$col] === $id) {
+                return $key;
+            }
+        }
+        return null;
     }
 }

@@ -12,19 +12,22 @@ use App\Models\StatusBayar;
 use App\Models\StatusOrder;
 use App\Models\TipePelanggan;
 use App\Models\WorkOrder;
+use DB;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class WorkOrderController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
         $this->middleware('role:Superadmin|Admin|User');
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -36,7 +39,7 @@ class WorkOrderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create(Request $request)
     {
@@ -51,38 +54,38 @@ class WorkOrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
+        dd($request->all());
         request()->validate([
-            'jeniscetak' => 'required',
-            'pelanggan' => 'required',
-            'jenispaket' => 'required',
-            'hargajual' => 'required',
-            'qty' => 'required',
-            'total_harga' => 'required',
-            'tgl_ambil' => 'date',
+            'orderid' => 'required',
+            'pelangganid' => 'required',
+            'hjp_id' => 'required',
             'status_bayar' => 'required',
             'status_order' => 'required',
+            'total_harga' => 'required',
+            'total_harga' => 'date',
+            'total_order' => 'required',
         ]);
 
         $input = $request->all();
-//        dd($input);
-        $cari = Order::where('orderid',$input['orderid'])->with('orderDetail')->first();
-        if(!$cari){
-            $order = new Order();
-            $order->create([
+
+        $cariWO = WorkOrder::where('produkid',$input['produkid'])->with('HargaJualProduk')->first();
+        if(!$cariWO){
+            $workOrder = new WorkOrder();
+            $workOrder->create([
                 'orderid' => $input['orderid'],
-                'cetakid' => $input['jeniscetak'],
+                'hjp_id' => $input['jeniscetak'],
                 'pelangganid' => $input['pelanggan'],
                 'jenispaketid' => $input['jenispaket'],
                 'promoid' => $input['promo'],
                 'total_harga' => $input['total_harga'],
             ]);
 
-            if($order){
+            if($workOrder){
                 $cariOrder = Order::where('orderid',$input['orderid'])->with('orderDetail')->first();
 
                 $cariOrder->orderDetail()->create([
@@ -129,7 +132,7 @@ class WorkOrderController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(Order $order)
     {
@@ -140,7 +143,7 @@ class WorkOrderController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Request $request, $id)
     {
@@ -180,9 +183,9 @@ class WorkOrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -226,7 +229,7 @@ class WorkOrderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -237,7 +240,7 @@ class WorkOrderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function proses(Request $request)
     {
@@ -251,7 +254,7 @@ class WorkOrderController extends Controller
      */
     private function generateOrderID()
     {
-        $orderObj = \DB::table('order')->select('orderid')->latest('id')->first();
+        $orderObj = DB::table('order')->select('orderid')->latest('id')->first();
         if ($orderObj) {
             $orderid = $orderObj->orderid;
             $removed1char = substr($orderid, 1);

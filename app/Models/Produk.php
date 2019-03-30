@@ -26,10 +26,9 @@ class Produk extends Model
         '_token',
     ];
 
-//    public function jenisCetak()
-//    {
-//        return $this->belongsTo(JenisCetakan::class,'produk_id','id');
-//    }
+    public function hargaJualProduk(){
+        return $this->hasMany(HJP::class,'produk_id','id');
+    }
 
     public static function getProdukName($id){
         $name = Produk::find($id);
